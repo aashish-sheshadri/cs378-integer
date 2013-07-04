@@ -1,63 +1,63 @@
 TestInteger.c++
-...F.F.F.F.F...F.F.F.F.F.F
+.......F.F.F.F.F...F.F.F.F.F.F
 
 
 !!!FAILURES!!!
 Test Results:
-Run:  15   Failures: 11   Errors: 0
+Run:  19   Failures: 11   Errors: 0
 
 
-1) test: TestInteger::test_plus_digits (F) line: 74 TestInteger.c++
+1) test: TestInteger::test_plus_digits (F) line: 111 TestInteger.c++
 assertion failed
 - Expression: p - x == 3
 
 
-2) test: TestInteger::test_minus_digits (F) line: 87 TestInteger.c++
+2) test: TestInteger::test_minus_digits (F) line: 124 TestInteger.c++
 assertion failed
 - Expression: p - x == 3
 
 
-3) test: TestInteger::test_multiplies_digits (F) line: 100 TestInteger.c++
+3) test: TestInteger::test_multiplies_digits (F) line: 137 TestInteger.c++
 assertion failed
 - Expression: p - x == 6
 
 
-4) test: TestInteger::test_divides_digits (F) line: 113 TestInteger.c++
+4) test: TestInteger::test_divides_digits (F) line: 150 TestInteger.c++
 assertion failed
 - Expression: p - x == 3
 
 
-5) test: TestInteger::test_constructor_1 (F) line: 123 TestInteger.c++
+5) test: TestInteger::test_constructor_1 (F) line: 160 TestInteger.c++
 assertion failed
 - Expression: false
 
 
-6) test: TestInteger::test_abs_1 (F) line: 147 TestInteger.c++
+6) test: TestInteger::test_abs_1 (F) line: 184 TestInteger.c++
 assertion failed
 - Expression: x == 98765
 
 
-7) test: TestInteger::test_abs_2 (F) line: 156 TestInteger.c++
+7) test: TestInteger::test_abs_2 (F) line: 193 TestInteger.c++
 assertion failed
 - Expression: x == -98765
 
 
-8) test: TestInteger::test_negation (F) line: 186 TestInteger.c++
+8) test: TestInteger::test_negation (F) line: 223 TestInteger.c++
 assertion failed
 - Expression: y == -98765
 
 
-9) test: TestInteger::test_output (F) line: 199 TestInteger.c++
+9) test: TestInteger::test_output (F) line: 236 TestInteger.c++
 assertion failed
 - Expression: out.str() == "98765"
 
 
-10) test: TestInteger::test_pow_1 (F) line: 213 TestInteger.c++
+10) test: TestInteger::test_pow_1 (F) line: 250 TestInteger.c++
 assertion failed
 - Expression: x == 0
 
 
-11) test: TestInteger::test_pow_2 (F) line: 223 TestInteger.c++
+11) test: TestInteger::test_pow_2 (F) line: 260 TestInteger.c++
 assertion failed
 - Expression: x == 98765
 

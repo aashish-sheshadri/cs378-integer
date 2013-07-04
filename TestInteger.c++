@@ -25,6 +25,8 @@ To test the program:
 #include <sstream>   // ostringstream
 #include <stdexcept> // invalid_argument
 #include <string>    // ==
+#include <vector>
+#include <deque>
 
 #include "cppunit/extensions/HelperMacros.h" // CPPUNIT_TEST, CPPUNIT_TEST_SUITE, CPPUNIT_TEST_SUITE_END
 #include "cppunit/TestFixture.h"             // TestFixture
@@ -41,25 +43,60 @@ struct TestInteger : CppUnit::TestFixture {
     // shift_left_digits
     // -----------------
 
-    void test_shift_left_digits () {
+    void test_shift_left_digits_1 () {
         const int a[] = {2, 3, 4};
         const int b[] = {2, 3, 4, 0, 0};
               int x[10];
         const int* p = shift_left_digits(a, a + 3, 2, x);
         CPPUNIT_ASSERT((p - x) == 5);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, b));}
-
+    
+    void test_shift_left_digits_2 () {
+        const std::vector<int> a (3,3);
+        std::vector<int> b (3,3);
+        b.push_back(0);
+        b.push_back(0);
+        std::vector<int> x(10,0);  
+        const std::vector<int>::iterator p = shift_left_digits(a.begin(), a.end(), 2, x.begin());
+        CPPUNIT_ASSERT((p - x.begin()) == 5);
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
+     
+    void test_shift_left_digits_3 () {
+        const std::deque<int> a (3,3);
+        std::deque<int> b (3,3);
+        b.push_back(0);
+        b.push_back(0);
+        std::deque<int> x(10,0);  
+        const std::deque<int>::iterator p = shift_left_digits(a.begin(), a.end(), 2, x.begin());
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
+ 
     // ------------------
     // shift_right_digits
     // ------------------
 
-    void test_shift_right_digits () {
+    void test_shift_right_digits_1 () {
         const int a[] = {2, 3, 4};
         const int b[] = {2};
               int x[10];
         const int* p = shift_right_digits(a, a + 3, 2, x);
         CPPUNIT_ASSERT((p - x) == 1);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, b));}
+    
+    void test_shift_right_digits_2 () {
+        const std::vector<int> a (3,3);
+        std::vector<int> b (1,3);
+        std::vector<int> x(10,0);  
+        const std::vector<int>::iterator p = shift_right_digits(a.begin(), a.end(), 2, x.begin());
+        CPPUNIT_ASSERT((p - x.begin()) == 1);
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
+     
+    void test_shift_right_digits_3 () {
+        const std::deque<int> a (3,3);
+        std::deque<int> b (1,3);
+        std::deque<int> x(10,0);  
+        const std::deque<int>::iterator p = shift_right_digits(a.begin(), a.end(), 2, x.begin());
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
+ 
 
     // -----------
     // plus_digits
@@ -231,8 +268,12 @@ struct TestInteger : CppUnit::TestFixture {
     // -----
 
     CPPUNIT_TEST_SUITE(TestInteger);
-    CPPUNIT_TEST(test_shift_left_digits);
-    CPPUNIT_TEST(test_shift_right_digits);
+    CPPUNIT_TEST(test_shift_left_digits_1);
+    CPPUNIT_TEST(test_shift_left_digits_2);
+    CPPUNIT_TEST(test_shift_left_digits_3);
+    CPPUNIT_TEST(test_shift_right_digits_1);
+    CPPUNIT_TEST(test_shift_right_digits_2);
+    CPPUNIT_TEST(test_shift_right_digits_3);
     CPPUNIT_TEST(test_plus_digits);
     CPPUNIT_TEST(test_minus_digits);
     CPPUNIT_TEST(test_multiplies_digits);

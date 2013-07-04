@@ -106,8 +106,25 @@ OI shift_right_digits (II b, II e, int n, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    while(b1!=e1 || b2!= e2){
+    II1 saveB1 = b1;
+    II2 saveB2 = b2;
+    bool isEqual = false;
+    bool isB1Greater = false;
+    while(b1!=e1){
+        ++b1;
+        ++b2;
+        if(b2==e2){
+            isB1Greater = true;
+            break;}
     }
+    if(b1==e1 && b2==e2)
+        isEqual = true;
+
+    b1 = saveB1;
+    b2 = saveB2;
+    
+    
+
     return x;}
 
 // ------------
