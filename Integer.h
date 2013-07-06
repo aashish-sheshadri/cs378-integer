@@ -194,6 +194,42 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     return x;}
 
 // -----------------
+// multiply_digit
+// -----------------
+
+/**
+ *
+ *
+ *
+ */
+
+template <typename BI1, typename OI>
+OI multiply_digit (BI1 b1, BI1 e1, int digit, OI x){
+    unsigned int table [9][9] = {{1,2,3,4,5,6,7,8,9},
+        {2,4,6,8,10,12,14,16,18},
+        {3,6,9,12,15,18,21,24,27},
+        {4,8,12,16,20,24,28,32,36},
+        {5,10,15,20,25,30,35,40,45},
+        {6,12,18,24,30,36,42,48,54},
+        {7,14,21,28,35,42,49,56,63},
+        {8,16,24,32,40,48,56,64,72},
+        {9,18,27,36,45,54,63,72,81}};
+    unsigned int carry = 0;
+    std::vector<int> resultVec;
+    while(e1!=b1){
+         unsigned int tempResult = carry + table[digit - 1][*--e1 - 1];
+         resultVec.push_back(tempResult % 10);
+         carry = tempResult/10;
+    }
+    if(carry>0)
+        resultVec.push_back(carry);
+    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
+        *x = *it;
+        ++x;
+    }
+    return x;}
+
+// -----------------
 // multiplies_digits
 // -----------------
 
@@ -210,8 +246,30 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    unsigned long lengthFirst = 0;
-
+    if(*b1 == 0 || *b2 == 0){
+        *x = 0;
+        ++x;
+        return x;}
+    deque<int> runningSum(1000,0);
+    deque<int>::iterator rsEnd = runningSum.begin();
+    ++rsEnd;
+    unsigned int leftShift = 0;
+    while(e2!=b2){
+        if(*--e2 == 0){
+            ++leftShift;
+            continue;
+        }
+        deque<int> currentProduct(1000,0);
+        deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*e2),currentProduct.begin());
+        cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,currentProduct.begin());
+        rsEnd = plus_digits(runningSum.begin(),rsEnd,currentProduct.begin(),cpEnd,runningSum.begin());
+        ++leftShift;
+    }
+   
+    for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
+        *x = *it;
+        ++x;
+    }
     return x;}
 
 // --------------

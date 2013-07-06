@@ -1,55 +1,7 @@
 TestInteger.c++
-...............F.F.F...F.F.F.F.F.F
+...............
+Result: 0 Carry: 4
 
+Result: 6 Carry: 3
 
-!!!FAILURES!!!
-Test Results:
-Run:  25   Failures: 9   Errors: 0
-
-
-1) test: TestInteger::test_multiplies_digits (F) line: 190 TestInteger.c++
-assertion failed
-- Expression: p - x == 6
-
-
-2) test: TestInteger::test_divides_digits (F) line: 203 TestInteger.c++
-assertion failed
-- Expression: p - x == 3
-
-
-3) test: TestInteger::test_constructor_1 (F) line: 213 TestInteger.c++
-assertion failed
-- Expression: false
-
-
-4) test: TestInteger::test_abs_1 (F) line: 237 TestInteger.c++
-assertion failed
-- Expression: x == 98765
-
-
-5) test: TestInteger::test_abs_2 (F) line: 246 TestInteger.c++
-assertion failed
-- Expression: x == -98765
-
-
-6) test: TestInteger::test_negation (F) line: 276 TestInteger.c++
-assertion failed
-- Expression: y == -98765
-
-
-7) test: TestInteger::test_output (F) line: 289 TestInteger.c++
-assertion failed
-- Expression: out.str() == "98765"
-
-
-8) test: TestInteger::test_pow_1 (F) line: 303 TestInteger.c++
-assertion failed
-- Expression: x == 0
-
-
-9) test: TestInteger::test_pow_2 (F) line: 313 TestInteger.c++
-assertion failed
-- Expression: x == 98765
-
-
-Done.
+Result: 7 Carry: 2
