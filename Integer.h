@@ -57,36 +57,37 @@ OI shift_left_digits (II b, II e, int n, OI x) {
  * output the shift right of the input sequence into the output sequence
  * ([b, e) >> n) => x
  */
-template <typename II, typename OI>
-OI shift_right_digits (II b, II e, int n, OI x) {
+template <typename BI, typename OI>
+OI shift_right_digits (BI b, BI e, int n, OI x) {
     //using bi-directional iterator
-    //while (n) {
-    //    --e;
-    //    --n;
-    //}
-    //while(b!=e) {
-    //    *x = *b;
-    //    ++b;
-    //    ++x;
-    //}
-    
-    //use iterator traits to get difference type
-    II saveBegin = b;
-    int length = 0;
-    while(b!=e){
-        ++length;
-        ++b;
+    while (n) {
+        --e;
+        --n;
     }
-    
-    b = saveBegin;
-    for(int i=length;i>0;--i){
-        if(i == n){
-            break;
-        }
+    while(b!=e) {
         *x = *b;
-        ++x;
         ++b;
+        ++x;
     }
+    
+   //using II 
+   //use iterator traits to get difference type
+   // II saveBegin = b;
+   // unsigned long length = 0;
+   // while(b!=e){
+   //     ++length;
+   //     ++b;
+   // }
+   // 
+   // b = saveBegin;
+   // for(int i=length;i>0;--i){
+   //     if(i == n){
+   //         break;
+   //     }
+   //     *x = *b;
+   //     ++x;
+   //     ++b;
+   // }
     return x;}
 
 // -----------
@@ -104,27 +105,37 @@ OI shift_right_digits (II b, II e, int n, OI x) {
  * output the sum of the two input sequences into the output sequence
  * ([b1, e1) + [b2, e2)) => x
  */
-template <typename II1, typename II2, typename OI>
-OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    II1 saveB1 = b1;
-    II2 saveB2 = b2;
-    bool isEqual = false;
-    bool isB1Greater = false;
-    while(b1!=e1){
-        ++b1;
-        ++b2;
-        if(b2==e2){
-            isB1Greater = true;
-            break;}
+template <typename BI1, typename BI2, typename OI>
+OI plus_digits (BI1 b1, BI1 e1, BI2 b2, BI2 e2, OI x) {
+    unsigned int carry = 0;
+    std::vector<int> resultVec;
+    while(true){
+        int result = 0;
+        if(e1 != b1 && e2 != b2){
+            --e1;
+            --e2;
+            result = carry + *e1 + *e2;
+            resultVec.push_back(result % 10);
+        }else if(e1 == b1 && e2 != b2){
+            --e2;
+            result = carry + *e2;
+            resultVec.push_back(result % 10);
+        }else if(e2 == b2 && e1 != b1){
+            --e1;
+            result = carry + *e1;
+            resultVec.push_back(result % 10);
+        } else {
+            if(carry > 0)
+                resultVec.push_back(carry);
+            break;
+        }
+        carry = result/10;
     }
-    if(b1==e1 && b2==e2)
-        isEqual = true;
 
-    b1 = saveB1;
-    b2 = saveB2;
-    
-    
-
+    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
+        *x = *it;
+        ++x;
+    }
     return x;}
 
 // ------------
@@ -142,21 +153,44 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  * output the difference of the two input sequences into the output sequence
  * ([b1, e1) - [b2, e2)) => x
  */
- /*
-  void test_minus_digits () {
-        const int a[] = {8, 0, 1};
-        const int b[] = {5, 6, 7};
-        const int c[] = {2, 3, 4};
-              int x[10];
-        const int* p = minus_digits(a, a + 3, b, b + 3, x);
-        CPPUNIT_ASSERT(p - x == 3);
-        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
- */
 template <typename II1, typename II2, typename OI>
-OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-	//e1 -= 1;
-	//e2 -= 1;
-	//while (e1 != )    
+OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {    
+    unsigned int borrow = 0;
+    std::vector<int> resultVec;
+    while(true){
+        int result = 0;
+        if(e1 != b1 && e2 != b2){
+            --e1;
+            --e2;
+            result = *e1 - *e2 - borrow; 
+        }else if(e2 == b2 && e1 != b1){
+            --e1;
+            result = *e1 - borrow;
+        } else {
+            break;
+        }
+
+        if(result<0){
+            result += 10;
+            borrow = 1;
+        } else {
+            borrow = 0;
+        }
+        resultVec.push_back(result);        
+    }
+    
+    bool first = false;
+    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
+        if(!first && *it == 0)
+            continue;
+        first = true;
+        *x = *it;
+        ++x;
+    }
+    if(!first){
+        *x = 0;
+        ++x;
+    }
     return x;}
 
 // -----------------
@@ -176,7 +210,8 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    // <your code>
+    unsigned long lengthFirst = 0;
+
     return x;}
 
 // --------------
