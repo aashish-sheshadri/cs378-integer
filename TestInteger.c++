@@ -349,25 +349,25 @@ struct TestInteger : CppUnit::TestFixture {
     // suite
     // -----
 
-    CPPUNIT_TEST_SUITE(TestInteger);
-    CPPUNIT_TEST(test_shift_left_digits_1);
-    CPPUNIT_TEST(test_shift_left_digits_2);
-    CPPUNIT_TEST(test_shift_left_digits_3);
-    CPPUNIT_TEST(test_shift_right_digits_1);
-    CPPUNIT_TEST(test_shift_right_digits_2);
-    CPPUNIT_TEST(test_shift_right_digits_3);
-    CPPUNIT_TEST(test_plus_digits_1);
-    CPPUNIT_TEST(test_plus_digits_2);
-    CPPUNIT_TEST(test_plus_digits_3);
-    CPPUNIT_TEST(test_plus_digits_4); 
-    CPPUNIT_TEST(test_minus_digits_1);
-    CPPUNIT_TEST(test_minus_digits_2);
-    CPPUNIT_TEST(test_minus_digits_3);
-    CPPUNIT_TEST(test_minus_digits_4);
+   // CPPUNIT_TEST_SUITE(TestInteger);
+   // CPPUNIT_TEST(test_shift_left_digits_1);
+   // CPPUNIT_TEST(test_shift_left_digits_2);
+   // CPPUNIT_TEST(test_shift_left_digits_3);
+   // CPPUNIT_TEST(test_shift_right_digits_1);
+   // CPPUNIT_TEST(test_shift_right_digits_2);
+   // CPPUNIT_TEST(test_shift_right_digits_3);
+   // CPPUNIT_TEST(test_plus_digits_1);
+   // CPPUNIT_TEST(test_plus_digits_2);
+   // CPPUNIT_TEST(test_plus_digits_3);
+   // CPPUNIT_TEST(test_plus_digits_4); 
+   // CPPUNIT_TEST(test_minus_digits_1);
+   // CPPUNIT_TEST(test_minus_digits_2);
+   // CPPUNIT_TEST(test_minus_digits_3);
+   // CPPUNIT_TEST(test_minus_digits_4);
     CPPUNIT_TEST(test_multiplies_digits_1);
-    CPPUNIT_TEST(test_multiplies_digits_2);
-    CPPUNIT_TEST(test_multiplies_digits_3);
-    CPPUNIT_TEST(test_multiplies_digits_4);
+   // CPPUNIT_TEST(test_multiplies_digits_2);
+   // CPPUNIT_TEST(test_multiplies_digits_3);
+   // CPPUNIT_TEST(test_multiplies_digits_4);
    // CPPUNIT_TEST(test_divides_digits);
    // CPPUNIT_TEST(test_constructor_1);
    // CPPUNIT_TEST(test_constructor_2);

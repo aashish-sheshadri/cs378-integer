@@ -225,6 +225,7 @@ OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
          ++b1;}
     if(carry>0){
         *x = carry;
+        std::cout<<std::endl<<*b1<<" x "<<digit<<" = "<<*x<<std::endl;
         ++x;}
     return x;}
 
