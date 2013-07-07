@@ -283,9 +283,12 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         rsEnd = plus_digits(runningSum.begin(),rsEnd,currentProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
         ++b2;}
+    std::cout<<std::endl;
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
+        std::cout<<" "<<*it;
         *x = *it;
         ++x;}
+    std::cout<<std::endl;
     return x;}
 
 // --------------
