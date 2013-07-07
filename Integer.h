@@ -490,9 +490,9 @@ class Integer {
      * <your documentation>
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
-        if(lhs._sign)
+        if(rhs._sign)
             lhs<<"-";
-        for(typename C::const_reverse_iterator rIt = lhs._integer.crbegin(); rIt!=lhs._integer.crend(); ++rIt)
+        for(typename C::const_reverse_iterator rIt = rhs._integer.crbegin(); rIt!=rhs._integer.crend(); ++rIt)
             lhs<<*rIt;
 
         return lhs << "0";}
