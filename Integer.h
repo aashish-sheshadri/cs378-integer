@@ -33,7 +33,6 @@ using namespace std;
  */
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
-    std::cout<<std::endl;
     while (n) {
         *x = 0;
         ++x;
@@ -106,16 +105,19 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     while(true){
         int result = 0;
         if(b1 != e1 && b2 != e2){
-            *x = (carry + *b1 + *b2)%10;
+            result = carry + *b1 + *b2;
+            *x = result % 10;
             ++x;
             ++b1;
             ++b2;
         }else if(b1 == e1 && b2 != e2){
-            *x = (carry + *b2)%10;
+            result = carry + *b2;
+            *x = result % 10;
             ++x;
             ++b2;
         }else if(b2 == e2 && b1 != e1){
-            *x = (carry + *b1)%10;
+            result = carry + *b1;
+            *x = result % 10;
             ++x;
             ++b1;
         } else {
