@@ -16,7 +16,6 @@
 #include <stdexcept> // invalid_argument
 #include <string>    // string
 #include <vector>    // vector
-#include <algorithm>
 using namespace std;
 // -----------------
 // shift_left_digits
@@ -494,8 +493,7 @@ class Integer {
             lhs<<"-";
         for(typename C::const_reverse_iterator rIt = rhs._integer.crbegin(); rIt!=rhs._integer.crend(); ++rIt)
             lhs<<*rIt;
-
-        return lhs << "0";}
+        return lhs;}
 
     // ---
     // abs
@@ -557,12 +555,11 @@ class Integer {
             }
 
             if(value == 0){
-                _integer.push_back(static_cast<T>(0));
+                _integer.push_back(0);
             }else{
                 while(value!=0){
-                    _integer.push_back(static_cast<T>(value % 10));
-                    value = value/10;}}
-            std::reverse(_integer.begin(),_integer.end());
+                    _integer.push_back(value % 10);
+                    value = value/10;}
             assert(valid());}
 
         /**
