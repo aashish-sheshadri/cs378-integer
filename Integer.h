@@ -220,6 +220,7 @@ OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
          unsigned int tempResult = carry + (*b1 == 0? 0 :table[digit - 1][*b1 - 1]);
          *x = tempResult % 10;
          carry = tempResult/10;
+         std::cout<<std::endl<<*b1<<" x "<<digit<<" = "<<*x<<std::endl;
          ++x;
          ++b1;}
     if(carry>0){
