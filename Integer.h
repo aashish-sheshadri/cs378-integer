@@ -341,23 +341,23 @@ class Integer {
     /**
      * <your documentation>
      */
-    friend bool operator < (const Integer& lhs, const Integer& rhs) {
+    friend bool operator < (Integer& lhs, Integer& rhs) {
         if(lhs._sign != rhs._sign)
             if(rhs._sign)
                 return true;
         bool result = true;
         if(lhs._sign)
             result = !result;
-        typename C::const_iterator itFirst = lhs._integer.cbegin();
-        typename C::const_iterator itSecond = rhs._integer.cbegin();
+        typename C::iterator itFirst = lhs._integer.begin();
+        typename C::iterator itSecond = rhs._integer.begin();
         while(true){
-            if(itFirst!=lhs.cend() && itSecond!=rhs.cend()){
+            if(itFirst!=lhs.end() && itSecond!=rhs.end()){
                 if(*itFirst>*itSecond)
                     return result;
                 ++itFirst;
                 ++itSecond;
             }else{
-                if(itFirst!=lhs.cend())
+                if(itFirst!=lhs.end())
                     return result;
                 break;
             }
