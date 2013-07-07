@@ -220,12 +220,10 @@ OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
          unsigned int tempResult = carry + (*b1 == 0? 0 :table[digit - 1][*b1 - 1]);
          *x = tempResult % 10;
          carry = tempResult/10;
-         std::cout<<std::endl<<*b1<<" x "<<digit<<" = "<<*x<<std::endl;
          ++x;
          ++b1;}
     if(carry>0){
         *x = carry;
-        std::cout<<std::endl<<"carry x "<<digit<<" = "<<*x<<std::endl;
         ++x;}
     return x;}
 
@@ -279,20 +277,14 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             continue;}
         deque<int> currentProduct(1000,0);
         deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
-        std::cout<<endl;
-        for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it)
-            std::cout<<" "<<*it;
         deque<int> shiftedProduct(1000,0);
         cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,shiftedProduct.begin());
         rsEnd = plus_digits(runningSum.begin(),rsEnd,shiftedProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
         ++b2;}
-    std::cout<<std::endl;
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
-        std::cout<<" "<<*it;
         *x = *it;
         ++x;}
-    std::cout<<std::endl;
     return x;}
 
 // --------------
