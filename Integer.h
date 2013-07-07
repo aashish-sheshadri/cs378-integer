@@ -279,10 +279,8 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             continue;}
         deque<int> currentProduct(1000,0);
         deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
-        deque<int> shiftedProduct(1000,0);
-        deque<int>::iterator spEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,shiftedProduct.begin());
-        currentProduct.clear();
-        rsEnd = plus_digits(runningSum.begin(),rsEnd,shiftedProduct.begin(),cpEnd,runningSum.begin());
+        cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,currentProduct.begin());
+        rsEnd = plus_digits(runningSum.begin(),rsEnd,currentProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
         ++b2;}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
