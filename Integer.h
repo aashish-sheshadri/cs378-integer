@@ -159,6 +159,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     OI xCopy = x;
     int length = 0;
     int zeroCount = 0;
+    int lastRead = 1;
     while(true){
         if(b1 != e1 && b2 != e2){
             *x = *b1 - *b2 - borrow;
@@ -174,13 +175,18 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             borrow = 1;
         } else {
             borrow = 0;}
-        if(*x == 0)
+        if(*x == 0){
             ++zeroCount;
+        } else {
+            zeroCount = 0;}
         ++length;
+        lastRead = *x;
         ++x;}
-    if(zeroCount == length){
-        *xCopy = 0;
-        return ++xCopy;}
+    if(lastRead == 0){
+        for (int i = 0; i<length - zeroCount; ++i)
+            ++xCopy;
+        return xCopy;
+    }
     return x;}
 
 // -----------------
