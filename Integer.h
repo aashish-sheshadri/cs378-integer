@@ -490,7 +490,11 @@ class Integer {
      * <your documentation>
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
-        // <your code>
+        if(lhs._sign)
+            lhs<<std::string('-');
+        for(typename C::const_reverse_iterator rIt = lhs._integer.crbegin(); rIt!=lhs._integer.crend(); ++rIt)
+            lhs<<std::string('0'+*rIt);
+
         return lhs << "0";}
 
     // ---
