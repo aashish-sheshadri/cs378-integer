@@ -183,7 +183,11 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         lastRead = *x;
         ++x;}
     if(lastRead == 0){
-        for (int i = 0; i<length - zeroCount; ++i)
+        bool wasHere = false;
+        for (int i = 0; i<length - zeroCount; ++i){
+            ++xCopy;
+            wasHere = true};
+        if(!wasHere)
             ++xCopy;
         return xCopy;
     }
