@@ -53,7 +53,7 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_shift_left_digits_2 () {
         const std::vector<int> a (3,3);
-        std::vector<int> b (0,2);
+        std::vector<int> b (2,0);
         b.push_back(3);
         b.push_back(3);
         b.push_back(3);
@@ -64,7 +64,7 @@ struct TestInteger : CppUnit::TestFixture {
      
     void test_shift_left_digits_3 () {
         const std::deque<int> a (3,3);
-        std::deque<int> b (0,2);
+        std::deque<int> b (2,0);
         b.push_back(3);
         b.push_back(3);
         b.push_back(3);
