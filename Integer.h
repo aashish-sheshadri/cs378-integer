@@ -348,8 +348,8 @@ class Integer {
         bool result = true;
         if(lhs._sign)
             result = !result;
-        typename C::const_iterator itFirst = lhs.cbegin();
-        typename C::const_iterator itSecond = rhs.cbegin();
+        typename C::const_iterator itFirst = lhs._integer.cbegin();
+        typename C::const_iterator itSecond = rhs._integer.cbegin();
         while(true){
             if(itFirst!=lhs.cend() && itSecond!=rhs.cend()){
                 if(*itFirst>*itSecond)
