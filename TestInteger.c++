@@ -349,7 +349,7 @@ struct TestInteger : CppUnit::TestFixture {
     // suite
     // -----
 
-   // CPPUNIT_TEST_SUITE(TestInteger);
+    CPPUNIT_TEST_SUITE(TestInteger);
    // CPPUNIT_TEST(test_shift_left_digits_1);
    // CPPUNIT_TEST(test_shift_left_digits_2);
    // CPPUNIT_TEST(test_shift_left_digits_3);
