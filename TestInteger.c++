@@ -131,11 +131,11 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_plus_digits_4 () {
         const int a[] = {9, 9, 9};
-        const int b[] = {1};
-        const int c[] = {1, 0, 0, 0};
+        const int b[] = {0};
+        const int c[] = {9, 9, 9};
               int x[10];
         const int* p = plus_digits(a, a + 3, b, b + 1, x);
-        CPPUNIT_ASSERT(p - x == 4);
+        CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     // ------------
     // minus_digits
@@ -181,7 +181,34 @@ struct TestInteger : CppUnit::TestFixture {
     // multiplies_digits
     // -----------------
 
-    void test_multiplies_digits () {
+    void test_multiplies_digits_1 () {
+        const int a[] = {2, 3, 4};
+        const int b[] = {5, 6, 7};
+        const int c[] = {1, 3, 2, 6, 7, 8};
+              int x[10];
+        const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
+        CPPUNIT_ASSERT(p - x == 6);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+
+    void test_multiplies_digits_2 () {
+        const int a[] = {0};
+        const int b[] = {5, 6, 7};
+        const int c[] = {0};
+              int x[10];
+        const int* p = multiplies_digits(a, a + 1, b, b + 3, x);
+        CPPUNIT_ASSERT(p - x == 1);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+
+    void test_multiplies_digits_3 () {
+        const int a[] = {1,0,0};
+        const int b[] = {9,9,9};
+        const int c[] = {9, 9, 9, 0, 0};
+              int x[10];
+        const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
+        CPPUNIT_ASSERT(p - x == 5);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
+    void test_multiplies_digits_4 () {
         const int a[] = {2, 3, 4};
         const int b[] = {5, 6, 7};
         const int c[] = {1, 3, 2, 6, 7, 8};
@@ -335,7 +362,10 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_minus_digits_2);
     CPPUNIT_TEST(test_minus_digits_3);
     CPPUNIT_TEST(test_minus_digits_4);
-    CPPUNIT_TEST(test_multiplies_digits);
+    CPPUNIT_TEST(test_multiplies_digits_1);
+    CPPUNIT_TEST(test_multiplies_digits_2);
+    CPPUNIT_TEST(test_multiplies_digits_3);
+    CPPUNIT_TEST(test_multiplies_digits_4);
     CPPUNIT_TEST(test_divides_digits);
     CPPUNIT_TEST(test_constructor_1);
     CPPUNIT_TEST(test_constructor_2);

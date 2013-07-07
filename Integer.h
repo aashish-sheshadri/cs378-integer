@@ -109,6 +109,20 @@ template <typename BI1, typename BI2, typename OI>
 OI plus_digits (BI1 b1, BI1 e1, BI2 b2, BI2 e2, OI x) {
     unsigned int carry = 0;
     std::vector<int> resultVec;
+    if(*b1 == 0){
+        while(b2!=e2){
+            *x = *b2;
+            ++b2;
+            ++x;
+        }
+        return x;}
+    if(*b2 == 0){
+        while(b1!=e1){
+            *x = *b1;
+            ++b1;
+            ++x;
+        }
+        return x;}
     while(true){
         int result = 0;
         if(e1 != b1 && e2 != b2){
@@ -217,7 +231,7 @@ OI multiply_digit (BI1 b1, BI1 e1, int digit, OI x){
     unsigned int carry = 0;
     std::vector<int> resultVec;
     while(e1!=b1){
-         unsigned int tempResult = carry + table[digit - 1][*--e1 - 1];
+         unsigned int tempResult = carry + (*--e1 == 0? 0 :table[digit - 1][*e1 - 1]);
          resultVec.push_back(tempResult % 10);
          carry = tempResult/10;
     }
@@ -306,8 +320,9 @@ class Integer {
      * <your documentation>
      */
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
-        // <your code>
-        return false;}
+        if(lhs._sign!=rhs._sign)
+            return false;
+        return !(lhs > rhs) && !(rhs > lhs);}
 
     // -----------
     // operator !=
@@ -327,8 +342,27 @@ class Integer {
      * <your documentation>
      */
     friend bool operator < (const Integer& lhs, const Integer& rhs) {
-        // <your code>
-        return false;}
+        if(lhs._sign != rhs._sign)
+            if(rhs._sign)
+                return true;
+        bool result = true;
+        if(lhs._sign)
+            result = !result;
+        typename C::const_iterator itFirst = lhs.cbegin();
+        typename C::const_iterator itSecond = rhs.cbegin();
+        while(true){
+            if(itFirst!=lhs.cend() && itSecond!=rhs.cend()){
+                if(*itFirst>*itSecond)
+                    return result;
+                ++itFirst;
+                ++itSecond;
+            }else{
+                if(itFirst!=lhs.cend())
+                    return result;
+                break;
+            }
+        } 
+        return !result;}
 
     // -----------
     // operator <=
@@ -476,7 +510,8 @@ class Integer {
         // data
         // ----
 
-        // <your data>
+        C _integer;
+        bool _sign; //true -> negative
 
     private:
         // -----
@@ -496,7 +531,20 @@ class Integer {
          * <your documentation>
          */
         Integer (int value) {
-            // <your code>
+            if(value<0){
+                _sign = true;
+                value *= -1;
+            } else {
+                _sign = false;
+            }
+
+            if(value == 0){
+                _integer.push_back(static_cast<T>(0));
+            }else{
+                while(value!=0){
+                    _integer.push_back(static_cast<T>(value % 10));
+                    value = value/10;}}
+            //std::reverse(_integer.begin(),_integer.end());
             assert(valid());}
 
         /**
@@ -504,7 +552,25 @@ class Integer {
          * @throws invalid_argument if value is not a valid representation of an Integer
          */
         explicit Integer (const std::string& value) {
-            // <your code>
+            int i = 0;
+            int length = value.length() - 1;
+            if(value[i] == '-'){
+                _sign = true;
+                ++i;
+            } else {
+                _sign = false;
+            }
+
+            if((static_cast<T>(value[i]) - static_cast<T>('0'))  == 0){
+               _integer.push_back(0);
+            } else {
+                for(int j = length; j>=i; --j){
+                    T digit = static_cast<T>(value[j]) - '0';
+                    if(!(digit>=0 && digit<=9)) 
+                        throw std::invalid_argument("Integer::Integer()");
+                   _integer.push_back(digit);}
+            } 
+            
             if (!valid())
                 throw std::invalid_argument("Integer::Integer()");}
 
@@ -521,8 +587,9 @@ class Integer {
          * <your documentation>
          */
         Integer operator - () const {
-            // <your code>
-            return Integer(0);}
+            Integer negateInt = *this;
+            negateInt._sign = !negateInt._sign; 
+            return negateInt;}
 
         // -----------
         // operator ++
