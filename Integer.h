@@ -186,7 +186,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         bool wasHere = false;
         for (int i = 0; i<length - zeroCount; ++i){
             ++xCopy;
-            wasHere = true};
+            wasHere = true;}
         if(!wasHere)
             ++xCopy;
         return xCopy;
