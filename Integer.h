@@ -323,7 +323,20 @@ class Integer {
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
         if(lhs._sign!=rhs._sign)
             return false;
-        return !(lhs > rhs) && !(rhs > lhs);}
+        
+        typename C::const_iterator itFirst = lhs._integer.cbegin();
+        typename C::const_iterator itSecond = rhs._integer.cbegin();
+
+        while(itFirst!=lhs._integer.cend() && itSecond!=rhs._integer.cend()){
+                if(*itFirst != *itSecond)
+                    return false;
+                ++itFirst;
+                ++itSecond;}
+        if(itFirst!=lhs._integer.cend())
+            return false;
+        if(itSecond!=rhs._integer.cend())
+            return false;
+        return true;}
 
     // -----------
     // operator !=
@@ -349,16 +362,16 @@ class Integer {
         bool result = true;
         if(lhs._sign)
             result = !result;
-        typename C::const_iterator itFirst = lhs._integer.cbegin();
-        typename C::const_iterator itSecond = rhs._integer.cbegin();
+        typename C::const_reverse_iterator itFirst = lhs._integer.crbegin();
+        typename C::const_reverse_iterator itSecond = rhs._integer.crbegin();
         while(true){
-            if(itFirst!=lhs._integer.cend() && itSecond!=rhs._integer.cend()){
-                if(*itFirst>*itSecond)
+            if(itFirst!=lhs._integer.crend() && itSecond!=rhs._integer.crend()){
+                if(*itFirst<*itSecond)
                     return result;
                 ++itFirst;
                 ++itSecond;
             }else{
-                if(itFirst!=lhs._integer.cend())
+                if(itSecond!=rhs._integer.crend())
                     return result;
                 break;
             }
