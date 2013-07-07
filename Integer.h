@@ -491,9 +491,9 @@ class Integer {
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
         if(lhs._sign)
-            lhs<<std::string('-');
+            lhs<<"-";
         for(typename C::const_reverse_iterator rIt = lhs._integer.crbegin(); rIt!=lhs._integer.crend(); ++rIt)
-            lhs<<std::string('0'+*rIt);
+            lhs<<*rIt;
 
         return lhs << "0";}
 
