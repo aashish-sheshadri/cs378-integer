@@ -278,6 +278,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
         deque<int> shiftedProduct(1000,0);
         cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,shiftedProduct.begin());
+        currentProduct.clear();
         rsEnd = plus_digits(runningSum.begin(),rsEnd,shiftedProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
         ++b2;}
@@ -303,7 +304,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    // <your code>
+    
     return x;}
 
 // -------
@@ -551,9 +552,7 @@ class Integer {
                 _sign = true;
                 value *= -1;
             } else {
-                _sign = false;
-            }
-
+                _sign = false;}
             if(value == 0){
                 _integer.push_back(0);
             }else{
@@ -580,9 +579,9 @@ class Integer {
             
             for(;vRevBegin!=vRevEnd; ++vRevBegin){
                 T digit = static_cast<T>(*vRevBegin) - '0';
-                    if(!(digit>=0 && digit<=9)) 
-                        throw std::invalid_argument("Integer::Integer()");
-                   _integer.push_back(digit);}
+                if(!(digit>=0 && digit<=9)) 
+                    throw std::invalid_argument("Integer::Integer()");
+                _integer.push_back(digit);}
             if (!valid())
                 throw std::invalid_argument("Integer::Integer()");}
 
