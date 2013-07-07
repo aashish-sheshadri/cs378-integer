@@ -559,7 +559,7 @@ class Integer {
             }else{
                 while(value!=0){
                     _integer.push_back(value % 10);
-                    value = value/10;}
+                    value = value/10;}}
             assert(valid());}
 
         /**
