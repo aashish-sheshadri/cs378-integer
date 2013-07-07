@@ -33,12 +33,15 @@ using namespace std;
  */
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
+    std::cout<<std::endl;
     while (n) {
         *x = 0;
+        std::cout<<" "<<*x;
         ++x;
         --n;}
     while (b != e) {
         *x = *b;
+        std::cout<<" "<<*x;
         ++x;
         ++b;}
     return x;}
