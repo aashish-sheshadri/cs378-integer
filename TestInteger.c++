@@ -45,7 +45,7 @@ struct TestInteger : CppUnit::TestFixture {
 
     void test_shift_left_digits_1 () {
         const int a[] = {2, 3, 4};
-        const int b[] = {2, 3, 4, 0, 0};
+        const int b[] = {0, 0, 2, 3, 4};
               int x[10];
         const int* p = shift_left_digits(a, a + 3, 2, x);
         CPPUNIT_ASSERT((p - x) == 5);
@@ -53,9 +53,10 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_shift_left_digits_2 () {
         const std::vector<int> a (3,3);
-        std::vector<int> b (3,3);
-        b.push_back(0);
-        b.push_back(0);
+        std::vector<int> b (0,2);
+        b.push_back(3);
+        b.push_back(3);
+        b.push_back(3);
         std::vector<int> x(10,0);  
         const std::vector<int>::iterator p = shift_left_digits(a.begin(), a.end(), 2, x.begin());
         CPPUNIT_ASSERT((p - x.begin()) == 5);
@@ -63,9 +64,10 @@ struct TestInteger : CppUnit::TestFixture {
      
     void test_shift_left_digits_3 () {
         const std::deque<int> a (3,3);
-        std::deque<int> b (3,3);
-        b.push_back(0);
-        b.push_back(0);
+        std::deque<int> b (0,2);
+        b.push_back(3);
+        b.push_back(3);
+        b.push_back(3);
         std::deque<int> x(10,0);  
         const std::deque<int>::iterator p = shift_left_digits(a.begin(), a.end(), 2, x.begin());
         CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
@@ -76,7 +78,7 @@ struct TestInteger : CppUnit::TestFixture {
 
     void test_shift_right_digits_1 () {
         const int a[] = {2, 3, 4};
-        const int b[] = {2};
+        const int b[] = {4};
               int x[10];
         const int* p = shift_right_digits(a, a + 3, 2, x);
         CPPUNIT_ASSERT((p - x) == 1);
@@ -103,27 +105,27 @@ struct TestInteger : CppUnit::TestFixture {
     // -----------
 
     void test_plus_digits_1 () {
-        const int a[] = {2, 3, 4};
-        const int b[] = {5, 6, 7};
-        const int c[] = {8, 0, 1};
+        const int a[] = {4, 3, 2};
+        const int b[] = {7, 6, 5};
+        const int c[] = {1, 0, 8};
               int x[10];
         const int* p = plus_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
    
     void test_plus_digits_2 () {
-        const int a[] = {1, 2, 3, 4};
-        const int b[] = {5, 6, 7};
-        const int c[] = {1, 8, 0, 1};
+        const int a[] = {4, 3, 2, 1};
+        const int b[] = {7, 6, 5};
+        const int c[] = {1, 0, 8, 1};
               int x[10];
         const int* p = plus_digits(a, a + 4, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 4);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
    
     void test_plus_digits_3 () {
-        const int a[] = {2, 3, 4};
-        const int b[] = {1, 5, 6, 7};
-        const int c[] = {1, 8, 0, 1};
+        const int a[] = {4, 3, 2};
+        const int b[] = {7, 6, 5, 1};
+        const int c[] = {1, 0, 8, 1};
               int x[10];
         const int* p = plus_digits(a, a + 3, b, b + 4, x);
         CPPUNIT_ASSERT(p - x == 4);
@@ -142,16 +144,16 @@ struct TestInteger : CppUnit::TestFixture {
     // ------------
 
     void test_minus_digits_1 () {
-        const int a[] = {8, 0, 1};
-        const int b[] = {5, 6, 7};
-        const int c[] = {2, 3, 4};
+        const int a[] = {1, 0, 8};
+        const int b[] = {7, 6, 5};
+        const int c[] = {4, 3, 2};
               int x[10];
         const int* p = minus_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
     void test_minus_digits_2 () {
-        const int a[] = {1, 0, 0};
+        const int a[] = {0, 0, 1};
         const int b[] = {9, 9};
         const int c[] = {1};
               int x[10];
@@ -160,8 +162,8 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));} 
     
     void test_minus_digits_3 () {
-        const int a[] = {1, 0, 0};
-        const int b[] = {1, 0, 0};
+        const int a[] = {0, 0, 1};
+        const int b[] = {0, 0, 1};
         const int c[] = {0};
               int x[10];
         const int* p = minus_digits(a, a + 3, b, b + 3, x);
@@ -169,7 +171,7 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
     void test_minus_digits_4 () {
-        const int a[] = {1, 0, 0, 0};
+        const int a[] = {0, 0, 0, 1};
         const int b[] = {1};
         const int c[] = {9, 9, 9};
               int x[10];
@@ -182,9 +184,9 @@ struct TestInteger : CppUnit::TestFixture {
     // -----------------
 
     void test_multiplies_digits_1 () {
-        const int a[] = {2, 3, 4};
-        const int b[] = {5, 6, 7};
-        const int c[] = {1, 3, 2, 6, 7, 8};
+        const int a[] = {4, 3, 2};
+        const int b[] = {7, 6, 5};
+        const int c[] = {8, 7, 6, 2, 3, 1};
               int x[10];
         const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 6);
@@ -200,18 +202,18 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
     void test_multiplies_digits_3 () {
-        const int a[] = {1,0,0};
+        const int a[] = {0,0,1};
         const int b[] = {9,9,9};
-        const int c[] = {9, 9, 9, 0, 0};
+        const int c[] = {0, 0, 9, 9, 9};
               int x[10];
         const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 5);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
     void test_multiplies_digits_4 () {
-        const int a[] = {2, 3, 4};
-        const int b[] = {5, 6, 7};
-        const int c[] = {1, 3, 2, 6, 7, 8};
+        const int a[] = {4, 3, 2};
+        const int b[] = {7, 6, 5};
+        const int c[] = {8, 7, 6, 2, 3, 1};
               int x[10];
         const int* p = multiplies_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 6);

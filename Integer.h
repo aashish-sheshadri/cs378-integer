@@ -32,16 +32,14 @@ using namespace std;
  */
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
-    while (b != e) {
-        *x = *b;
-    	++x;
-    	++b; 
-    }
     while (n) {
         *x = 0;
         ++x;
-        --n;
-    }
+        --n;}
+    while (b != e) {
+        *x = *b;
+        ++x;
+        ++b;}
     return x;}
 
 // ------------------
@@ -57,37 +55,15 @@ OI shift_left_digits (II b, II e, int n, OI x) {
  * output the shift right of the input sequence into the output sequence
  * ([b, e) >> n) => x
  */
-template <typename BI, typename OI>
-OI shift_right_digits (BI b, BI e, int n, OI x) {
-    //using bi-directional iterator
+template <typename II, typename OI>
+OI shift_right_digits (II b, II e, int n, OI x) {
     while (n) {
-        --e;
-        --n;
-    }
+        ++b;
+        --n;}
     while(b!=e) {
         *x = *b;
         ++b;
-        ++x;
-    }
-    
-   //using II 
-   //use iterator traits to get difference type
-   // II saveBegin = b;
-   // unsigned long length = 0;
-   // while(b!=e){
-   //     ++length;
-   //     ++b;
-   // }
-   // 
-   // b = saveBegin;
-   // for(int i=length;i>0;--i){
-   //     if(i == n){
-   //         break;
-   //     }
-   //     *x = *b;
-   //     ++x;
-   //     ++b;
-   // }
+        ++x;} 
     return x;}
 
 // -----------
@@ -105,51 +81,48 @@ OI shift_right_digits (BI b, BI e, int n, OI x) {
  * output the sum of the two input sequences into the output sequence
  * ([b1, e1) + [b2, e2)) => x
  */
-template <typename BI1, typename BI2, typename OI>
-OI plus_digits (BI1 b1, BI1 e1, BI2 b2, BI2 e2, OI x) {
+template <typename II1, typename II2, typename OI>
+OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     unsigned int carry = 0;
-    std::vector<int> resultVec;
-    if(*b1 == 0){
-        while(b2!=e2){
-            *x = *b2;
-            ++b2;
-            ++x;
-        }
-        return x;}
-    if(*b2 == 0){
-        while(b1!=e1){
-            *x = *b1;
-            ++b1;
-            ++x;
-        }
-        return x;}
+    
+    {
+        II1 b1Copy = b1;
+        II2 b2Copy = b2;
+
+        if(*b1Copy == 0 && ++b1Copy == e1){
+            while(b2!=e2){
+                *x = *b2;
+                ++b2;
+                ++x;}
+            return x;}
+        if(*b2Copy == 0 && ++b2Copy == e2){
+            while(b1!=e1){
+                *x = *b1;
+                ++b1;
+                ++x;}
+            return x;}}
     while(true){
         int result = 0;
-        if(e1 != b1 && e2 != b2){
-            --e1;
-            --e2;
-            result = carry + *e1 + *e2;
-            resultVec.push_back(result % 10);
+        if(b1 != e1 && b2 != e2){
+            *x = carry + *b1 + *b2;
+            ++x;
+            ++b1;
+            ++b2;
         }else if(e1 == b1 && e2 != b2){
-            --e2;
-            result = carry + *e2;
-            resultVec.push_back(result % 10);
+            *x = carry + *b2;
+            ++x;
+            ++b2;
         }else if(e2 == b2 && e1 != b1){
-            --e1;
-            result = carry + *e1;
-            resultVec.push_back(result % 10);
+            *x = carry + *b1;
+            ++x;
+            ++b1;
         } else {
-            if(carry > 0)
-                resultVec.push_back(carry);
+            if(carry > 0){
+                *x = carry;
+                ++x;}
             break;
         }
-        carry = result/10;
-    }
-
-    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
-        *x = *it;
-        ++x;
-    }
+        carry = result/10;}
     return x;}
 
 // ------------
@@ -170,41 +143,40 @@ OI plus_digits (BI1 b1, BI1 e1, BI2 b2, BI2 e2, OI x) {
 template <typename II1, typename II2, typename OI>
 OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {    
     unsigned int borrow = 0;
-    std::vector<int> resultVec;
+    
+    {
+        II2 b2Copy = b2;
+        if(*b2Copy == 0 && ++b2Copy == e2){
+            while(b1!=e1){
+                *x = *b1;
+                ++b1;
+                ++x;}
+            return x;}}
+    OI xCopy = x;
+    int length = 0;
+    int zeroCount = 0;
     while(true){
-        int result = 0;
-        if(e1 != b1 && e2 != b2){
-            --e1;
-            --e2;
-            result = *e1 - *e2 - borrow; 
-        }else if(e2 == b2 && e1 != b1){
-            --e1;
-            result = *e1 - borrow;
+        if(b1 != e1 && b2 != e2){
+            *x = *b1 - *b2 - borrow;
+            ++b1;
+            ++b2;
+        }else if(b2 == e2 && b1 != e1){
+            *x = *b1 - borrow;
+            ++b1;
         } else {
-            break;
-        }
-
-        if(result<0){
-            result += 10;
+            break;}
+        if(*x<0){
+            *x += 10;
             borrow = 1;
         } else {
-            borrow = 0;
-        }
-        resultVec.push_back(result);        
-    }
-    
-    bool first = false;
-    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
-        if(!first && *it == 0)
-            continue;
-        first = true;
-        *x = *it;
-        ++x;
-    }
-    if(!first){
-        *x = 0;
-        ++x;
-    }
+            borrow = 0;}
+        if(*x == 0)
+            ++zeroCount;
+        ++length;
+        ++x;}
+    if(zeroCount == length){
+        *xCopy = 0;
+        return ++xCopy;}
     return x;}
 
 // -----------------
@@ -217,8 +189,8 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  *
  */
 
-template <typename BI1, typename OI>
-OI multiply_digit (BI1 b1, BI1 e1, int digit, OI x){
+template <typename II1, typename OI>
+OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
     unsigned int table [9][9] = {{1,2,3,4,5,6,7,8,9},
         {2,4,6,8,10,12,14,16,18},
         {3,6,9,12,15,18,21,24,27},
@@ -230,17 +202,15 @@ OI multiply_digit (BI1 b1, BI1 e1, int digit, OI x){
         {9,18,27,36,45,54,63,72,81}};
     unsigned int carry = 0;
     std::vector<int> resultVec;
-    while(e1!=b1){
-         unsigned int tempResult = carry + (*--e1 == 0? 0 :table[digit - 1][*e1 - 1]);
-         resultVec.push_back(tempResult % 10);
+    while(b1!=e1){
+         unsigned int tempResult = carry + (*b1 == 0? 0 :table[digit - 1][*b1 - 1]);
+         *x = tempResult % 10;
          carry = tempResult/10;
-    }
-    if(carry>0)
-        resultVec.push_back(carry);
-    for(std::vector<int>::reverse_iterator it = resultVec.rbegin(); it!=resultVec.rend(); ++it){
-        *x = *it;
-        ++x;
-    }
+         ++x;
+         ++b1;}
+    if(carry>0){
+        *x = carry;
+        ++x;}
     return x;}
 
 // -----------------
@@ -260,30 +230,45 @@ OI multiply_digit (BI1 b1, BI1 e1, int digit, OI x){
  */
 template <typename II1, typename II2, typename OI>
 OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
-    if(*b1 == 0 || *b2 == 0){
-        *x = 0;
-        ++x;
-        return x;}
+    {
+        II1 b1Copy = b1;
+        II2 b2Copy = b2;
+        if((*b1Copy == 0 && ++b1Copy == e1) || (*b2Copy == 0 && ++b2Copy == e2)){
+            *x = 0;
+            ++x;
+            return x;}}
+    {
+        II1 b1Copy = b1;
+        II2 b2Copy = b2;
+        if(*b1Copy == 1 && ++b1Copy == e1){
+            while(b2!=e2){
+                *x = *b2;
+                ++b2;
+                ++x;}
+            return x;} 
+        if(*b2Copy == 1 && ++b2Copy == e2){
+            while(b1!=e1){
+                *x = *b1;
+                ++b1;
+                ++x;}
+            return x;}}
     deque<int> runningSum(1000,0);
     deque<int>::iterator rsEnd = runningSum.begin();
     ++rsEnd;
     unsigned int leftShift = 0;
-    while(e2!=b2){
-        if(*--e2 == 0){
+    while(b2!=e2){
+        if(*b2 == 0){
             ++leftShift;
-            continue;
-        }
+            ++b2;
+            continue;}
         deque<int> currentProduct(1000,0);
-        deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*e2),currentProduct.begin());
+        deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
         cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,currentProduct.begin());
         rsEnd = plus_digits(runningSum.begin(),rsEnd,currentProduct.begin(),cpEnd,runningSum.begin());
-        ++leftShift;
-    }
-   
+        ++leftShift;}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
         *x = *it;
-        ++x;
-    }
+        ++x;}
     return x;}
 
 // --------------
@@ -544,7 +529,7 @@ class Integer {
                 while(value!=0){
                     _integer.push_back(static_cast<T>(value % 10));
                     value = value/10;}}
-            //std::reverse(_integer.begin(),_integer.end());
+            std::reverse(_integer.begin(),_integer.end());
             assert(valid());}
 
         /**
@@ -552,25 +537,22 @@ class Integer {
          * @throws invalid_argument if value is not a valid representation of an Integer
          */
         explicit Integer (const std::string& value) {
-            int i = 0;
-            int length = value.length() - 1;
-            if(value[i] == '-'){
-                _sign = true;
-                ++i;
-            } else {
-                _sign = false;
-            }
+            string::const_iterator vBegin = value.cbegin();
+            string::const_reverse_iterator vRevBegin = value.crbegin();
+            string::const_reverse_iterator vRevEnd = value.crend();
 
-            if((static_cast<T>(value[i]) - static_cast<T>('0'))  == 0){
-               _integer.push_back(0);
+            if(*vBegin == '-'){
+                _sign = true;
+                ++vBegin;
+                --vRevEnd;
             } else {
-                for(int j = length; j>=i; --j){
-                    T digit = static_cast<T>(value[j]) - '0';
+                _sign = false;}
+            
+            for(;vRevBegin!=vRevEnd; ++vRevBegin){
+                T digit = static_cast<T>(*vRevBegin) - '0';
                     if(!(digit>=0 && digit<=9)) 
                         throw std::invalid_argument("Integer::Integer()");
                    _integer.push_back(digit);}
-            } 
-            
             if (!valid())
                 throw std::invalid_argument("Integer::Integer()");}
 
