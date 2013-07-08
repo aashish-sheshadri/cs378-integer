@@ -331,7 +331,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     {
         II1 b1Copy = b1;
         II2 b2Copy = b2;
-        assert((*b2Copy == 0 && ++b2Copy == e2));
+        assert(!(*b2Copy == 0 && ++b2Copy == e2));
         if((*b1Copy == 0 && ++b1Copy == e1) ){
             *x = 0;
             ++x;
