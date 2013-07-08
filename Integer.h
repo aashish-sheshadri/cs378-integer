@@ -296,10 +296,17 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 /**
  *
  */
-bool myCompare_original(int a, int b){
-    return a>=b;}
-bool myCompare(int a, int b){
-    return a>=b;}
+template <typrname II1, typename II2>
+bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2){
+    while(b1!=e1){
+        if(*b2>*b1)
+            return false;
+        ++b1;
+        ++b2;
+        if(b2 == e2)
+            return true;
+    }
+    return(b2==e2);}
 // --------------
 // divides_digits
 // --------------
@@ -384,8 +391,8 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it)
             std::cout<<*it<<" ";
         std::cout<<std::endl;
-        if(std::lexicographical_compare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),myCompare)){
-            if(std::lexicographical_compare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),myCompare)){
+        if(myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end())){
+            if(myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end())){
                 std::cout<<std::endl<<4<<std::endl;
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
@@ -402,7 +409,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 3;}
         } else {
-            if(std::lexicographical_compare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),myCompare)){       
+            if(myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end())){       
                 std::cout<<std::endl<<2<<std::endl;
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
@@ -410,7 +417,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 2;
-            } else if(std::lexicographical_compare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),myCompare)) {
+            } else if(myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end())) {
                 std::cout<<std::endl<<1<<std::endl;
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
