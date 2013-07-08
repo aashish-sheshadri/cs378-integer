@@ -157,7 +157,7 @@ struct TestInteger : CppUnit::TestFixture {
         deque<int> x(1000,0);
         deque<int>::iterator p = plus_digits(a, a + 1, b.begin(), itB, x.begin());
         CPPUNIT_ASSERT(p - x.begin() == 1);
-        CPPUNIT_ASSERT(std::equal(x.begin(), p, c));}
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, c.begin()));}
     
     // ------------
     // minus_digits
