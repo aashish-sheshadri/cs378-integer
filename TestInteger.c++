@@ -223,7 +223,7 @@ struct TestInteger : CppUnit::TestFixture {
     // divides_digits
     // --------------
 
-    void test_divides_digits () {
+    void test_divides_digits_1 () {
         const int a[] = {8, 7, 6, 2, 3, 1};
         const int b[] = {7, 6, 5};
         const int c[] = {4, 3, 2};
@@ -231,7 +231,33 @@ struct TestInteger : CppUnit::TestFixture {
         const int* p = divides_digits(a, a + 6, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
+    void test_divides_digits_2 () {
+        const int a[] = {8};
+        const int b[] = {8};
+        const int c[] = {1};
+              int x[10];
+        const int* p = divides_digits(a, a + 1, b, b + 1, x);
+        CPPUNIT_ASSERT(p - x == 1);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
+    void test_divides_digits_3 () {
+        const int a[] = {0, 0, 0, 0, 0, 1};
+        const int b[] = {0, 0, 1};
+        const int c[] = {0, 0, 0, 1};
+              int x[10];
+        const int* p = divides_digits(a, a + 6, b, b + 3, x);
+        CPPUNIT_ASSERT(p - x == 4);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+ 
+    void test_divides_digits_4 () {
+        const int a[] = {8, 7, 6};
+        const int b[] = {7, 6, 5};
+        const int c[] = {1};
+              int x[10];
+        const int* p = divides_digits(a, a + 3, b, b + 3, x);
+        CPPUNIT_ASSERT(p - x == 1);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}   
     // -----------
     // constructor
     // -----------
@@ -368,7 +394,10 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_multiplies_digits_2);
     CPPUNIT_TEST(test_multiplies_digits_3);
     CPPUNIT_TEST(test_multiplies_digits_4);
-    CPPUNIT_TEST(test_divides_digits);
+    CPPUNIT_TEST(test_divides_digits_1);
+    CPPUNIT_TEST(test_divides_digits_2);
+    CPPUNIT_TEST(test_divides_digits_3);
+    CPPUNIT_TEST(test_divides_digits_4);
     CPPUNIT_TEST(test_constructor_1);
     CPPUNIT_TEST(test_constructor_2);
     CPPUNIT_TEST(test_constructor_3);
