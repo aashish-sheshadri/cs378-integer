@@ -224,9 +224,9 @@ struct TestInteger : CppUnit::TestFixture {
     // --------------
 
     void test_divides_digits () {
-        const int a[] = {1, 3, 2, 6, 7, 8};
-        const int b[] = {5, 6, 7};
-        const int c[] = {2, 3, 4};
+        const int a[] = {8, 7, 6, 2, 3, 1};
+        const int b[] = {7, 6, 5};
+        const int c[] = {4, 3, 2};
               int x[10];
         const int* p = divides_digits(a, a + 6, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 3);

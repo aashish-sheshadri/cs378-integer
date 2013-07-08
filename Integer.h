@@ -330,9 +330,16 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     int mul4[] = {4};
     int mul8[] = {8};
     
+    std::cout<<std::endl;
     deque<int>::iterator numEnd = multiplies_digits(mul1,mul1+1,b2,e2,num.begin());
     for(deque<int>::iterator i = num.begin();i!=numEnd;++i)
         std::cout<<" "<<*i<<" ";
+    std::cout<<std::endl;
+    II2 b2Copy = b2;
+    while(b2Copy!=e2){
+        std::cout<<" "<<*b2Copy<<" ";
+        ++b2Copy;}
+
     std::cout<<std::endl;
     deque<int>::iterator num2End = multiplies_digits(mul2,mul2+1,b2,e2,num2.begin()); 
     for(deque<int>::iterator i = num2.begin();i!=num2End;++i)
