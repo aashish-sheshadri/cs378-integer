@@ -328,6 +328,23 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
  */
 template <typename II1, typename II2, typename OI>
 OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
+    {
+        II1 b1Copy = b1;
+        II2 b2Copy = b2;
+        assert((*b2Copy == 0 && ++b2Copy == e2));
+        if((*b1Copy == 0 && ++b1Copy == e1) ){
+            *x = 0;
+            ++x;
+            return x;}}
+    {
+        II1 b1Copy = b1;
+        II2 b2Copy = b2; 
+        if(*b2Copy == 1 && ++b2Copy == e2){
+            while(b1!=e1){
+                *x = *b1;
+                ++b1;
+                ++x;}
+            return x;}}
     deque<int> num(1000,0);
     deque<int> num2(1000,0); 
     deque<int> num4(1000,0);
