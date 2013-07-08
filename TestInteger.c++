@@ -71,7 +71,15 @@ struct TestInteger : CppUnit::TestFixture {
         std::deque<int> x(10,0);  
         const std::deque<int>::iterator p = shift_left_digits(a.begin(), a.end(), 2, x.begin());
         CPPUNIT_ASSERT(std::equal(x.begin(), p, b.begin()));}
- 
+    
+    void test_shift_left_digits_4 () {
+        const int a[] = {1};
+        const int b[] = {1};
+              int x[10];
+        const int* p = shift_left_digits(a, a + 1, 0, x);
+        CPPUNIT_ASSERT((p - x) == 1);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, b));}
+    
     // ------------------
     // shift_right_digits
     // ------------------
