@@ -469,7 +469,7 @@ class Integer {
             if(itFirst!=lhs._integer.crend() && itSecond!=rhs._integer.crend()){
                 if(*itFirst<*itSecond){
                     return result;
-                } else if (*itFirst>*itSecond)
+                } else if (*itFirst>*itSecond){
                     return !result;}
                 ++itFirst;
                 ++itSecond;
