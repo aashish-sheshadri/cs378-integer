@@ -351,6 +351,8 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         int select = -1;
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
             if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end())){
+                for(int i = 0;i<num8Rev.size();++i)
+                    std::cout<<std::endl<<num8Rev[i]<<" ";
                 select = 4;       
             } else {
                 select = 3;}
