@@ -147,6 +147,18 @@ struct TestInteger : CppUnit::TestFixture {
         const int* p = plus_digits(a, a + 3, b, b + 1, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
+    void test_plus_digits_5 () {
+        const int a[] = {1};
+        deque<int> b(1000,0);
+        deque<int>::iterator itB = b.begin();
+        ++itB;
+        deque<int> c(1000,1);
+        deque<int> x(1000,0);
+        deque<int>::iterator p = plus_digits(a, a + 1, b.begin(), itB, x.begin());
+        CPPUNIT_ASSERT(p - x.begin() == 1);
+        CPPUNIT_ASSERT(std::equal(x.begin(), p, c));}
+    
     // ------------
     // minus_digits
     // ------------
