@@ -299,6 +299,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
     bool moveNum = false;
+    std::cout<<std::endl<<skip<<std::endl;
     while(b1!=e1){
         if(skip == 0)
             moveNum = true;
@@ -361,19 +362,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     num2Rev.resize(num2Size);
     num4Rev.resize(num4Size); 
     num8Rev.resize(num8Size);
-   
-    std::cout<<std::endl;
-        for(deque<int>::iterator it = numRev.begin();it!=numRev.end();++it)
-            std::cout<<*it<<" "; 
-    std::cout<<std::endl;
-        for(deque<int>::iterator it = num2Rev.begin();it!=num2Rev.end();++it)
-            std::cout<<*it<<" ";
-    std::cout<<std::endl;
-        for(deque<int>::iterator it = num4Rev.begin();it!=num4Rev.end();++it)
-            std::cout<<*it<<" ";
-    std::cout<<std::endl;
-        for(deque<int>::iterator it = num8Rev.begin();it!=num8Rev.end();++it)
-            std::cout<<*it<<" ";
+    
     deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin()); 
 
     deque<int> runningSum(1000,0);
@@ -388,17 +377,9 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 
         deque<int> shiftedNum(1000,0);
         deque<int>::iterator shiftEnd;
-        
-        std::cout<<std::endl;
-        for(deque<int>::iterator it = dividendRev.begin();it!=dividendRev.end();++it)
-            std::cout<<*it<<" ";
-        std::cout<<std::endl;
-        for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it)
-            std::cout<<*it<<" ";
-        std::cout<<std::endl;
+         
         if(myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),num8Size - num4Size)){
             if(myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),num8Size - num8Size)){
-                std::cout<<std::endl<<4<<std::endl;
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -406,7 +387,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 4;       
             } else {
-                std::cout<<std::endl<<3<<std::endl;
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -415,7 +395,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 select = 3;}
         } else {
             if(myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),num8Size - num2Size)){       
-                std::cout<<std::endl<<2<<std::endl;
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -423,7 +402,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 2;
             } else if(myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),num8Size - numSize)) {
-                std::cout<<std::endl<<1<<std::endl;
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -431,7 +409,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 1;
             } else {
-                std::cout<<std::endl<<select<<std::endl;
                 select = -1;
                 break;}}
             std::cout<<std::endl<<select<<std::endl;}
