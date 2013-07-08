@@ -295,7 +295,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  *
  */
 bool myCompare(int a, int b){
-    return a==b};
+    return a==b;}
 // --------------
 // divides_digits
 // --------------
