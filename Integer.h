@@ -362,6 +362,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             } else {
                 select = -1;
             }}
+        std::cout<<std::endl<<select<<std::endl;
         break;}
     
 
