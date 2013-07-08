@@ -362,7 +362,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         deque<int> shiftedNum(1000,0);
         deque<int>::iterator shiftEnd;
         
-        std::cout<<std<<endl;
+        std::cout<<std::endl;
         for(deque<int>::iterator it = dividendRev.begin();it!=dividendRev.end();++it)
             std::cout<<*it<<" ";
         std::cout<<std::endl;
