@@ -363,10 +363,10 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         deque<int>::iterator shiftEnd;
         
         std::cout<<std<<endl;
-        for(deque<int>::iterator it = dividendRev.begin();it!=dividendRev.end();++it){
+        for(deque<int>::iterator it = dividendRev.begin();it!=dividendRev.end();++it)
             std::cout<<*it<<" ";
         std::cout<<std::endl;
-        for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
+        for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it)
             std::cout<<*it<<" ";
         std::cout<<std::endl;
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
