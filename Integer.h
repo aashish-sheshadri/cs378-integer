@@ -333,15 +333,19 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     deque<int>::iterator numEnd = multiplies_digits(mul1,mul1+1,b2,e2,num.begin());
     for(deque<int>::iterator i = num.begin();i!=numEnd;++i)
         std::cout<<" "<<*i<<" ";
+    std::cout<<std::endl;
     deque<int>::iterator num2End = multiplies_digits(mul2,mul2+1,b2,e2,num2.begin()); 
     for(deque<int>::iterator i = num2.begin();i!=num2End;++i)
         std::cout<<" "<<*i<<" ";
+    std::cout<<std::endl;
     deque<int>::iterator num4End = multiplies_digits(mul4,mul4+1,b2,e2,num4.begin());
     for(deque<int>::iterator i = num4.begin();i!=num4End;++i)
-        std::cout<<" "<<*i<<" ";   
+        std::cout<<" "<<*i<<" ";
+    std::cout<<std::endl;   
     deque<int>::iterator num8End = multiplies_digits(mul8,mul8+1,b2,e2,num8.begin());
     for(deque<int>::iterator i = num8.begin();i!=num8End;++i)
         std::cout<<" "<<*i<<" ";
+    std::cout<<std::endl;
     std::reverse_copy(num.begin(),numEnd,numRev.begin());
     std::reverse_copy(num2.begin(),num2End,num2Rev.begin());
     std::reverse_copy(num4.begin(),num4End,num4Rev.begin());
@@ -360,7 +364,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
             if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end())){
                 for(int i = 0;i<num8Rev.size();++i)
-                    std::cout<<std::endl<<num8Rev[i]<<" ";
+                    std::cout<<num8Rev[i]<<" ";
                 select = 4;       
             } else {
                 select = 3;}
