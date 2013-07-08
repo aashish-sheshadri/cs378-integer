@@ -33,7 +33,7 @@ using namespace std;
  */
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
-    assert(n>0);
+    //assert(n>0);
     while (n!=0) {
         *x = 0;
         ++x;
