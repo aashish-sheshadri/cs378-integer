@@ -334,12 +334,12 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     deque<int>::iterator num2End = multiplies_digits(mul2,mul2+1,b2,e2,num2.begin()); 
     deque<int>::iterator num4End = multiplies_digits(mul4,mul4+1,b2,e2,num4.begin());
     deque<int>::iterator num8End = multiplies_digits(mul8,mul8+1,b2,e2,num8.begin());
-    std::copy_backward(num.begin(),numEnd,numRev.begin());
-    std::copy_backward(num2.begin(),num2End,num2Rev.begin());
-    std::copy_backward(num4.begin(),num4End,num4Rev.begin());
-    std::copy_backward(num8.begin(),num8End,num8Rev.begin());
+    std::reverse_copy(num.begin(),numEnd,numRev.begin());
+    std::reverse_copy(num2.begin(),num2End,num2Rev.begin());
+    std::reverse_copy(num4.begin(),num4End,num4Rev.begin());
+    std::reverse_copy(num8.begin(),num8End,num8Rev.begin());
     deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin());
-    std::copy_backward(dividend.begin(),dividendEnd,dividendRev.begin());
+    std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
 
 
     int select = -1;
