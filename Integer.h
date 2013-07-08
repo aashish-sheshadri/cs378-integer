@@ -764,7 +764,14 @@ class Integer {
          * <your documentation>
          */
         Integer& operator += (const Integer& rhs) {
-            // <your code>
+            if(this->_sign == rhs._sign){
+                typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
+                this->_integer.resize(plusEnd - this->_integer.begin());
+            }else{
+                if(this->_sign){
+                    
+                }
+            }
             return *this;}
 
         // -----------
