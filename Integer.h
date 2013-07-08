@@ -296,7 +296,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  *
  */
 bool myCompare(int a, int b){
-    return a==b;}
+    return a<=b;}
 // --------------
 // divides_digits
 // --------------
@@ -338,13 +338,31 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     std::reverse_copy(num2.begin(),num2End,num2Rev.begin());
     std::reverse_copy(num4.begin(),num4End,num4Rev.begin());
     std::reverse_copy(num8.begin(),num8End,num8Rev.begin());
+    numRev.resize(numEnd - num.begin());
+    num2Rev.resize(num2End - num2.begin());
+    num4Rev.resize(num4End - num4.begin()); 
+    num8Rev.resize(num8End - num8.begin());
+    
     deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin());
     std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
+    dividendRev.resize(dividendEnd - dividend.begin());
 
-
-    int select = -1;
-
-    //if(std::lexicographical_compare(num4.begin(),num4)) 
+    while(true){
+        int select = -1;
+        if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
+            if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end())){
+                select = 4;       
+            } else {
+                select = 3;}
+        } else {
+            if(std::lexicographical_compare(num2Rev.begin(),num2Rev.end(),dividendRev.begin(),dividendRev.end())){       
+                select = 2;
+            } else if(std::lexicographical_compare(num1Rev.begin(),num1Rev.end(),dividendRev.begin(),dividendRev.end(),myCompare)) {
+                select = 1;
+            } else {
+                select = -1;
+            }}
+        break;}
     
 
     return x;}
