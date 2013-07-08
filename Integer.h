@@ -467,16 +467,16 @@ class Integer {
         typename C::const_reverse_iterator itSecond = rhs._integer.crbegin();
         while(true){
             if(itFirst!=lhs._integer.crend() && itSecond!=rhs._integer.crend()){
-                if(*itFirst<*itSecond)
+                if(*itFirst<*itSecond){
                     return result;
+                } else if (*itFirst>*itSecond)
+                    return !result;}
                 ++itFirst;
                 ++itSecond;
             }else{
                 if(itSecond!=rhs._integer.crend())
                     return result;
-                break;
-            }
-        } 
+                break;}} 
         return !result;}
 
     // -----------
@@ -829,7 +829,8 @@ class Integer {
          * <your documentation>
          */
         Integer& abs () {
-            // <your code>
+            if (this->_sign)
+                this->_sign = !this->_sign;
             return *this;}
 
         // ---
