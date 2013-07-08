@@ -296,7 +296,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 /**
  *
  */
-template <typrname II1, typename II2>
+template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2){
     while(b1!=e1){
         if(*b2>*b1)
