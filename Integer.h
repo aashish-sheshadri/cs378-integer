@@ -300,7 +300,7 @@ template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
     while(b1!=e1){
         if(skip != 0)
-            return = true;
+            return true;
         if(*b1<*b2){
             return false;
         }else if(*b1>*b2){
