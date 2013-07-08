@@ -417,6 +417,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 break;}}
             std::cout<<std::endl<<select<<std::endl;}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
+        std::cout<<std::endl<<*it<<std::endl;
         *x = *it;
         ++x;}    
     return x;}
