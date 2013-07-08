@@ -379,7 +379,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 
         deque<int> shiftedNum(1000,0);
         deque<int>::iterator shiftEnd;
-         
+        std::cout<<"\nI'm Here\n";
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),num8Size - num4Size)){
             if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),num8Size - num8Size)){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
@@ -417,7 +417,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             } else {
                 select = -1;
                 break;}}
-        std::cout<<select<<std::endl;}
+        std::cout<<std::endl<<select<<std::endl;}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
         *x = *it;
         ++x;}    
