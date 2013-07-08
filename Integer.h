@@ -305,7 +305,9 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
             moveNum = true;
         if(moveNum && *b1<*b2){
             std::cout<<std::endl<<*b1<<"<"<<*b2;
-            return false;}
+            return false;
+        }else{
+            std::cout<<std::endl<<*b1<<">="<<*b2;}
         ++b1;
         if(!moveNum)
             --skip;
