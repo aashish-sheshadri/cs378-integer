@@ -357,7 +357,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         } else {
             if(std::lexicographical_compare(num2Rev.begin(),num2Rev.end(),dividendRev.begin(),dividendRev.end())){       
                 select = 2;
-            } else if(std::lexicographical_compare(num1Rev.begin(),num1Rev.end(),dividendRev.begin(),dividendRev.end(),myCompare)) {
+            } else if(std::lexicographical_compare(numRev.begin(),numRev.end(),dividendRev.begin(),dividendRev.end(),myCompare)) {
                 select = 1;
             } else {
                 select = -1;
