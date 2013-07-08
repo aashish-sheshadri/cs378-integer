@@ -394,10 +394,10 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_multiplies_digits_2);
     CPPUNIT_TEST(test_multiplies_digits_3);
     CPPUNIT_TEST(test_multiplies_digits_4);
-    CPPUNIT_TEST(test_divides_digits_1);
-   // CPPUNIT_TEST(test_divides_digits_2);
-   // CPPUNIT_TEST(test_divides_digits_3);
-   // CPPUNIT_TEST(test_divides_digits_4);
+    //CPPUNIT_TEST(test_divides_digits_1);
+    CPPUNIT_TEST(test_divides_digits_2);
+    //CPPUNIT_TEST(test_divides_digits_3);
+    //CPPUNIT_TEST(test_divides_digits_4);
     CPPUNIT_TEST(test_constructor_1);
     CPPUNIT_TEST(test_constructor_2);
     CPPUNIT_TEST(test_constructor_3);
