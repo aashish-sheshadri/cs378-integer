@@ -299,7 +299,6 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
     bool moveNum = false;
-    std::cout<<std::endl<<skip<<std::endl;
     while(b1!=e1){
         if(skip == 0)
             moveNum = true;
@@ -315,6 +314,7 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
         if(b2 == e2)
             return true;}
     return false;}
+
 // --------------
 // divides_digits
 // --------------
@@ -408,12 +408,15 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
+                std::cout<<std::endl;
+                for(deque<int>::iterator it = partialQ.begin();it!=partialQEnd;++it)
+                    std::cout<<" "<<*it<<" ";
+                std::cout<<std::endl;
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 1;
             } else {
                 select = -1;
-                break;}}
-            std::cout<<std::endl<<select<<std::endl;}
+                break;}}}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
         *x = *it;
         ++x;}    
