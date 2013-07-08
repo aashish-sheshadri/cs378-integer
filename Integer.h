@@ -316,7 +316,7 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
             ++b2;
         if(b2 == e2)
             return true;}
-    return(b2==e2);}
+    return false;}
 // --------------
 // divides_digits
 // --------------
