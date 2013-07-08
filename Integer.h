@@ -337,7 +337,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             ++x;
             return x;}}
     {
-        II1 b1Copy = b1;
         II2 b2Copy = b2; 
         if(*b2Copy == 1 && ++b2Copy == e2){
             while(b1!=e1){
