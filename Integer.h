@@ -330,63 +330,74 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     int mul4[] = {4};
     int mul8[] = {8};
     
-    std::cout<<std::endl;
-    deque<int>::iterator numEnd = multiplies_digits(mul1,mul1+1,b2,e2,num.begin());
-    for(deque<int>::iterator i = num.begin();i!=numEnd;++i)
-        std::cout<<" "<<*i<<" ";
-    std::cout<<std::endl;
-    II2 b2Copy = b2;
-    while(b2Copy!=e2){
-        std::cout<<" "<<*b2Copy<<" ";
-        ++b2Copy;}
-
-    std::cout<<std::endl;
+    deque<int>::iterator numEnd = multiplies_digits(mul1,mul1+1,b2,e2,num.begin()); 
     deque<int>::iterator num2End = multiplies_digits(mul2,mul2+1,b2,e2,num2.begin()); 
-    for(deque<int>::iterator i = num2.begin();i!=num2End;++i)
-        std::cout<<" "<<*i<<" ";
-    std::cout<<std::endl;
     deque<int>::iterator num4End = multiplies_digits(mul4,mul4+1,b2,e2,num4.begin());
-    for(deque<int>::iterator i = num4.begin();i!=num4End;++i)
-        std::cout<<" "<<*i<<" ";
-    std::cout<<std::endl;   
     deque<int>::iterator num8End = multiplies_digits(mul8,mul8+1,b2,e2,num8.begin());
-    for(deque<int>::iterator i = num8.begin();i!=num8End;++i)
-        std::cout<<" "<<*i<<" ";
-    std::cout<<std::endl;
     std::reverse_copy(num.begin(),numEnd,numRev.begin());
     std::reverse_copy(num2.begin(),num2End,num2Rev.begin());
     std::reverse_copy(num4.begin(),num4End,num4Rev.begin());
     std::reverse_copy(num8.begin(),num8End,num8Rev.begin());
-    numRev.resize(numEnd - num.begin());
-    num2Rev.resize(num2End - num2.begin());
-    num4Rev.resize(num4End - num4.begin()); 
-    num8Rev.resize(num8End - num8.begin());
+    unsigned int numSize = numEnd - num.begin();
+    unsigned int num2Size = num2End - num2.begin();
+    unsigned int num4Size = num4End - num4.begin();
+    unsigned int num8Size = num8End - num8.begin();
+    numRev.resize( numSize);
+    num2Rev.resize(num2Size);
+    num4Rev.resize(num4Size); 
+    num8Rev.resize(num8Size);
     
-    deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin());
-    std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
-    dividendRev.resize(dividendEnd - dividend.begin());
+    deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin()); 
+
+    deque<int> runningSum(1000,0);
+    deque<int>::iterator rsEnd = runningSum.begin();
+    ++rsEnd;    
 
     while(true){
         int select = -1;
+
+        std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
+        dividendRev.resize(dividendEnd - dividend.begin());
+
+        deque<int> shiftedNum(1000,0);
+        deque<int>::iterator shiftEnd;
+        unsigned int dividendSize = dividendRev.end() - dividendRev;
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
             if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end())){
-                for(int i = 0;i<num8Rev.size();++i)
-                    std::cout<<num8Rev[i]<<" ";
+                shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
+                dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
+                deque<int> partialQ(100,0);
+                deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size,partialQ.begin());
+                rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 4;       
             } else {
+                shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
+                dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
+                deque<int> partialQ(100,0);
+                deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size,partialQ.begin());
+                rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 3;}
         } else {
             if(std::lexicographical_compare(num2Rev.begin(),num2Rev.end(),dividendRev.begin(),dividendRev.end())){       
+                shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
+                dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
+                deque<int> partialQ(100,0);
+                deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
+                rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 2;
             } else if(std::lexicographical_compare(numRev.begin(),numRev.end(),dividendRev.begin(),dividendRev.end(),myCompare)) {
+                shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
+                dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
+                deque<int> partialQ(100,0);
+                deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
+                rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 1;
             } else {
                 select = -1;
-            }}
-        std::cout<<std::endl<<select<<std::endl;
-        break;}
-    
-
+                break;}}}
+    for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
+        *x = *it;
+        ++x;}    
     return x;}
 
 // -------
