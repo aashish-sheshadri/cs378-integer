@@ -386,6 +386,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         std::cout<<std::endl;
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end(),myCompare)){
             if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end(),myCompare)){
+                std::cout<<std::endl<<select<<std::endl;
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -393,6 +394,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 4;       
             } else {
+                std::cout<<std::endl<<select<<std::endl;
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -401,6 +403,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 select = 3;}
         } else {
             if(std::lexicographical_compare(num2Rev.begin(),num2Rev.end(),dividendRev.begin(),dividendRev.end(),myCompare)){       
+                std::cout<<std::endl<<select<<std::endl;
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -408,6 +411,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 2;
             } else if(std::lexicographical_compare(numRev.begin(),numRev.end(),dividendRev.begin(),dividendRev.end(),myCompare)) {
+                std::cout<<std::endl<<select<<std::endl;
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(100,0);
@@ -415,6 +419,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 select = 1;
             } else {
+                std::cout<<std::endl<<select<<std::endl;
                 select = -1;
                 break;}}
             std::cout<<std::endl<<select<<std::endl;}
