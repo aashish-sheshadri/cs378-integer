@@ -288,6 +288,15 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     return x;}
 
 // --------------
+// greater
+// --------------
+
+/**
+ *
+ */
+bool myCompare(int a, int b){
+    return a==b};
+// --------------
 // divides_digits
 // --------------
 
@@ -304,7 +313,39 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2, typename OI>
 OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
+    deque<int> num(1000,0);
+    deque<int> num2(1000,0); 
+    deque<int> num4(1000,0);
+    deque<int> num8(1000,0);
+    deque<int> numRev(1000,0);
+    deque<int> num2Rev(1000,0);
+    deque<int> num4Rev(1000,0);
+    deque<int> num8Rev(1000,0);
+    deque<int> dividend(1000,0);
+    deque<int> dividendRev(1000,0);
+
+    int mul1[] = {1};
+    int mul2[] = {2};
+    int mul4[] = {4};
+    int mul8[] = {8};
     
+    deque<int>::iterator numEnd = multiplies_digits(mul1,mul1+1,b2,e2,num.begin());
+    deque<int>::iterator num2End = multiplies_digits(mul2,mul2+1,b2,e2,num2.begin()); 
+    deque<int>::iterator num4End = multiplies_digits(mul4,mul4+1,b2,e2,num4.begin());
+    deque<int>::iterator num8End = multiplies_digits(mul8,mul8+1,b2,e2,num8.begin());
+    std::copy_backward(num.begin(),numEnd,numRev.begin());
+    std::copy_backward(num2.begin(),num2End,num2Rev.begin());
+    std::copy_backward(num4.begin(),num4End,num4Rev.begin());
+    std::copy_backward(num8.begin(),num8End,num8Rev.begin());
+    deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin());
+    std::copy_backward(dividend.begin(),dividendEnd,dividendRev.begin());
+
+
+    int select = -1;
+
+    //if(std::lexicographical_compare(num4.begin(),num4)) 
+    
+
     return x;}
 
 // -------
