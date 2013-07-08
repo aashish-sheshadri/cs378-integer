@@ -355,13 +355,12 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 
     while(true){
         int select = -1;
-
+        unsigned int dividendSize = dividendEnd - dividend.begin();
         std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
-        dividendRev.resize(dividendEnd - dividend.begin());
+        dividendRev.resize(dividendSize);
 
         deque<int> shiftedNum(1000,0);
-        deque<int>::iterator shiftEnd;
-        unsigned int dividendSize = dividendRev.end() - dividendRev;
+        deque<int>::iterator shiftEnd; 
         if(std::lexicographical_compare(num4Rev.begin(),num4Rev.end(),dividendRev.begin(),dividendRev.end())){
             if(std::lexicographical_compare(num8Rev.begin(),num8Rev.end(),dividendRev.begin(),dividendRev.end())){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
