@@ -406,6 +406,7 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_plus_digits_2);
     CPPUNIT_TEST(test_plus_digits_3);
     CPPUNIT_TEST(test_plus_digits_4); 
+    CPPUNIT_TEST(test_plus_digits_5);
     CPPUNIT_TEST(test_minus_digits_1);
     CPPUNIT_TEST(test_minus_digits_2);
     CPPUNIT_TEST(test_minus_digits_3);
