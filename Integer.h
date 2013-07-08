@@ -346,7 +346,19 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     num2Rev.resize(num2Size);
     num4Rev.resize(num4Size); 
     num8Rev.resize(num8Size);
-    
+   
+    std::cout<<std::endl;
+        for(deque<int>::iterator it = numRev.begin();it!=numRev.end();++it)
+            std::cout<<*it<<" "; 
+    std::cout<<std::endl;
+        for(deque<int>::iterator it = num2Rev.begin();it!=num2Rev.end();++it)
+            std::cout<<*it<<" ";
+    std::cout<<std::endl;
+        for(deque<int>::iterator it = num4Rev.begin();it!=num4Rev.end();++it)
+            std::cout<<*it<<" ";
+    std::cout<<std::endl;
+        for(deque<int>::iterator it = num8Rev.begin();it!=num8Rev.end();++it)
+            std::cout<<*it<<" ";
     deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin()); 
 
     deque<int> runningSum(1000,0);
