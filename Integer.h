@@ -302,8 +302,8 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int dividendSize, unsig
     while(b1!=e1){
         if(dividendSize == numSize)
             moveNum = true;
-        if(moveNum && *b2<*b1)
-            return true;
+        if(moveNum && *b1<*b2)
+            return false;
         ++b1;
         --dividendSize;
         if(moveNum)
