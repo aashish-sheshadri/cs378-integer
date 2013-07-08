@@ -298,13 +298,16 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int dividendSize, unsigned int numSize){
-    if(dividendSize > numSize)
-        return true;
+    bool moveNum = false;
     while(b1!=e1){
-        if(*b2<*b1)
+        if(dividendSize == numSize)
+            moveNum = true;
+        if(moveNum && *b2<*b1)
             return true;
         ++b1;
-        ++b2;
+        --dividendSize;
+        if(moveNum)
+            ++b2;
         if(b2 == e2)
             return true;}
     return(b2==e2);}
