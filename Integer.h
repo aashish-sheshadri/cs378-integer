@@ -216,7 +216,6 @@ OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
         {8,16,24,32,40,48,56,64,72},
         {9,18,27,36,45,54,63,72,81}};
     unsigned int carry = 0;
-    std::vector<int> resultVec;
     while(b1!=e1){
          unsigned int tempResult = carry + (*b1 == 0? 0 :table[digit - 1][*b1 - 1]);
          *x = tempResult % 10;
@@ -276,11 +275,10 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             ++leftShift;
             ++b2;
             continue;}
-        deque<int> currentProduct(1000,0);
+        deque<int> currentProduct(10000);
         deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
-        deque<int> shiftedProduct(1000,0);
+        deque<int> shiftedProduct(10000);
         cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,shiftedProduct.begin());
-        currentProduct.clear();
         rsEnd = plus_digits(runningSum.begin(),rsEnd,shiftedProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
         ++b2;}
@@ -344,16 +342,16 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 ++b1;
                 ++x;}
             return x;}}
-    deque<int> num(1000,0);
-    deque<int> num2(1000,0); 
-    deque<int> num4(1000,0);
-    deque<int> num8(1000,0);
-    deque<int> numRev(1000,0);
-    deque<int> num2Rev(1000,0);
-    deque<int> num4Rev(1000,0);
-    deque<int> num8Rev(1000,0);
-    deque<int> dividend(1000,0);
-    deque<int> dividendRev(1000,0);
+    deque<int> num(1000);
+    deque<int> num2(1000); 
+    deque<int> num4(1000);
+    deque<int> num8(1000);
+    deque<int> numRev(1000);
+    deque<int> num2Rev(1000);
+    deque<int> num4Rev(1000);
+    deque<int> num8Rev(1000);
+    deque<int> dividend(1000);
+    deque<int> dividendRev(1000);
 
     int mul1[] = {1};
     int mul2[] = {2};
@@ -379,7 +377,8 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     
     deque<int>::iterator dividendEnd = multiplies_digits(mul1,mul1+1,b1,e1,dividend.begin()); 
 
-    deque<int> runningSum(1000,0);
+    deque<int> runningSum(1000);
+    runningSum.push_back(0);
     deque<int>::iterator rsEnd = runningSum.begin();
     ++rsEnd;    
 
@@ -388,32 +387,32 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
         dividendRev.resize(dividendSize);
 
-        deque<int> shiftedNum(1000,0);
+        deque<int> shiftedNum(1000);
         deque<int>::iterator shiftEnd;
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),dividendSize==num4Size?0:num8Size - num4Size)){
             if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),dividendSize==num8Size?0:num8Size - num8Size)){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
-                deque<int> partialQ(100,0);
+                deque<int> partialQ(1000);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else {
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
-                deque<int> partialQ(100,0);
+                deque<int> partialQ(1000);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
         } else {
             if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),dividendSize==num2Size?0:num8Size - num2Size)){       
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
-                deque<int> partialQ(100,0);
+                deque<int> partialQ(1000);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
-                deque<int> partialQ(100,0);
+                deque<int> partialQ(1000);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else {
@@ -768,10 +767,12 @@ class Integer {
                 typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
                 this->_integer.resize(plusEnd - this->_integer.begin());
             }else{
-                if(this->_sign){
-                    
-                }
-            }
+                bool lhsGreater = abs(*this) > rhs;
+                if(lhsGreater){
+                    typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
+                } else {
+                    typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
+                    this->_sign = !this->_sign;}}
             return *this;}
 
         // -----------
@@ -866,7 +867,8 @@ class Integer {
          * @throws invalid_argument if (e < 0)
          */
         Integer& pow (int e) {
-            // <your code>
+            typename C runningProduct(10000);
+
             return *this;}};
 
 #endif // Integer_h
