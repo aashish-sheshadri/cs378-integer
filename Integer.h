@@ -33,7 +33,7 @@ using namespace std;
  */
 template <typename II, typename OI>
 OI shift_left_digits (II b, II e, int n, OI x) {
-    //assert(n>0);
+    assert(n>0);
     while (n!=0) {
         *x = 0;
         ++x;
@@ -280,7 +280,8 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         while(b2Copy!=e2){
             ++b2Copy;
             ++size;}}
-    deque<int> runningSum(size,0);
+    deque<int> runningSum(2*size);
+    runningSum.push_back(0);
     deque<int>::iterator rsEnd = runningSum.begin();
     ++rsEnd;
     unsigned int leftShift = 0;
@@ -289,9 +290,9 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
             ++leftShift;
             ++b2;
             continue;}
-        deque<int> currentProduct(size);
-        deque<int>::iterator cpEnd = multiply_digit(b1,e1,static_cast<int>(*b2),currentProduct.begin());
-        deque<int> shiftedProduct(size);
+        deque<int> currentProduct(2*size);
+        deque<int>::iterator cpEnd = multiply_digit(b1,e1,*b2,currentProduct.begin());
+        deque<int> shiftedProduct(2*size);
         cpEnd = shift_left_digits(currentProduct.begin(),cpEnd,leftShift,shiftedProduct.begin());
         rsEnd = plus_digits(runningSum.begin(),rsEnd,shiftedProduct.begin(),cpEnd,runningSum.begin());
         ++leftShift;
