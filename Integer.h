@@ -884,7 +884,8 @@ class Integer {
                 products.push_back(this->_integer);
                 productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                 this->_integer.resize(productEnd - this->_integer.begin());}
-            for(deque<bool>::iterator itB = powersOdd.begin(), deque<C>::iterator itP = products.begin(); itB!=powersOdd.end(); ++itB,++itP){
+            typename deque<C>::iterator itP = products.begin();
+            for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){
                     productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),(*itP).begin(),(*itP).end(),this->_integer.begin());
                     this->_integer.resize(productEnd - this->_integer.begin());}}
