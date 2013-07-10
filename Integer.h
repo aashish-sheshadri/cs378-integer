@@ -896,12 +896,15 @@ class Integer {
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(this->_integer);
+                this->_integer.resize(_size*2);
                 productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
-                this->_integer.resize(productEnd - this->_integer.begin());
+                _size = productEnd - this->_integer.begin();
+                this->_integer.resize(_size);
                 std::cout<<"Hmmm";}
             typename deque<C>::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){
+                    this->_integer.resize(_size + (*itP).size());
                     productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),(*itP).begin(),(*itP).end(),this->_integer.begin());
                     this->_integer.resize(productEnd - this->_integer.begin());}}
             return *this;}};
