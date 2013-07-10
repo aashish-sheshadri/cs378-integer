@@ -877,7 +877,10 @@ class Integer {
             std::deque<bool> powersOdd;
             typename std::deque<C> products;
             typename C::iterator productEnd;
-            std::cout<<std::endl<<"Attempting to raise "<<this->_integer<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
+
+            //std::ostringstream out;
+            //out << x;
+            std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
             while(e){
                 if(e%2 == 0){
               //      powers.push_back(e/2);
