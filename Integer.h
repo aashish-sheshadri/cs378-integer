@@ -939,7 +939,6 @@ class Integer {
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(*this);
                 //typename C::iterator temp = this->_integer.begin();
-                 std::cout<<"\n"<<*this<<"\n";
                 (*this) *= (*this);}
             std::cout<<"HereHere";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
