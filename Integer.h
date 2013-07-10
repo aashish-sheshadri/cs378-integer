@@ -835,7 +835,7 @@ class Integer {
                     this->_sign=!this->_sign;}
             typename C::iterator oldEnd = this->_integer.end();
            // this->_integer.resize(this->_size+rhs._size);
-            C newInt(this->_size+rhs._size);
+            C newInt(10*(this->_size+rhs._size));
             typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
