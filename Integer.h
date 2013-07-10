@@ -921,6 +921,7 @@ class Integer {
             //out << x;
             std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
             while(e){
+                std::cout<<"\n"<<e<<"\n";
                 if(e%2 == 0){
               //      powers.push_back(e/2);
                     e/=2;
