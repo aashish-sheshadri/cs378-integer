@@ -834,14 +834,11 @@ class Integer {
                 if(this->_sign)
                     this->_sign=!this->_sign;}
             typename C::iterator oldEnd = this->_integer.end();
-            std::cout<<this->_size<<" "<<rhs._size<<std::endl;
            // this->_integer.resize(this->_size+rhs._size);
             C newInt(this->_size+rhs._size);
-            std::cout<<"hmm";
             typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
-            std::cout<<"HMMM";
             this->_integer = newInt;
             return *this;}
 
@@ -937,9 +934,7 @@ class Integer {
            // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
-                std::cout<<"Pushing\n";
                 products.push_back(*this);
-                std::cout<<"Succeeded\n";
                // this->_integer.resize(_size*2);
                // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                // _size = productEnd - this->_integer.begin();
@@ -953,6 +948,7 @@ class Integer {
                     //productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),(*itP).begin(),(*itP).end(),this->_integer.begin());
                     //this->_integer.resize(productEnd - this->_integer.begin());
                     *this *= *itP;}}
+            std::cout<<"\n"<<*this;
             return *this;}};
 
 #endif // Integer_h
