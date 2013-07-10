@@ -943,20 +943,14 @@ class Integer {
                 while(temp!=this->_integer.end()){
                     std::cout<<*temp<<" ";
                     ++temp;}
-                std::cout<<"\n";
-               // this->_integer.resize(_size*2);
-               // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
-               // _size = productEnd - this->_integer.begin();
-               // this->_integer.resize(_size);
+                std::cout<<"\n"; 
                 (*this) *= (*this);}
             std::cout<<"\nHmmm";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
-                if(*itB){
-                    //this->_integer.resize(_size * _size + (*itP).size());
-                    //productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),(*itP).begin(),(*itP).end(),this->_integer.begin());
-                    //this->_integer.resize(productEnd - this->_integer.begin());
+                if(*itB){  
                     *this *= *itP;}}
+            std::cout<<"\n"<<*this<<"\n";
             return *this;}};
 
 #endif // Integer_h
