@@ -938,8 +938,9 @@ class Integer {
                 products.push_back(*this);
                 typename C::iterator temp = this->_integer.begin();
                 while(temp!=this->_integer.end()){
-                    ++temp;
-                    std::cout<<*temp<<" ";}
+                    std::cout<<*temp<<" ";
+                    ++temp;}
+                std::cout<<"\n";
                // this->_integer.resize(_size*2);
                // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                // _size = productEnd - this->_integer.begin();
@@ -953,7 +954,6 @@ class Integer {
                     //productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),(*itP).begin(),(*itP).end(),this->_integer.begin());
                     //this->_integer.resize(productEnd - this->_integer.begin());
                     *this *= *itP;}}
-            std::cout<<"\n"<<*this;
             return *this;}};
 
 #endif // Integer_h
