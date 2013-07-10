@@ -835,12 +835,14 @@ class Integer {
                     this->_sign=!this->_sign;}
             typename C::iterator oldEnd = this->_integer.end();
             std::cout<<this->_size<<" "<<rhs._size<<std::endl;
-            this->_integer.resize(this->_size+rhs._size);
+           // this->_integer.resize(this->_size+rhs._size);
+            typename C newInt(this->_size+rhs._size);
             std::cout<<"hmm";
-            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
-            this->_size = newEnd - this->_integer.begin();
-            this->_integer.resize(this->_size);
+            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            this->_size = newEnd - newInt.begin();
+            newInt.resize(this->_size);
             std::cout<<"HMMM";
+            *this._integer = newInt;
             return *this;}
 
         // -----------
