@@ -842,7 +842,7 @@ class Integer {
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
             std::cout<<"HMMM";
-            *this._integer = newInt;
+            *this->_integer = newInt;
             return *this;}
 
         // -----------
