@@ -371,23 +371,23 @@ struct TestInteger : CppUnit::TestFixture {
 
     void test_pow_1 () {
         try {
-            Integer<int>       x = 98765;
-            const int          e =  9867;
+            Integer<int>       x = 2;
+            const int          e = 8;
             Integer<int>&      y = x.pow(e);
-            CPPUNIT_ASSERT( e == 9867);
-            CPPUNIT_ASSERT( x ==    0);
+            CPPUNIT_ASSERT( e == 8);
+            CPPUNIT_ASSERT( x == 256);
             CPPUNIT_ASSERT(&x ==   &y);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
     void test_pow_2 () {
         try {
-            const Integer<int> x = 98765;
-            const int          e =  9867;
+            const Integer<int> x = 3;
+            const int          e =  4;
             const Integer<int> y = pow(x, e);
-            CPPUNIT_ASSERT(x == 98765);
-            CPPUNIT_ASSERT(e ==  9867);
-            CPPUNIT_ASSERT(y ==     0);}
+            CPPUNIT_ASSERT(x == 3);
+            CPPUNIT_ASSERT(e ==  4);
+            CPPUNIT_ASSERT(y == 81);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 

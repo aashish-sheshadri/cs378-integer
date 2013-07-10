@@ -644,7 +644,7 @@ class Integer {
 
         C _integer;
         bool _sign; //true -> negative
-
+        unsigned int _size;
     private:
         // -----
         // valid
@@ -663,6 +663,7 @@ class Integer {
          * <your documentation>
          */
         Integer (int value) {
+            _size = 0;
             if(value<0){
                 _sign = true;
                 value *= -1;
@@ -670,10 +671,13 @@ class Integer {
                 _sign = false;}
             if(value == 0){
                 _integer.push_back(0);
+                ++_size;
             }else{
                 while(value!=0){
                     _integer.push_back(value % 10);
-                    value = value/10;}}
+                    value = value/10;
+                    ++_size;}}
+            _integer.resize(_size);
             assert(valid());}
 
         /**
@@ -684,7 +688,7 @@ class Integer {
             string::const_iterator vBegin = value.cbegin();
             string::const_reverse_iterator vRevBegin = value.crbegin();
             string::const_reverse_iterator vRevEnd = value.crend();
-
+            _size = 0;
             if(*vBegin == '-'){
                 _sign = true;
                 ++vBegin;
@@ -696,7 +700,9 @@ class Integer {
                 T digit = static_cast<T>(*vRevBegin) - '0';
                 if(!(digit>=0 && digit<=9)) 
                     throw std::invalid_argument("Integer::Integer()");
-                _integer.push_back(digit);}
+                _integer.push_back(digit);
+                ++_size;}
+            _integer.resize(_size);
             if (!valid())
                 throw std::invalid_argument("Integer::Integer()");}
 
@@ -867,23 +873,25 @@ class Integer {
          * @throws invalid_argument if (e < 0)
          */
         Integer& pow (int e) {
-            std::deque<int> powers; 
+            //std::deque<int> powers; 
             std::deque<bool> powersOdd;
             typename std::deque<C> products;
             typename C::iterator productEnd;
+            
             while(e){
                 if(e%2 == 0){
-                    powers.push_back(e/2);
+              //      powers.push_back(e/2);
                     e/=2;
                     powersOdd.push_back(false);
                 }else{
-                    powers.push_back(--e/2);
+              //      powers.push_back(--e/2);
                     powersOdd.push_back(true);
+                    --e;
                     e/=2;}}
-            std::deque<bool>::iterator itBTemp = powersOdd.begin();
-            for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
-                std::cout<<*it<<" "<<*itBTemp<<std::endl;
-            for(deque<int>::iterator itP;itP!=powers.end();++itP){
+           // std::deque<bool>::iterator itBTemp = powersOdd.begin();
+           // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
+           //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
+            for(deque<int>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(this->_integer);
                 productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                 this->_integer.resize(productEnd - this->_integer.begin());}
