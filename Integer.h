@@ -928,7 +928,7 @@ class Integer {
                     powersOdd.push_back(false);
                 }else{
               //      powers.push_back(--e/2);
-                    powersOdd.push_back(true);}
+                    powersOdd.push_back(true);
                     --e;
                     e/=2;}}
            powersOdd.pop_back();
