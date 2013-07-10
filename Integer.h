@@ -891,7 +891,7 @@ class Integer {
            // std::deque<bool>::iterator itBTemp = powersOdd.begin();
            // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
-            for(deque<int>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
+            for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(this->_integer);
                 productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                 this->_integer.resize(productEnd - this->_integer.begin());}
