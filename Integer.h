@@ -880,7 +880,7 @@ class Integer {
                     powers.push_back(--e/2);
                     powersOdd.push_back(true);
                     e/=2;}}
-            std::deque<bool> itBTemp = powersOdd.begin();
+            std::deque<bool>::iterator itBTemp = powersOdd.begin();
             for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
                 std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<int>::iterator itP;itP!=powers.end();++itP){
