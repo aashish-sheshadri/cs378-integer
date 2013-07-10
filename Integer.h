@@ -928,7 +928,10 @@ class Integer {
                     powersOdd.push_back(false);
                 }else{
               //      powers.push_back(--e/2);
-                    powersOdd.push_back(true);
+                    if(e == 1){
+                        powersOdd.push_back(false);
+                    }else{
+                        powersOdd.push_back(true);}
                     --e;
                     e/=2;}}
            // std::deque<bool>::iterator itBTemp = powersOdd.begin();
