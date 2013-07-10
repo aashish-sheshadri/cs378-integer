@@ -948,8 +948,8 @@ class Integer {
             std::cout<<"\nHmmm";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
-                std::cout<<"Here";
                 if(*itB){  
+                    std::cout<<"Here";
                     *this *= *itP;}}
             std::cout<<"\n"<<*this<<"\n";
             return *this;}};
