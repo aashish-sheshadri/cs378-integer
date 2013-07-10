@@ -935,12 +935,14 @@ class Integer {
            // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
+                std::cout<<"Pushing\n";
                 products.push_back(*this);
+                std::cout<<"Succeeded\n";
                // this->_integer.resize(_size*2);
                // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
                // _size = productEnd - this->_integer.begin();
                // this->_integer.resize(_size);
-                *this *= *this;
+                (*this) *= (*this);
                 std::cout<<"Hmmm";}
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
