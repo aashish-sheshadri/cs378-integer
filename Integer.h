@@ -852,7 +852,16 @@ class Integer {
          * @throws invalid_argument if (rhs == 0)
          */
         Integer& operator /= (const Integer& rhs) {
-            // <your code>
+            if(this->_sign == rhs._sign){
+                if(this->_sign)
+                    this->_sign=!this->_sign;}
+            typename C::iterator oldEnd = this->_integer.end();
+           // this->_integer.resize(this->_size+rhs._size);
+            C newInt(this->_size);
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            this->_size = newEnd - newInt.begin();
+            newInt.resize(this->_size);
+            this->_integer = newInt;
             return *this;}
 
         // -----------
@@ -864,7 +873,17 @@ class Integer {
          * @throws invalid_argument if (rhs <= 0)
          */
         Integer& operator %= (const Integer& rhs) {
-            // <your code>
+            if(this->_sign)
+                this->_sign=!this->_sign;
+            typename C::iterator oldEnd = this->_integer.end();
+           // this->_integer.resize(this->_size+rhs._size);
+            C newInt(this->_size);
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            this->_size = newEnd - newInt.begin();
+            newInt.resize(this->_size);
+            Integer tempInt(0);
+            tempInt._integer = newInt;
+            this->_integer -= (tempInt *= rhs);
             return *this;}
 
         // ------------
