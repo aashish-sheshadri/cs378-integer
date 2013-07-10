@@ -834,6 +834,7 @@ class Integer {
                 if(this->_sign)
                     this->_sign=!this->_sign;}
             typename C::iterator oldEnd = this->_integer.end();
+            std::cout<<this->_size<<" "<<rhs._size<<std::endl;
             this->_integer.resize(this->_size+rhs._size);
             std::cout<<"hmm";
             typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
