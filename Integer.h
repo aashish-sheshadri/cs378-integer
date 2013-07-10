@@ -913,39 +913,26 @@ class Integer {
          * @throws invalid_argument if (e < 0)
          */
         Integer& pow (int e) {
-            //std::deque<int> powers; 
             std::deque<bool> powersOdd;
             typename std::deque<Integer<T,C> > products;
-            typename C::iterator productEnd;
-
-            //std::ostringstream out;
-            //out << x;
+            typename C::iterator productEnd;  
             std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
-            while(e!=0){
-               // std::cout<<"\n"<<e<<"\n";
+            while(e!=0){ 
                 if(e%2 == 0){
-              //      powers.push_back(e/2);
                     e/=2;
                     powersOdd.push_back(false);
-                }else{
-              //      powers.push_back(--e/2);
+                }else{ 
                     powersOdd.push_back(true);
                     --e;
                     e/=2;}}
-            powersOdd.pop_back();
-           // std::deque<bool>::iterator itBTemp = powersOdd.begin();
-           // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
-           //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
+            powersOdd.pop_back(); 
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(*this);
-                //typename C::iterator temp = this->_integer.begin();
                 (*this) *= (*this);}
-            std::cout<<"HereHere";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){  
                     *this *= *itP;}}
-            std::cout<<"\n"<<*this<<"\n";
             return *this;}};
 
 #endif // Integer_h
