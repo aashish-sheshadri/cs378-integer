@@ -921,7 +921,7 @@ class Integer {
             //out << x;
             std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
             while(e!=0){
-                std::cout<<"\n"<<e<<"\n";
+               // std::cout<<"\n"<<e<<"\n";
                 if(e%2 == 0){
               //      powers.push_back(e/2);
                     e/=2;
@@ -936,16 +936,16 @@ class Integer {
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(*this);
-               // this->_integer.resize(_size*2);
-               // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
-               // _size = productEnd - this->_integer.begin();
-               // this->_integer.resize(_size);
-                (*this) *= (*this);
                 typename C::iterator temp = this->_integer.begin();
                 while(temp!=this->_integer.end()){
                     ++temp;
                     std::cout<<*temp<<" ";}
-                std::cout<<"\nHmmm";}
+               // this->_integer.resize(_size*2);
+               // productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
+               // _size = productEnd - this->_integer.begin();
+               // this->_integer.resize(_size);
+                (*this) *= (*this);}
+            std::cout<<"\nHmmm";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){
