@@ -920,7 +920,7 @@ class Integer {
             //std::ostringstream out;
             //out << x;
             std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
-            while(e){
+            while(e!=0){
                 std::cout<<"\n"<<e<<"\n";
                 if(e%2 == 0){
               //      powers.push_back(e/2);
@@ -941,7 +941,11 @@ class Integer {
                // _size = productEnd - this->_integer.begin();
                // this->_integer.resize(_size);
                 (*this) *= (*this);
-                std::cout<<"Hmmm";}
+                typename C::iterator temp = this->_integer.begin();
+                while(temp!=this->_integer.end()){
+                    ++temp;
+                    std::cout<<*temp<<" ";}
+                std::cout<<"\nHmmm";}
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){
