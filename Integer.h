@@ -880,6 +880,9 @@ class Integer {
                     powers.push_back(--e/2);
                     powersOdd.push_back(true);
                     e/=2;}}
+            std::deque<bool> itBTemp = powersOdd.begin();
+            for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
+                std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<int>::iterator itP;itP!=powers.end();++itP){
                 products.push_back(this->_integer);
                 productEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
