@@ -928,28 +928,25 @@ class Integer {
                     powersOdd.push_back(false);
                 }else{
               //      powers.push_back(--e/2);
-                    if(e == 1){
-                        powersOdd.push_back(false);
-                    }else{
-                        powersOdd.push_back(true);}
+                    powersOdd.push_back(true);}
                     --e;
                     e/=2;}}
+           powersOdd.pop_back();
            // std::deque<bool>::iterator itBTemp = powersOdd.begin();
            // for(std::deque<int>::iterator it = powers.begin();it!=powers.end();++it,++itBTemp)
            //     std::cout<<*it<<" "<<*itBTemp<<std::endl;
             for(deque<bool>::iterator itB = powersOdd.begin();itB!=powersOdd.end();++itB){
                 products.push_back(*this);
                 typename C::iterator temp = this->_integer.begin();
-                while(temp!=this->_integer.end()){
-                    std::cout<<*temp<<" ";
-                    ++temp;}
-                std::cout<<"\n"; 
+                //while(temp!=this->_integer.end()){
+                //    std::cout<<*temp<<" ";
+                //    ++temp;}
+                //std::cout<<"\n"; 
                 (*this) *= (*this);}
             std::cout<<"\nHmmm";
             typename deque<Integer<T,C> >::iterator itP = products.begin();
             for(deque<bool>::iterator itB = powersOdd.begin(); itB!=powersOdd.end(); ++itB,++itP){
                 if(*itB){  
-                    std::cout<<"Here";
                     *this *= *itP;}}
             std::cout<<"\n"<<*this<<"\n";
             return *this;}};
