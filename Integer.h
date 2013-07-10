@@ -833,9 +833,9 @@ class Integer {
             if(this->_sign == rhs._sign){
                 if(this->_sign)
                     this->_sign=!this->_sign;}
-            C::iterator oldEnd = this->_integer.end();
+            typename C::iterator oldEnd = this->_integer.end();
             this->_integer.resize(this->_size+rhd._size);
-            C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs.begin(),rhs.end(),this->_integer.begin());
+            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs.begin(),rhs.end(),this->_integer.begin());
             this->_size = newEnd - this->_integer.begin();
             this->_integer.resize(this->_size);
             return *this;}
