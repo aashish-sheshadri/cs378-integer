@@ -598,6 +598,7 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> a = 0;
         Integer<int> b = 0;
 		a -= b;
+        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == 0);}
     
 	void test_minus_equal_3 () {
@@ -611,7 +612,6 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> a = -30;
         Integer<int> b = -70;
 		a -= b;
-        cout<<"\n"<<a<<"\n";        
         CPPUNIT_ASSERT(a == 40);}
     
 	void test_minus_equal_5 () {
