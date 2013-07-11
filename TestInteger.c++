@@ -570,7 +570,9 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_equal_to_1);
     CPPUNIT_TEST(test_equal_to_2);
     CPPUNIT_TEST(test_equal_to_3);
-    CPPUNIT_TEST(test_negation);
+    CPPUNIT_TEST(test_negation_1);
+    CPPUNIT_TEST(test_negation_2);
+    CPPUNIT_TEST(test_negation_3);
     CPPUNIT_TEST(test_output);
     CPPUNIT_TEST(test_pow_1);
     CPPUNIT_TEST(test_pow_2);
