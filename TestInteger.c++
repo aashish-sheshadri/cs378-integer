@@ -765,7 +765,43 @@ struct TestInteger : CppUnit::TestFixture {
 			CPPUNIT_ASSERT(a == 4);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
+
+    // -----------
+    // shift_right
+    // -----------
+	void test_shift_right_equal_1 () {
+        Integer<int> a = 12345;
+		a >>= 0;
+        CPPUNIT_ASSERT(a == 12345);
     
+    void test_shift_right_equal_2 () {
+        Integer<int> a = 12345;
+        a >>= 1;
+        CPPUNIT_ASSERT(a == 1234);
+        
+    void test_shift_right_equal_3 () {
+        Integer<int> a = -12345;
+        a >>= 2;
+        CPPUNIT_ASSERT(a == -123);
+    
+    // -----------
+    // shift_left
+    // -----------
+    void test_shift_left_equal_1 () {
+        Integer<int> a = 12345;
+        a >>= 0;
+        CPPUNIT_ASSERT(a == 12345);
+            
+    void test_shift_left_equal_2 () {
+        Integer<int> a = 12345;
+        a >>= 1;
+        CPPUNIT_ASSERT(a == 123450);
+                
+    void test_shift_left_equal_3 () {
+        Integer<int> a = -12345;
+        a >>= 2;
+        CPPUNIT_ASSERT(a == -1234500);
+
     // -----
     // suite
     // -----
@@ -848,6 +884,12 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_mod_equal_3);
     CPPUNIT_TEST(test_mod_equal_4);
     CPPUNIT_TEST(test_mod_equal_5);
+    CPPUNIT_TEST(test_shift_right_equal_1);
+    CPPUNIT_TEST(test_shift_right_equal_2);
+    CPPUNIT_TEST(test_shift_right_equal_3);
+    CPPUNIT_TEST(test_shift_left_equal_1);
+    CPPUNIT_TEST(test_shift_left_equal_2);
+    CPPUNIT_TEST(test_shift_left_equal_3);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
