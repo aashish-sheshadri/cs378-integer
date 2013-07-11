@@ -330,10 +330,10 @@ struct TestInteger : CppUnit::TestFixture {
     void test_divides_digits_5 () {
         const int a[] = {1, 3};
         const int b[] = {2};
-        const int c[] = {6};
+        const int c[] = {1,5};
         int x[10];
         const int* p = divides_digits(a, a + 2, b, b + 1, x);
-        CPPUNIT_ASSERT(p - x == 1);
+        CPPUNIT_ASSERT(p - x == 2);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
     // -----------
