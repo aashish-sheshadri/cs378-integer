@@ -800,16 +800,22 @@ class Integer {
          * <your documentation>
          */
         Integer& operator += (const Integer& rhs) {
+            C newInt(this->_size+rhs._size);
             if(this->_sign == rhs._sign){
-                typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
-                this->_integer.resize(plusEnd - this->_integer.begin());
+                typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+                this->_size = plusEnd - newInt.begin();
+                newInt.resize(this->_size);
             }else{
                 bool lhsGreater = abs(*this) > rhs;
                 if(lhsGreater){
-                    typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),this->_integer.begin());
+                    typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+                    this->_size = minusEnd - newInt.begin();
+                    newInt.resize(this->_size);
                 } else {
-                    typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),this->_integer.begin());
-                    this->_sign = !this->_sign;}}
+                    typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),newInt.begin());
+                    this->_size = minusEnd - newInt.begin();
+                    newInt.resize(this->_size);}}
+            this->_integer = newInt;
             return *this;}
 
         // -----------
@@ -820,7 +826,34 @@ class Integer {
          * <your documentation>
          */
         Integer& operator -= (const Integer& rhs) {
-            // <your code>
+            C newInt(this->_size+rhs._size);
+            if(this->_sign != rhs._sign){
+                typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+                this->size = plusEnd - newInt.begin();
+                newInt.resize(this->size);
+            }else{
+                bool lhsGreater = abs(*this) > rhs;
+                if(this->_sign){
+                    if(lhsGreater){
+                        typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+                        this->_size = minusEnd - newInt.begin();
+                        newInt.resize(this->_size);
+                    } else {
+                        typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),newInt.begin());
+                        this->_sign = !this->_sign;
+                        this->_size = minusEnd - newInt.begin();
+                        newInt.resize(this->_size);}
+                } else {
+                    if(lhsGreater){
+                        typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+                        this->_size = minusEnd - newInt.begin();
+                        newInt.resize(this->_size);
+                    } else {
+                        typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),newInt.begin());
+                        this->_sign = !this->_sign;
+                        this->_size = minusEnd - newInt.begin();
+                        newInt.resize(this->_size);}}
+            this->_integer = newInt;
             return *this;}
 
         // -----------
@@ -894,7 +927,10 @@ class Integer {
          * <your documentation>
          */
         Integer& operator <<= (int n) {
-            // <your code>
+            C newInt(this->_size+n+1);
+            C::iterator shiftEnd = shift_left_digits(this->_integer.begin(),this->_integer.end(),n,newInt.begin());
+            this->_size = shiftEnd - newInt.begin();
+            this->_integer = newInt;
             return *this;}
 
         // ------------
@@ -905,7 +941,10 @@ class Integer {
          * <your documentation>
          */
         Integer& operator >>= (int n) {
-            // <your code>
+            C newInt(this->_size + 1);
+            C::iterator shiftEnd = shift_right_digits(this->_integer.begin(),this->_integer.end(),n,newInt.begin());
+            this->_size = shiftEnd - newInt.begin();
+            this->_integer = newInt;
             return *this;}
 
         // ---
