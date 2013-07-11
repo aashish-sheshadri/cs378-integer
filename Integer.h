@@ -462,6 +462,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
                 unsigned int shiftSize = (num8Size<=dividendSize?num8Size:num4Size);
+                cout<<" "<<dividendSize - shiftSize<<" ";
                 deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1, dividendSize - shiftSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
         } else {
