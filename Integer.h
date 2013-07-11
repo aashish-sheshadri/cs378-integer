@@ -688,6 +688,7 @@ class Integer {
      * <your documentation>
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
+        assert(rhs._size>0);
         if(rhs._sign)
             lhs<<"-";
         for(typename C::const_reverse_iterator rIt = rhs._integer.crbegin(); rIt!=rhs._integer.crend(); ++rIt)

@@ -488,12 +488,30 @@ struct TestInteger : CppUnit::TestFixture {
     // output
     // ------
 
-    void test_output () {
+    void test_output_1 () {
         try {
             const Integer<int> x = 98765;
             std::ostringstream out;
             out << x;
             CPPUNIT_ASSERT(out.str() == "98765");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_output_2 () {
+        try {
+            const Integer<int> x = -98765;
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "-98765");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_output_3 () {
+        try {
+            const Integer<int> x = "-98765";
+            std::ostringstream out;
+            out << x;
+            CPPUNIT_ASSERT(out.str() == "-98765");}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
