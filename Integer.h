@@ -326,33 +326,20 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  * ([b1, e1) > [b2, e2)) => x
  */
 template <typename II1, typename II2>
-bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int& skip){
+bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
     assert(skip>=0);
-    std::cout<<"\nSkip: "<<skip;
-    bool cannotSkip = skip==0?true:false;
-    bool alwaysTrue = !skip;
-    bool first = true;
     while(b1!=e1){
-        if(!cannotSkip){
-            if(first && *b1<*b2)
-                return true;
-            if(!first && ((*b1)+10)< *b2)
-                return true;}
-        if(*b1<*b2 && cannotSkip){
-            std::cout<<"\n"<<*b1<<" < "<<*b2;
+        if(skip != 0)
+            return true;
+        if(*b1<*b2){
             return false;
-        }else if(*b1>*b2 && alwaysTrue){
-            std::cout<<"\n"<<*b1<<" > "<<*b2;
+        }else if(*b1>*b2){
             return true;}
         ++b1;
-        if(cannotSkip)
-            ++b2;
-        --skip;
-        cannotSkip = skip==0?true:false;
+        ++b2;
         if(b2 == e2)
-            return true;
-        first = false;}
-    return false||alwaysTrue;}
+            return true;}
+    return false;}
 
 // --------------
 // divides_digits
@@ -450,43 +437,32 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 
         deque<int> shiftedNum(size);
         deque<int>::iterator shiftEnd;
-        unsigned int skip3 = (dividendSize==num4Size?0:num8Size - num4Size);
-        if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),skip3)){
-            unsigned int skip4 = dividendSize==num8Size?0:num8Size - num8Size;
-            if(skip4 == 0 && dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),skip4)){
+        if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),dividendSize==num4Size?0:num8Size - num4Size)){
+            if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),dividendSize==num8Size?0:num8Size - num8Size)){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size - skip4,partialQ.begin());
+                deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
-                std::cout<<"\n4\n";
             } else {
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size - skip3,partialQ.begin());
+                deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
-                std::cout<<"\n3\n";
         } else {
-            unsigned int skip2 = dividendSize==num2Size?0:num8Size - num2Size;
-            unsigned int skip1 = dividendSize==numSize?0:num8Size - numSize;
-            
-            bool goTwo = dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),skip2);
-            bool goOne = dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),skip1);
-            if(skip1==0 && goTwo){
+            if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),dividendSize==num2Size?0:num8Size - num2Size)){       
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size - skip2,partialQ.begin());
+                deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
-                std::cout<<"\n2\n";
-            } else if(goOne) {
+            } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize - skip1,partialQ.begin());
+                deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
-                std::cout<<"\n1 \n";
             } else {
                 break;}}}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
@@ -964,8 +940,9 @@ class Integer {
             } else {
                 if(rhs._sign)
                     this->_sign = true;}
+            typename C::iterator oldEnd = this->_integer.end();
             C newInt(10*(this->_size+rhs._size));
-            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
 
@@ -995,8 +972,9 @@ class Integer {
             } else {
                 if(rhs._sign)
                     this->_sign = true;}
+            typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
-            typename C::iterator newEnd = divides_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
 
@@ -1018,20 +996,18 @@ class Integer {
         Integer& operator %= (const Integer& rhs) {
             
             if(rhs <= 0)
-                throw std::invalid_argument("Integer::Integer()");
+                throw std::invalid_argument("rhs <= 0");
 
             if(this->_sign)
                 this->_sign=!this->_sign;
+            typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
-            typename C::iterator newEnd = divides_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
-            newInt.resize(newEnd - newInt.begin());
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            this->_size = newEnd - newInt.begin();
+            newInt.resize(this->_size);
             Integer tempInt(0);
             tempInt._integer = newInt;
-            tempInt._sign = false;
-            tempInt._size = this->_size;
-            tempInt *= rhs;
-            *this -= tempInt;
-            std::cout<<std::endl<<*this<<std::endl;
+            this->_integer -= (tempInt *= rhs);
             return *this;}
 
         // ------------

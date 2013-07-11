@@ -277,22 +277,15 @@ struct TestInteger : CppUnit::TestFixture {
     void test_myCompare_1 () {
         const int a[] = {8, 7, 6, 2, 3, 1};
         const int b[] = {7, 6, 5};
-        unsigned int skip = 0;
-        
-        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+3,skip));
-        CPPUNIT_ASSERT(skip == 0);}
+        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+3,0));}
     void test_myCompare_2 () {
         const int a[] = {1, 2, 3, 2, 3, 1};
-        const int b[] = {3,2};
-        unsigned int skip = 1;
-        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+2,skip));
-        CPPUNIT_ASSERT(skip == 0);}
+        const int b[] = {7, 6, 5};
+        CPPUNIT_ASSERT(!myCompare(a,a+6,b,b+3,0));}
     void test_myCompare_3 () {
         const int a[] = {8, 7, 6};
         const int b[] = {6, 5};
-        unsigned int skip = 1;
-        CPPUNIT_ASSERT(myCompare(a,a+3,b,b+3,skip));
-        CPPUNIT_ASSERT(skip == 0);}
+        CPPUNIT_ASSERT(myCompare(a,a+3,b,b+3,1));}
 
     // --------------
     // divides_digits
@@ -800,14 +793,14 @@ struct TestInteger : CppUnit::TestFixture {
 //    CPPUNIT_TEST(test_multiplies_digits_2);
 //    CPPUNIT_TEST(test_multiplies_digits_3);
 //    CPPUNIT_TEST(test_multiplies_digits_4);
-    CPPUNIT_TEST(test_myCompare_1);
-    CPPUNIT_TEST(test_myCompare_2);
-    CPPUNIT_TEST(test_myCompare_3);
+//    CPPUNIT_TEST(test_myCompare_1);
+//    CPPUNIT_TEST(test_myCompare_2);
+//    CPPUNIT_TEST(test_myCompare_3);
 //    CPPUNIT_TEST(test_divides_digits_1);
 //    CPPUNIT_TEST(test_divides_digits_2);
 //    CPPUNIT_TEST(test_divides_digits_3);
 //    CPPUNIT_TEST(test_divides_digits_4);
-//    CPPUNIT_TEST(test_divides_digits_5);
+    CPPUNIT_TEST(test_divides_digits_5);
 //    CPPUNIT_TEST(test_constructor_1);
 //    CPPUNIT_TEST(test_constructor_2);
 //    CPPUNIT_TEST(test_constructor_3);
