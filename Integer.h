@@ -1007,7 +1007,7 @@ class Integer {
             newInt.resize(this->_size);
             Integer tempInt(0);
             tempInt._integer = newInt;
-            this->_integer -= (tempInt *= rhs);
+            *this -= (tempInt *= rhs);
             return *this;}
 
         // ------------
