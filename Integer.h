@@ -434,30 +434,17 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         unsigned int dividendSize = dividendEnd - dividend.begin();
         std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
         dividendRev.resize(dividendSize);
-
-//        std::cout<<std::endl;
-//        for (deque<int>::iterator it = dividend.begin(); it!=dividendEnd; ++it)
-//            cout<<*it<<" ";
-//        std::cout<<std::endl;
-        
         deque<int> shiftedNum(size);
         deque<int>::iterator shiftEnd;
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),dividendSize==num4Size?0:num8Size - num4Size)){
             
-//            std::cout<<std::endl;
-//            for (deque<int>::iterator it = runningSum.begin(); it!=rsEnd; ++it)
-//                cout<<*it<<" ";
-//            std::cout<<std::endl;
-            
             if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),dividendSize==num8Size?0:num8Size - num8Size)){
-//                std::cout<<"\n4\n";
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else {
-//                std::cout<<"\n3\n";
                 unsigned int shiftSize = (num8Size<=dividendSize?num8Size:num4Size);
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - shiftSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
@@ -466,7 +453,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
         } else {
             if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),dividendSize==num2Size?0:num8Size - num2Size)){       
-//                std::cout<<"\n2\n";
                 unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:num2Size));
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - shiftSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
@@ -474,7 +460,6 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - shiftSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
-//                std::cout<<"\n1\n";
                 unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:(num2Size<=dividendSize?num2Size:numSize)));
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - shiftSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
@@ -630,7 +615,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs Integer by referance
+     * @return Integer holding lhs + rhs
      */
     friend Integer operator + (Integer lhs, const Integer& rhs) {
         return lhs += rhs;}
@@ -640,7 +627,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs Integer by referance
+     * @return Integer holding lhs - rhs
      */
     friend Integer operator - (Integer lhs, const Integer& rhs) {
         return lhs -= rhs;}
@@ -650,7 +639,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs Integer by referance
+     * @return Integer holding lhs * rhs
      */
     friend Integer operator * (Integer lhs, const Integer& rhs) {
         return lhs *= rhs;}
@@ -660,7 +651,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs Integer by referance
+     * @return Integer holding lhs / rhs
      * @throws invalid_argument if (rhs == 0)
      */
     friend Integer operator / (Integer lhs, const Integer& rhs) {
@@ -671,7 +664,9 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs Integer by referance
+     * @return Integer holding lhs % rhs
      * @throws invalid_argument if (rhs <= 0)
      */
     friend Integer operator % (Integer lhs, const Integer& rhs) {
@@ -682,7 +677,9 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs int by value
+     * @return Integer left shifted by rhs
      * @throws invalid_argument if (rhs < 0)
      */
     friend Integer operator << (Integer lhs, int rhs) {
@@ -693,7 +690,9 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param lhs Integer by value
+     * @param rhs int by value
+     * @return Integer right shifted by rhs
      * @throws invalid_argument if (rhs < 0)
      */
     friend Integer operator >> (Integer lhs, int rhs) {
@@ -704,7 +703,9 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param lhs Ostream by referance
+     * @param rhs Integer by referance
+     * @return Output stream buffered with Integer (MSD first)
      */
     friend std::ostream& operator << (std::ostream& lhs, const Integer& rhs) {
         assert(rhs._size>0);
@@ -721,7 +722,8 @@ class Integer {
     /**
      * absolute value
      * does NOT modify the argument
-     * <your documentation>
+     * @param x Integer by value
+     * @return Integer 
      */
     friend Integer abs (Integer x) {
         return x.abs();}
@@ -733,7 +735,9 @@ class Integer {
     /**
      * power
      * does NOT modify the argument
-     * <your documentation>
+     * @param x an Integer by value
+     * @param e an int by value
+     * @return an Integer x^e
      * @throws invalid_argument if (x == 0) && (e == 0)
      * @throws invalid_argument if (e < 0)
      */
@@ -763,7 +767,7 @@ class Integer {
         // ------------
 
         /**
-         * <your documentation>
+         * @param value an int to initialize Integer
          */
         Integer (int value) {
             _size = 0;
@@ -784,7 +788,7 @@ class Integer {
             assert(valid());}
 
         /**
-         * <your documentation>
+         * @param value a c_str to initialize Integer
          * @throws invalid_argument if value is not a valid representation of an Integer
          */
         explicit Integer (const std::string& value) {
@@ -822,7 +826,7 @@ class Integer {
         // ----------
 
         /**
-         * <your documentation>
+         * Operator to negate
          */
         Integer operator - () const {
             Integer negateInt = *this;
@@ -834,14 +838,14 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * Operator to self increment(pre)
          */
         Integer& operator ++ () {
             *this += 1;
             return *this;}
 
         /**
-         * <your documentation>
+         * Operator to self increment(post)
          */
         Integer operator ++ (int) {
             Integer x = *this;
@@ -853,14 +857,14 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * Operator to self decrement(pre)
          */
         Integer& operator -- () {
             *this -= 1;
             return *this;}
 
         /**
-         * <your documentation>
+         * Operator to self decrement(post)
          */
         Integer operator -- (int) {
             Integer x = *this;
@@ -872,7 +876,8 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
+         * Operator +=
          */
         Integer& operator += (const Integer& rhs) {
             C newInt(this->_size+rhs._size);
@@ -906,7 +911,7 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          */
         Integer& operator -= (const Integer& rhs) {
             C newInt(this->_size+rhs._size);
@@ -951,7 +956,7 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          */
         Integer& operator *= (const Integer& rhs) {
             if(this->_sign == rhs._sign){
@@ -978,7 +983,7 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          * @throws invalid_argument if (rhs == 0)
          */
         Integer& operator /= (const Integer& rhs) {
@@ -1010,7 +1015,7 @@ class Integer {
         // -----------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          * @throws invalid_argument if (rhs <= 0)
          */
         Integer& operator %= (const Integer& rhs) {
@@ -1037,7 +1042,7 @@ class Integer {
         // ------------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          */
         Integer& operator <<= (int n) {
             C newInt(this->_size+n+1);
@@ -1052,7 +1057,7 @@ class Integer {
         // ------------
 
         /**
-         * <your documentation>
+         * @param rhs an Integer by reference
          */
         Integer& operator >>= (int n) {
             C newInt(this->_size + 1);
@@ -1068,7 +1073,6 @@ class Integer {
 
         /**
          * absolute value
-         * <your documentation>
          */
         Integer& abs () {
             if (this->_sign)
@@ -1086,6 +1090,10 @@ class Integer {
          * @throws invalid_argument if (e < 0)
          */
         Integer& pow (int e) {
+            if(*this == 0 && e==0)
+                throw::invalid_argument(Integer::Integer());
+            if(e < 0)
+                throw::invalid_argument(Integer::Integer());
             std::deque<bool> powersOdd;
             typename std::deque<Integer<T,C> > products;
             typename C::iterator productEnd;  
