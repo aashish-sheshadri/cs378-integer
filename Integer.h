@@ -1027,7 +1027,7 @@ class Integer {
             tempInt._integer = newInt;
             tempInt._size = this->_size;
             tempInt._sign = false;
-            this->_integer -= (tempInt *= rhs);
+            *this -= (tempInt *= rhs);
             return *this;}
 
         // ------------
