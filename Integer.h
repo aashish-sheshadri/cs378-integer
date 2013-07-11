@@ -1042,6 +1042,7 @@ class Integer {
             typename C::iterator shiftEnd = shift_left_digits(this->_integer.begin(),this->_integer.end(),n,newInt.begin());
             this->_size = shiftEnd - newInt.begin();
             this->_integer = newInt;
+            this->_integer.resize(this->_size);
             return *this;}
 
         // ------------
@@ -1056,6 +1057,7 @@ class Integer {
             typename C::iterator shiftEnd = shift_right_digits(this->_integer.begin(),this->_integer.end(),n,newInt.begin());
             this->_size = shiftEnd - newInt.begin();
             this->_integer = newInt;
+            this->_integer.resize(this->_size);
             return *this;}
 
         // ---
