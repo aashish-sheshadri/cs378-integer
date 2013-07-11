@@ -618,9 +618,9 @@ struct TestInteger : CppUnit::TestFixture {
 		a += b;
         CPPUNIT_ASSERT(a == 380);}
     
-    // ------
-    // Integer multiply_equal  *=
-    // ------
+    // --------------
+    // multiply_equal
+    // --------------
 	void test_multiply_equal_1 () {
         Integer<int> a = 234;
         Integer<int> b = 567;
@@ -657,6 +657,55 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> b = -9;
 		a *= b;
         CPPUNIT_ASSERT(a == -81);}
+    
+    // ------------
+    // divide_equal
+    // ------------
+    
+    void test_divide_equal_1 () {
+        try {
+            Integer<int> a = "12";
+        	const Integer<int> b = "0";
+			a /= b;
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(strcmp(e.what(), "Divide by zero"));}}
+    
+    void test_divide_equal_2 () {
+        try {
+            Integer<int> a = "24";
+        	const Integer<int> b = "8";
+			a /= b;
+			CPPUNIT_ASSERT(a == 3);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_divide_equal_3 () {
+        try {
+            Integer<int> a = "0";
+        	const Integer<int> b = "5";
+			a /= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_divide_equal_4 () {
+        try {
+            Integer<int> a = "10";
+        	const Integer<int> b = "12";
+			a /= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_divide_equal_5 () {
+        try {
+            Integer<int> a = "56";
+        	const Integer<int> b = "13";
+			a /= b;
+			CPPUNIT_ASSERT(a == "4");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
     
     // -----
     // suite
@@ -729,6 +778,11 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_multiply_equal_3);
     CPPUNIT_TEST(test_multiply_equal_4);
     CPPUNIT_TEST(test_multiply_equal_5);
+    CPPUNIT_TEST(test_divide_equal_1);
+    CPPUNIT_TEST(test_divide_equal_2);
+    CPPUNIT_TEST(test_divide_equal_3);
+    CPPUNIT_TEST(test_divide_equal_4);
+    CPPUNIT_TEST(test_divide_equal_5);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----

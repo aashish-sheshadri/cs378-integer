@@ -963,9 +963,15 @@ class Integer {
          */
         Integer& operator /= (const Integer& rhs) {
             
+            if(rhs == 0)
+                throw std::invalid_argument("Divide by zero");
+            
             if(this->_sign == rhs._sign){
                 if(this->_sign)
-                    this->_sign=!this->_sign;}
+                    this->_sign=!this->_sign;
+            } else {
+                if(rhs._sign)
+                    this->_sign = true;}
             typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
             typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
@@ -988,10 +994,13 @@ class Integer {
          * @throws invalid_argument if (rhs <= 0)
          */
         Integer& operator %= (const Integer& rhs) {
+            
+            if(rhs <= 0)
+                throw std::invalid_argument("rhs <= 0");
+
             if(this->_sign)
                 this->_sign=!this->_sign;
             typename C::iterator oldEnd = this->_integer.end();
-           // this->_integer.resize(this->_size+rhs._size);
             C newInt(this->_size);
             typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
