@@ -328,12 +328,15 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
     assert(skip>=0);
+    std::cout<<"\nSkip: "<<skip;
     while(b1!=e1){
         if(skip != 0)
             return true;
         if(*b1<*b2){
+            std::cout<<"/n"<<*b1<<" < "<<*b2;
             return false;
         }else if(*b1>*b2){
+            std::cout<<"/n"<<*b1<<" > "<<*b2;
             return true;}
         ++b1;
         ++b2;
@@ -466,7 +469,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
-                std::cout<<"\n1\n";
+                std::cout<<"\n1 \n";
             } else {
                 break;}}}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
