@@ -1006,7 +1006,7 @@ class Integer {
             tempInt._sign = false;
             tempInt._size = this->_size;
             tempInt *= rhs;
-            *this -= ;
+            *this -= tempInt;
             std::cout<<std::endl<<*this<<std::endl;
             return *this;}
 
