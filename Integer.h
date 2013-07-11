@@ -941,7 +941,6 @@ class Integer {
                 if(rhs._sign)
                     this->_sign = true;}
             typename C::iterator oldEnd = this->_integer.end();
-           // this->_integer.resize(this->_size+rhs._size);
             C newInt(10*(this->_size+rhs._size));
             typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
@@ -968,7 +967,6 @@ class Integer {
                 if(this->_sign)
                     this->_sign=!this->_sign;}
             typename C::iterator oldEnd = this->_integer.end();
-           // this->_integer.resize(this->_size+rhs._size);
             C newInt(this->_size);
             typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
@@ -1058,7 +1056,6 @@ class Integer {
             std::deque<bool> powersOdd;
             typename std::deque<Integer<T,C> > products;
             typename C::iterator productEnd;  
-            std::cout<<std::endl<<"Attempting to raise "<<*this<<"^"<<e<<" Size: "<<this->_integer.size()<<std::endl; 
             while(e!=0){ 
                 if(e%2 == 0){
                     e/=2;

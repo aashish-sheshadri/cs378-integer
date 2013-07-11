@@ -598,14 +598,12 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> a = 0;
         Integer<int> b = 0;
 		a -= b;
-        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == 0);}
     
 	void test_minus_equal_3 () {
         Integer<int> a = 3;
         Integer<int> b = 3;
 		a -= b;
-        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == 0);}
     
 	void test_minus_equal_4 () {
