@@ -30,6 +30,7 @@ To document the program:
 #include <deque>    // deque
 
 #include "Integer.h"
+#include <ctime>
 
 // ----
 // main
@@ -37,22 +38,27 @@ To document the program:
 
 int main () {
     using namespace std;
+    
+    clock_t t1, t2;
     cout << "RunInteger.c++" << endl << endl;
-
+    
     // less than 300 ms without valgrind
     // less than  15  s with    valgrind
     cout << "*** 20th Mersenne prime: 1,332 digits ***" << endl << endl;
-
+    t1 = clock();
     {
     const Integer<int> n = Integer<int>(2).pow(4423) - 1;
     cout << "2^4423 - 1 = " << n << endl << endl;
     }
-
+    t2 = clock();
+    std::cout<<"\n"<<"Time taken: "<<(static_cast<float>(t2)-static_cast<float>(t1))/static_cast<float>(CLOCKS_PER_SEC);
+    t1 = clock();
     {
     const Integer< int, std::deque<int> > n = Integer< int, std::deque<int> >(2).pow(4423) - 1;
     cout << "2^4423 - 1 = " << n << endl << endl;
     }
-
+    t2 = clock();
+    std::cout<<"\n"<<"Time taken: "<<(static_cast<float>(t2)-static_cast<float>(t1))/static_cast<float>(CLOCKS_PER_SEC);
     // --------------------------
     // extra credit (5 bonus pts)
     // --------------------------
@@ -60,12 +66,13 @@ int main () {
     // less than 4 min without valgrind
     // don't run with valgrind
     cout << "*** 30th Mersenne prime: 39,751 digits ***" << endl << endl;
-
+    t1 = clock();
     {
     const Integer<int> n = Integer<int>(2).pow(132049) - 1;
     cout << "2^132049 - 1 = " << n << endl << endl;
     }
-
+    t2 = clock();
+    std::cout<<"\n"<<"Time taken: "<<(static_cast<float>(t2)-static_cast<float>(t1))/static_cast<float>(CLOCKS_PER_SEC);
     cout << "Done." << endl;
 
     return 0;}
