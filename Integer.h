@@ -434,7 +434,11 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         unsigned int dividendSize = dividendEnd - dividend.begin();
         std::reverse_copy(dividend.begin(),dividendEnd,dividendRev.begin());
         dividendRev.resize(dividendSize);
-
+        std::cout<<std::endl;
+        for (deque<int>::iterator it = dividend.begin(); it!=dividendEnd; ++it)
+            cout<<*it<<" ";
+        std::cout<<std::endl;
+        
         deque<int> shiftedNum(size);
         deque<int>::iterator shiftEnd;
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),dividendSize==num4Size?0:num8Size - num4Size)){
