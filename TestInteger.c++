@@ -325,7 +325,17 @@ struct TestInteger : CppUnit::TestFixture {
               int x[10];
         const int* p = divides_digits(a, a + 3, b, b + 3, x);
         CPPUNIT_ASSERT(p - x == 1);
-        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}   
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+
+    void test_divides_digits_4 () {
+        const int a[] = {1, 3};
+        const int b[] = {2};
+        const int c[] = {6};
+        int x[10];
+        const int* p = divides_digits(a, a + 2, b, b + 1, x);
+        CPPUNIT_ASSERT(p - x == 1);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
     // -----------
     // constructor
     // -----------
