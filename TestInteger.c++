@@ -555,37 +555,69 @@ struct TestInteger : CppUnit::TestFixture {
     // ----------
     // plus_equal
     // ----------
-	void test_Integer_plus_equal_1 () {
+	void test_plus_equal_1 () {
         Integer<int> a = 234;
         Integer<int> b = 567;
 		a += b;
         CPPUNIT_ASSERT(a == 801);}
     
-	void test_Integer_plus_equal_2 () {
+	void test_plus_equal_2 () {
         Integer<int> a = 0;
         Integer<int> b = 0;
 		a += b;
         CPPUNIT_ASSERT(a == 0);}
     
-	void test_Integer_plus_equal_3 () {
+	void test_plus_equal_3 () {
         Integer<int> a = -3;
         Integer<int> b = 3;
 		a += b;
-        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == 0);}
     
-	void test_Integer_plus_equal_4 () {
+	void test_plus_equal_4 () {
         Integer<int> a = 30;
         Integer<int> b = -70;
 		a += b;
-        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == -40);}
     
-	void test_Integer_plus_equal_5 () {
+	void test_plus_equal_5 () {
         Integer<int> a = -130;
         Integer<int> b = -120;
 		a += b;
         CPPUNIT_ASSERT(a == -250);}
+    
+    // -----------
+    // minus_equal
+    // -----------
+	void test_minus_equal_1 () {
+        Integer<int> a = 234;
+        Integer<int> b = 567;
+		a -= b;
+        CPPUNIT_ASSERT(a == -333);}
+    
+	void test_minus_equal_2 () {
+        Integer<int> a = 0;
+        Integer<int> b = 0;
+		a -= b;
+        CPPUNIT_ASSERT(a == 0);}
+    
+	void test_minus_equal_3 () {
+        Integer<int> a = 3;
+        Integer<int> b = 3;
+		a -= b;
+        CPPUNIT_ASSERT(a == 0);}
+    
+	void test_minus_equal_4 () {
+        Integer<int> a = -30;
+        Integer<int> b = -70;
+		a -= b;
+        CPPUNIT_ASSERT(a == 40);}
+    
+	void test_minus_equal_5 () {
+        Integer<int> a = 500;
+        Integer<int> b = -120;
+		a += b;
+        CPPUNIT_ASSERT(a == 380);}
+    
     // -----
     // suite
     // -----
@@ -642,11 +674,16 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_pow_1);
     CPPUNIT_TEST(test_pow_2);
     CPPUNIT_TEST(test_pow_3);
-    CPPUNIT_TEST(test_Integer_plus_equal_1);
-    CPPUNIT_TEST(test_Integer_plus_equal_2);
-    CPPUNIT_TEST(test_Integer_plus_equal_3);
-    CPPUNIT_TEST(test_Integer_plus_equal_4);
-    CPPUNIT_TEST(test_Integer_plus_equal_5);
+    CPPUNIT_TEST(test_plus_equal_1);
+    CPPUNIT_TEST(test_plus_equal_2);
+    CPPUNIT_TEST(test_plus_equal_3);
+    CPPUNIT_TEST(test_plus_equal_4);
+    CPPUNIT_TEST(test_plus_equal_5);
+    CPPUNIT_TEST(test_minus_equal_1);
+    CPPUNIT_TEST(test_minus_equal_2);
+    CPPUNIT_TEST(test_minus_equal_3);
+    CPPUNIT_TEST(test_minus_equal_4);
+    CPPUNIT_TEST(test_minus_equal_5);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
