@@ -620,6 +620,46 @@ struct TestInteger : CppUnit::TestFixture {
 		a += b;
         CPPUNIT_ASSERT(a == 380);}
     
+    // ------
+    // Integer multiply_equal  *=
+    // ------
+	void test_multiply_equal_1 () {
+        Integer<int> a = 234;
+        Integer<int> b = 567;
+		a *= b;
+        CPPUNIT_ASSERT(a == 132678);}
+    
+	void test_multiply_equal_2 () {
+        Integer<int> a = -5678;
+        Integer<int> b = 789;
+		a *= b;
+        CPPUNIT_ASSERT(a == -4479942);}
+    
+	void test_multiply_equal_3 () {
+        Integer<int> a = 9;
+        Integer<int> b = -32;
+		a *= b;
+        CPPUNIT_ASSERT(a == -288);}
+    
+	void test_multiply_equal_4 () {
+        Integer<int> a = 8;
+        Integer<int> b = 0;
+		a *= b;
+        CPPUNIT_ASSERT(a == 0);}
+    
+	void test_multiply_equal_5 () {
+        Integer<int> a = 0;
+        const Integer<int> b = 0;
+		a *= b;
+		Integer<int> x = 0;
+        CPPUNIT_ASSERT(a == x);}
+    
+	void test_multiply_equal_6 () {
+        Integer<int> a = 9;
+        Integer<int> b = -9;
+		a *= b;
+        CPPUNIT_ASSERT(a == -81);}
+    
     // -----
     // suite
     // -----
@@ -686,6 +726,11 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_minus_equal_3);
     CPPUNIT_TEST(test_minus_equal_4);
     CPPUNIT_TEST(test_minus_equal_5);
+    CPPUNIT_TEST(test_multiply_equal_1);
+    CPPUNIT_TEST(test_multiply_equal_2);
+    CPPUNIT_TEST(test_multiply_equal_3);
+    CPPUNIT_TEST(test_multiply_equal_4);
+    CPPUNIT_TEST(test_multiply_equal_5);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
