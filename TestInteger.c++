@@ -277,15 +277,18 @@ struct TestInteger : CppUnit::TestFixture {
     void test_myCompare_1 () {
         const int a[] = {8, 7, 6, 2, 3, 1};
         const int b[] = {7, 6, 5};
-        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+3,0));}
+        int skip = 0;
+        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+3,skip));}
     void test_myCompare_2 () {
         const int a[] = {1, 2, 3, 2, 3, 1};
         const int b[] = {7, 6, 5};
-        CPPUNIT_ASSERT(!myCompare(a,a+6,b,b+3,0));}
+        int skip = 0;
+        CPPUNIT_ASSERT(!myCompare(a,a+6,b,b+3,skip));}
     void test_myCompare_3 () {
         const int a[] = {8, 7, 6};
         const int b[] = {6, 5};
-        CPPUNIT_ASSERT(myCompare(a,a+3,b,b+3,1));}
+        int skip = 1;
+        CPPUNIT_ASSERT(myCompare(a,a+3,b,b+3,skip));}
 
     // --------------
     // divides_digits
