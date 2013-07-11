@@ -1027,11 +1027,7 @@ class Integer {
             tempInt._integer = newInt;
             tempInt._size = rSize;
             tempInt._sign = false;
-            std::cout<<std::endl<<*this<<std::endl;
-            std::cout<<std::endl<<rhs<<std::endl;
-            std::cout<<std::endl<<tempInt<<std::endl;
             *this -= (tempInt *= rhs);
-            std::cout<<std::endl<<*this<<std::endl;
             return *this;}
 
         // ------------
