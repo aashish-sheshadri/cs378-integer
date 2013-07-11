@@ -540,6 +540,17 @@ struct TestInteger : CppUnit::TestFixture {
             CPPUNIT_ASSERT(y == 81);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
+    
+    void test_pow_3 () {
+        try {
+            const Integer<int> x = 9;
+            const int          e =  999;
+            const Integer<int> y = pow(x, e);
+            CPPUNIT_ASSERT(x == 9);
+            CPPUNIT_ASSERT(e ==  999);
+            CPPUNIT_ASSERT(y ==29512665430652752148753480226197736314359272517043832886063884637676943433478020332709411004889);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
 
     // -----
     // suite
