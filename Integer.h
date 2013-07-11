@@ -556,7 +556,7 @@ class Integer {
             if(rhs._sign){
                 return false;
             } else {
-                return true;}
+                return true;}}
         
         if(rhs._size > lhs._size)
             return true;
