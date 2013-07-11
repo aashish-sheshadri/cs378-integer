@@ -1005,6 +1005,7 @@ class Integer {
             tempInt._integer = newInt;
             tempInt._sign = false;
             tempInt._size = this->_size;
+            std::cout<<std::endl<<newInt<<std::endl;
             std::cout<<std::endl<<tempInt<<std::endl;
             std::cout<<std::endl<<rhs<<std::endl;
             std::cout<<std::endl<<*this<<std::endl;
