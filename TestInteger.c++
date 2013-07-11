@@ -417,7 +417,7 @@ struct TestInteger : CppUnit::TestFixture {
     // equal_to
     // --------
 
-    void test_equal_to () {
+    void test_equal_to_1 () {
         try {
             const Integer<int> x = 98765;
             const Integer<int> y = 98765;
@@ -427,6 +427,32 @@ struct TestInteger : CppUnit::TestFixture {
             CPPUNIT_ASSERT(    !(x != y));
             CPPUNIT_ASSERT(    !(x != 98765));
             CPPUNIT_ASSERT(!(98765 != y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_equal_to_2 () {
+        try {
+            const Integer<int> x = 0;
+            const Integer<int> y = 0;
+            CPPUNIT_ASSERT(      x == y);
+            CPPUNIT_ASSERT(      x == 0);
+            CPPUNIT_ASSERT(  0 == x);
+            CPPUNIT_ASSERT(    !(x != y));
+            CPPUNIT_ASSERT(    !(x != 0));
+            CPPUNIT_ASSERT(!(0 != y));}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_equal_to_3 () {
+        try {
+            const Integer<int> x = -98765;
+            const Integer<int> y = -98765;
+            CPPUNIT_ASSERT(      x == y);
+            CPPUNIT_ASSERT(      x == -98765);
+            CPPUNIT_ASSERT(  -98765 == x);
+            CPPUNIT_ASSERT(    !(x != y));
+            CPPUNIT_ASSERT(    !(x != -98765));
+            CPPUNIT_ASSERT(!(-98765 != y));}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
@@ -525,6 +551,9 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_abs_4);
     CPPUNIT_TEST(test_abs_5);
     CPPUNIT_TEST(test_abs_6);
+    CPPUNIT_TEST(test_equal_to_1);
+    CPPUNIT_TEST(test_equal_to_2);
+    CPPUNIT_TEST(test_equal_to_3);
     CPPUNIT_TEST(test_negation);
     CPPUNIT_TEST(test_output);
     CPPUNIT_TEST(test_pow_1);
