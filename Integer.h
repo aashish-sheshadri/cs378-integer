@@ -924,7 +924,10 @@ class Integer {
         Integer& operator *= (const Integer& rhs) {
             if(this->_sign == rhs._sign){
                 if(this->_sign)
-                    this->_sign=!this->_sign;}
+                    this->_sign=!this->_sign;
+            } else {
+                if(rhs._sign)
+                    this->_sign = true;}
             typename C::iterator oldEnd = this->_integer.end();
            // this->_integer.resize(this->_size+rhs._size);
             C newInt(10*(this->_size+rhs._size));
