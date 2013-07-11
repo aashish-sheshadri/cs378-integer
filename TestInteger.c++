@@ -547,8 +547,8 @@ struct TestInteger : CppUnit::TestFixture {
             const int          e =  999;
             const Integer<int> y = pow(x, e);
             CPPUNIT_ASSERT(x == 9);
-            CPPUNIT_ASSERT(e ==  15);
-            CPPUNIT_ASSERT(y ==205891132094649);}
+            CPPUNIT_ASSERT(e ==  9);
+            CPPUNIT_ASSERT(y == 387420489);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
