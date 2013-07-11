@@ -664,8 +664,8 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_1 () {
         try {
-            Integer<int> a = "12";
-        	const Integer<int> b = "0";
+            Integer<int> a = 12;
+        	const Integer<int> b = 0;
 			a /= b;
             CPPUNIT_ASSERT(false);}
         catch (std::invalid_argument& e) {
@@ -673,8 +673,8 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_2 () {
         try {
-            Integer<int> a = "24";
-        	const Integer<int> b = "8";
+            Integer<int> a = 24;
+        	const Integer<int> b = 8;
 			a /= b;
 			CPPUNIT_ASSERT(a == 3);}
         catch (std::invalid_argument& e) {
@@ -682,8 +682,8 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_3 () {
         try {
-            Integer<int> a = "0";
-        	const Integer<int> b = "5";
+            Integer<int> a = 0;
+        	const Integer<int> b = 5;
 			a /= b;
 			CPPUNIT_ASSERT(a == 0);}
         catch (std::invalid_argument& e) {
@@ -691,8 +691,8 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_4 () {
         try {
-            Integer<int> a = "10";
-        	const Integer<int> b = "12";
+            Integer<int> a = 10;
+        	const Integer<int> b = 12;
 			a /= b;
 			CPPUNIT_ASSERT(a == 0);}
         catch (std::invalid_argument& e) {
@@ -700,10 +700,10 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_5 () {
         try {
-            Integer<int> a = "56";
-        	const Integer<int> b = "13";
+            Integer<int> a = 56;
+        	const Integer<int> b = 13;
 			a /= b;
-			CPPUNIT_ASSERT(a == "4");}
+			CPPUNIT_ASSERT(a == 4);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
     
