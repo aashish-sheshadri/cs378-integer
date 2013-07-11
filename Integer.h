@@ -861,7 +861,7 @@ class Integer {
             }else{
                 Integer<T,C> absLhs = *this;
                 Integer<T,C> absRhs = rhs;
-                bool lhsGreater = absLhs.abs() > absRhs.abs();
+                bool lhsGreater = absLhs.abs() >= absRhs.abs();
                 if(lhsGreater){
                     typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
                     this->_size = minusEnd - newInt.begin();
