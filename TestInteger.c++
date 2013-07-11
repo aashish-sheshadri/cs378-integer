@@ -208,7 +208,7 @@ struct TestInteger : CppUnit::TestFixture {
         const int b = 2;
         const int c[] = {8, 6, 4};
         int x[10];
-        const int* p = multiplies_digits(a, a + 3, b, x);
+        const int* p = multiply_digits(a, a + 3, b, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
@@ -217,7 +217,7 @@ struct TestInteger : CppUnit::TestFixture {
         const int b = 3;
         const int c[] = {2, 0, 7};
         int x[10];
-        const int* p = multiplies_digits(a, a + 3, b, x);
+        const int* p = multiply_digits(a, a + 3, b, x);
         CPPUNIT_ASSERT(p - x == 3);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
@@ -226,7 +226,7 @@ struct TestInteger : CppUnit::TestFixture {
         const int b = 9;
         const int c[] = {6, 0, 1, 2};
         int x[10];
-        const int* p = multiplies_digits(a, a + 3, b, x);
+        const int* p = multiply_digits(a, a + 3, b, x);
         CPPUNIT_ASSERT(p - x == 4);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
     
