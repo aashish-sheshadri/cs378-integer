@@ -556,32 +556,32 @@ struct TestInteger : CppUnit::TestFixture {
     // plus_equal
     // ----------
 	void test_Integer_plus_equal_1 () {
-        Integer<int> a = "234";
-        Integer<int> b = "567";
+        Integer<int> a = 234;
+        Integer<int> b = 567;
 		a += b;
         CPPUNIT_ASSERT(a == 801);}
     
 	void test_Integer_plus_equal_2 () {
-        Integer<int> a = "0";
-        Integer<int> b = "0";
+        Integer<int> a = 0;
+        Integer<int> b = 0;
 		a += b;
         CPPUNIT_ASSERT(a == 0);}
     
 	void test_Integer_plus_equal_3 () {
-        Integer<int> a = "-3";
-        Integer<int> b = "3";
+        Integer<int> a = -3;
+        Integer<int> b = 3;
 		a += b;
-        CPPUNIT_ASSERT(a == "0");}
+        CPPUNIT_ASSERT(a == 0);}
     
 	void test_Integer_plus_equal_4 () {
-        Integer<int> a = "30";
-        Integer<int> b = "-70";
+        Integer<int> a = 30;
+        Integer<int> b = -70;
 		a += b;
-        CPPUNIT_ASSERT(a == "-40");}
+        CPPUNIT_ASSERT(a == -40);}
     
 	void test_Integer_plus_equal_5 () {
-        Integer<int> a = "-130";
-        Integer<int> b = "-120";
+        Integer<int> a = -130;
+        Integer<int> b = -120;
 		a += b;
         CPPUNIT_ASSERT(a == -250);}
     // -----
