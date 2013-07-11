@@ -475,7 +475,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
 //                std::cout<<"\n1\n";
-                unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:(num2Size<=dividendSize?num2Size:num2Size)));
+                unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:(num2Size<=dividendSize?num2Size:numSize)));
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - shiftSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
