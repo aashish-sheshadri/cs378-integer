@@ -330,13 +330,18 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int& skip){
     assert(skip>=0);
     std::cout<<"\nSkip: "<<skip;
     bool cannotSkip = skip==0?true:false;
+    bool alwaysTrue = !skip;
+    bool first = true;
     while(b1!=e1){
-        if(!cannotSkip)
-            return true;
+        if(!cannotSkip){
+            if(first && *b1<*b2)
+                return true;
+            if(!first && ((*b1)+10)< *b2)
+                return true;}
         if(*b1<*b2 && cannotSkip){
             std::cout<<"\n"<<*b1<<" < "<<*b2;
             return false;
-        }else if(*b1>*b2){
+        }else if(*b1>*b2 && alwaysTrue){
             std::cout<<"\n"<<*b1<<" > "<<*b2;
             return true;}
         ++b1;
@@ -345,8 +350,9 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int& skip){
         --skip;
         cannotSkip = skip==0?true:false;
         if(b2 == e2)
-            return true;}
-    return false;}
+            return true;
+        first = false;}
+    return false||alwaysTrue;}
 
 // --------------
 // divides_digits
@@ -447,7 +453,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         unsigned int skip3 = (dividendSize==num4Size?0:num8Size - num4Size);
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),skip3)){
             unsigned int skip4 = dividendSize==num8Size?0:num8Size - num8Size;
-            if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),skip4)){
+            if(skip4 ==0 && dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),skip4)){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
@@ -464,14 +470,17 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         } else {
             unsigned int skip2 = dividendSize==num2Size?0:num8Size - num2Size;
             unsigned int skip1 = dividendSize==numSize?0:num8Size - numSize;
-            if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),skip2)){
+            
+            bool goTwo = dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),skip2);
+            bool goOne = dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),skip1);
+            if(skip1==0 && goTwo){
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size - skip2,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
                 std::cout<<"\n2\n";
-            } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),skip1)) {
+            } else if(goOne) {
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
