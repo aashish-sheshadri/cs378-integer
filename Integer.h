@@ -488,7 +488,6 @@ class Integer {
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
         assert(lhs._size != 0);
         assert(rhs._size != 0);
-        
         if(lhs._sign!=rhs._sign)
             return false;
         if(lhs._size!=rhs._size)
@@ -787,6 +786,9 @@ class Integer {
                 _integer.push_back(digit);
                 ++_size;}
             _integer.resize(_size);
+            if(_size ==1)
+                if(_integer[0] == 0)
+                    _sign = false;
             if (!valid())
                 throw std::invalid_argument("Integer::Integer()");}
 
@@ -871,6 +873,11 @@ class Integer {
                     this->_sign = !this->_sign;
                     this->_size = minusEnd - newInt.begin();
                     newInt.resize(this->_size);}}
+            
+            if(this->_size == 1)
+                if(newInt[0] == 0)
+                    this->_sign = false;
+            
             this->_integer = newInt;
             return *this;}
 
@@ -911,6 +918,11 @@ class Integer {
                         this->_sign = !this->_sign;
                         this->_size = minusEnd - newInt.begin();
                         newInt.resize(this->_size);}}}
+            
+            if(this->_size == 1)
+                if(newInt[0] == 0)
+                    this->_sign = false;
+            
             this->_integer = newInt;
             return *this;}
 
@@ -934,6 +946,11 @@ class Integer {
             typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
+
+            if(this->_size == 1)
+                if(newInt[0] == 0)
+                    this->_sign = false;
+            
             this->_integer = newInt;
             return *this;}
 
@@ -946,6 +963,7 @@ class Integer {
          * @throws invalid_argument if (rhs == 0)
          */
         Integer& operator /= (const Integer& rhs) {
+            
             if(this->_sign == rhs._sign){
                 if(this->_sign)
                     this->_sign=!this->_sign;}
@@ -955,6 +973,11 @@ class Integer {
             typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
+
+            if(this->_size == 1)
+                if(newInt[0] == 0)
+                    this->_sign = false;
+            
             this->_integer = newInt;
             return *this;}
 
