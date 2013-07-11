@@ -444,12 +444,14 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul8,mul8+1,dividendSize - num8Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
+                std::cout<<"\n4\n";
             } else {
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
+                std::cout<<"\n3\n";
         } else {
             if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),dividendSize==num2Size?0:num8Size - num2Size)){       
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
@@ -457,12 +459,14 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
+                std::cout<<"\n2\n";
             } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
                 deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
+                std::cout<<"\n1\n";
             } else {
                 break;}}}
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
@@ -1005,10 +1009,6 @@ class Integer {
             tempInt._integer = newInt;
             tempInt._sign = false;
             tempInt._size = this->_size;
-//            std::cout<<std::endl<<newInt<<std::endl;
-            std::cout<<std::endl<<tempInt<<std::endl;
-            std::cout<<std::endl<<rhs<<std::endl;
-            std::cout<<std::endl<<*this<<std::endl;
             tempInt *= rhs;
             *this -= tempInt;
             std::cout<<std::endl<<*this<<std::endl;
