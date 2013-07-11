@@ -59,6 +59,7 @@ OI shift_left_digits (II b, II e, int n, OI x) {
  */
 template <typename II, typename OI>
 OI shift_right_digits (II b, II e, int n, OI x) {
+    assert(n>=0);
     while (n) {
         ++b;
         --n;}
@@ -206,6 +207,7 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 
 template <typename II1, typename OI>
 OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
+    assert(digit!=0);
     unsigned int table [9][9] = {{1,2,3,4,5,6,7,8,9},
         {2,4,6,8,10,12,14,16,18},
         {3,6,9,12,15,18,21,24,27},
@@ -280,6 +282,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         while(b2Copy!=e2){
             ++b2Copy;
             ++size;}}
+    assert(size!=0);
     deque<int> runningSum(2*size);
     runningSum.push_back(0);
     deque<int>::iterator rsEnd = runningSum.begin();
@@ -311,6 +314,7 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  */
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
+    assert(skip>=0);
     while(b1!=e1){
         if(skip != 0)
             return true;
@@ -372,7 +376,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         while(b2Copy!=e2){
             ++b2Copy;
             ++size;}}
-
+    assert(size > 0);
     deque<int> num(size);
     deque<int> num2(size); 
     deque<int> num4(size);
