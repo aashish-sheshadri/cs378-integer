@@ -1008,6 +1008,7 @@ class Integer {
             Integer tempInt(0);
             tempInt._integer = newInt;
             *this -= (tempInt *= rhs);
+            std::cout<<std::endl<<*this<<std::endl;
             return *this;}
 
         // ------------
