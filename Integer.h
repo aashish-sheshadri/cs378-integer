@@ -941,7 +941,7 @@ class Integer {
          * <your documentation>
          */
         Integer& operator >>= (int n) {
-            typename C newInt(this->_size + 1);
+            C newInt(this->_size + 1);
             typename C::iterator shiftEnd = shift_right_digits(this->_integer.begin(),this->_integer.end(),n,newInt.begin());
             this->_size = shiftEnd - newInt.begin();
             this->_integer = newInt;
