@@ -54,6 +54,12 @@ int main () {
         cout << "2^81 - 1 = " << n << endl << endl;
     }
     
+    cout << "*** 14th Mersenne prime: 183 digits ***" << endl << endl;
+    {
+        const Integer<int> n = Integer<int>(2).pow(607) - 1;
+        cout << "2^607 - 1 = " << n << endl << endl;
+    }
+    
     // less than 300 ms without valgrind
     // less than  15  s with    valgrind
     cout << "*** 20th Mersenne prime: 1,332 digits ***" << endl << endl;
