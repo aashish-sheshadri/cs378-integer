@@ -508,7 +508,7 @@ struct TestInteger : CppUnit::TestFixture {
 
     void test_output_3 () {
         try {
-            const Integer<int> x = "-98765";
+            const Integer<int> x("-98765");
             std::ostringstream out;
             out << x;
             CPPUNIT_ASSERT(out.str() == "-98765");}
