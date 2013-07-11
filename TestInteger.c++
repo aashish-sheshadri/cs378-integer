@@ -772,17 +772,17 @@ struct TestInteger : CppUnit::TestFixture {
 	void test_shift_right_equal_1 () {
         Integer<int> a = 12345;
 		a >>= 0;
-        CPPUNIT_ASSERT(a == 12345);
+        CPPUNIT_ASSERT(a == 12345);}
     
     void test_shift_right_equal_2 () {
         Integer<int> a = 12345;
         a >>= 1;
-        CPPUNIT_ASSERT(a == 1234);
+        CPPUNIT_ASSERT(a == 1234);}
         
     void test_shift_right_equal_3 () {
         Integer<int> a = -12345;
         a >>= 2;
-        CPPUNIT_ASSERT(a == -123);
+        CPPUNIT_ASSERT(a == -123);}
     
     // -----------
     // shift_left
@@ -790,17 +790,17 @@ struct TestInteger : CppUnit::TestFixture {
     void test_shift_left_equal_1 () {
         Integer<int> a = 12345;
         a >>= 0;
-        CPPUNIT_ASSERT(a == 12345);
+        CPPUNIT_ASSERT(a == 12345);}
             
     void test_shift_left_equal_2 () {
         Integer<int> a = 12345;
         a >>= 1;
-        CPPUNIT_ASSERT(a == 123450);
+        CPPUNIT_ASSERT(a == 123450);}
                 
     void test_shift_left_equal_3 () {
         Integer<int> a = -12345;
         a >>= 2;
-        CPPUNIT_ASSERT(a == -1234500);
+        CPPUNIT_ASSERT(a == -1234500);}
 
     // -----
     // suite
