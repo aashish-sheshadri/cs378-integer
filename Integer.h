@@ -552,9 +552,11 @@ class Integer {
         assert(lhs._size != 0);
         assert(rhs._size != 0);
         
-        if(lhs._sign != rhs._sign)
-            if(rhs._sign)
+        if(lhs._sign != rhs._sign){
+            if(rhs._sign){
                 return false;
+            } else {
+                return true;}
         
         if(rhs._size > lhs._size)
             return true;
