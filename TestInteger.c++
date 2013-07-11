@@ -465,6 +465,28 @@ struct TestInteger : CppUnit::TestFixture {
             CPPUNIT_ASSERT(!(-98765 != y));}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
+    
+    // ---------
+    // less_than
+    // ---------
+	void test_less_than_1 () {
+        Integer<int> a = 123;
+        Integer<int> b = 455;
+        CPPUNIT_ASSERT(a < b);
+		CPPUNIT_ASSERT(!(b < a));}
+    
+	void test_less_than_2 () {
+        Integer<int> a = -123;
+        Integer<int> b = 0;
+        CPPUNIT_ASSERT(a < b);
+		CPPUNIT_ASSERT(!(b < a));}
+
+	void test_less_than_3 () {
+        Integer<int> a = 455;
+        Integer<int> b = -455;
+        CPPUNIT_ASSERT(!(a < b));
+		CPPUNIT_ASSERT(b < a);}
+
 
     // --------
     // negation
@@ -850,6 +872,9 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_equal_to_1);
     CPPUNIT_TEST(test_equal_to_2);
     CPPUNIT_TEST(test_equal_to_3);
+    CPPUNIT_TEST(test_less_than_1);
+    CPPUNIT_TEST(test_less_than_2);
+    CPPUNIT_TEST(test_less_than_3);
     CPPUNIT_TEST(test_negation_1);
     CPPUNIT_TEST(test_negation_2);
     CPPUNIT_TEST(test_negation_3);
