@@ -1021,12 +1021,15 @@ class Integer {
             typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
             typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
-            this->_size = newEnd - newInt.begin();
-            newInt.resize(this->_size);
+            unsigned int rSize = newEnd - newInt.begin();
+            newInt.resize(rSize);
             Integer tempInt(0);
             tempInt._integer = newInt;
-            tempInt._size = this->_size;
+            tempInt._size = rSize;
             tempInt._sign = false;
+            std::cout<<std::endl<<*this<<std::endl;
+            std::cout<<std::endl<<rhs<<std::endl;
+            std::cout<<std::endl<<tempInt<<std::endl;
             *this -= (tempInt *= rhs);
             std::cout<<std::endl<<*this<<std::endl;
             return *this;}
