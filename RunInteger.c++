@@ -83,14 +83,14 @@ int main () {
 
     // less than 4 min without valgrind
     // don't run with valgrind
-    cout << "*** 30th Mersenne prime: 39,751 digits ***" << endl << endl;
-    t1 = clock();
-    {
-    const Integer<int> n = Integer<int>(2).pow(132049) - 1;
-    cout << "2^132049 - 1 = " << n << endl << endl;
-    }
-    t2 = clock();
-    std::cout<<"\n"<<"Time taken: "<<(static_cast<float>(t2)-static_cast<float>(t1))/static_cast<float>(CLOCKS_PER_SEC)<<" seconds\n";
+//    cout << "*** 30th Mersenne prime: 39,751 digits ***" << endl << endl;
+//    t1 = clock();
+//    {
+//    const Integer<int> n = Integer<int>(2).pow(132049) - 1;
+//    cout << "2^132049 - 1 = " << n << endl << endl;
+//    }
+//    t2 = clock();
+//    std::cout<<"\n"<<"Time taken: "<<(static_cast<float>(t2)-static_cast<float>(t1))/static_cast<float>(CLOCKS_PER_SEC)<<" seconds\n";
     cout << "Done." << endl;
 
     return 0;}
