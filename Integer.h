@@ -940,9 +940,8 @@ class Integer {
             } else {
                 if(rhs._sign)
                     this->_sign = true;}
-            typename C::iterator oldEnd = this->_integer.end();
             C newInt(10*(this->_size+rhs._size));
-            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            typename C::iterator newEnd = multiplies_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
 
@@ -972,9 +971,8 @@ class Integer {
             } else {
                 if(rhs._sign)
                     this->_sign = true;}
-            typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
-            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
             this->_size = newEnd - newInt.begin();
             newInt.resize(this->_size);
 
@@ -1000,16 +998,15 @@ class Integer {
 
             if(this->_sign)
                 this->_sign=!this->_sign;
-            typename C::iterator oldEnd = this->_integer.end();
             C newInt(this->_size);
-            typename C::iterator newEnd = divides_digits(this->_integer.begin(),oldEnd,rhs._integer.begin(),rhs._integer.end(),newInt.begin());
-            this->_size = newEnd - newInt.begin();
-            newInt.resize(this->_size);
+            typename C::iterator newEnd = divides_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
+            newInt.resize(newEnd - newInt.begin());
             Integer tempInt(0);
             tempInt._integer = newInt;
             tempInt._sign = false;
             tempInt._size = this->_size;
-            *this -= (tempInt *= rhs);
+            tempInt *= rhs;
+            *this -= ;
             std::cout<<std::endl<<*this<<std::endl;
             return *this;}
 
