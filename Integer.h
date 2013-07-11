@@ -964,7 +964,7 @@ class Integer {
         Integer& operator /= (const Integer& rhs) {
             
             if(rhs == 0)
-                throw std::invalid_argument("Divide by zero");
+                throw std::invalid_argument("Integer::Integer()");
             
             if(this->_sign == rhs._sign){
                 if(this->_sign)
