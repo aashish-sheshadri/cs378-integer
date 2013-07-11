@@ -1091,9 +1091,9 @@ class Integer {
          */
         Integer& pow (int e) {
             if(*this == 0 && e==0)
-                throw::invalid_argument(Integer::Integer());
+                throw::invalid_argument("Integer::Integer()");
             if(e < 0)
-                throw::invalid_argument(Integer::Integer());
+                throw::invalid_argument("Integer::Integer()");
             std::deque<bool> powersOdd;
             typename std::deque<Integer<T,C> > products;
             typename C::iterator productEnd;  
