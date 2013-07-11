@@ -333,10 +333,10 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
         if(skip != 0)
             return true;
         if(*b1<*b2){
-            std::cout<<"/n"<<*b1<<" < "<<*b2;
+            std::cout<<"\n"<<*b1<<" < "<<*b2;
             return false;
         }else if(*b1>*b2){
-            std::cout<<"/n"<<*b1<<" > "<<*b2;
+            std::cout<<"\n"<<*b1<<" > "<<*b2;
             return true;}
         ++b1;
         ++b2;
