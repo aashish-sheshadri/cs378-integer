@@ -806,9 +806,9 @@ class Integer {
                 this->_size = plusEnd - newInt.begin();
                 newInt.resize(this->_size);
             }else{
-                Integer<T,C> absLhs = abs(*this);
-                Integer<T,C> absRhs = abs(rhs);
-                bool lhsGreater = absLhs > absRhs;
+                Integer<T,C> absLhs = *this;
+                Integer<T,C> absRhs = rhs;
+                bool lhsGreater = absLhs.abs() > absRhs.abs();
                 if(lhsGreater){
                     typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
                     this->_size = minusEnd - newInt.begin();
@@ -834,9 +834,9 @@ class Integer {
                 this->_size = plusEnd - newInt.begin();
                 newInt.resize(this->_size);
             }else{
-                Integer<T,C> absLhs = abs(*this);
-                Integer<T,C> absRhs = abs(rhs);
-                bool lhsGreater = absLhs > absRhs;
+                Integer<T,C> absLhs = *this;
+                Integer<T,C> absRhs = rhs;
+                bool lhsGreater = absLhs.abs() > absRhs.abs();
                 if(this->_sign){
                     if(lhsGreater){
                         typename C::iterator minusEnd = minus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
