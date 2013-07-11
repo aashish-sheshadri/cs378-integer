@@ -578,6 +578,7 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> a = 30;
         Integer<int> b = -70;
 		a += b;
+        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == -40);}
     
 	void test_Integer_plus_equal_5 () {
