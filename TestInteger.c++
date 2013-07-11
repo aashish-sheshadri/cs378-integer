@@ -348,7 +348,13 @@ struct TestInteger : CppUnit::TestFixture {
             const Integer<int> x(2);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
-
+    
+    void test_constructor_4 () {
+        try {
+            const Integer<int> x("-382");}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
     // ---
     // abs
     // ---
@@ -368,6 +374,42 @@ struct TestInteger : CppUnit::TestFixture {
             const Integer<int> y = abs(x);
             CPPUNIT_ASSERT(x == -98765);
             CPPUNIT_ASSERT(y ==  98765);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_abs_3 () {
+        try {
+            Integer<int>  x = -9;
+            Integer<int>& y = x.abs();
+            CPPUNIT_ASSERT( x == 9);
+            CPPUNIT_ASSERT(&x == &y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_abs_4 () {
+        try {
+            const Integer<int> x = 8765;
+            const Integer<int> y = abs(x);
+            CPPUNIT_ASSERT(x == 8765);
+            CPPUNIT_ASSERT(y == 8765);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+
+    void test_abs_5 () {
+        try {
+            Integer<int>  x = 8765;
+            Integer<int>& y = x.abs();
+            CPPUNIT_ASSERT( x == 8765);
+            CPPUNIT_ASSERT(&x == &y);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_abs_6 () {
+        try {
+            const Integer<int> x = -9;
+            const Integer<int> y = abs(x);
+            CPPUNIT_ASSERT(x == -9);
+            CPPUNIT_ASSERT(y ==  9);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
@@ -476,8 +518,13 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_constructor_1);
     CPPUNIT_TEST(test_constructor_2);
     CPPUNIT_TEST(test_constructor_3);
+    CPPUNIT_TEST(test_constructor_4);
     CPPUNIT_TEST(test_abs_1);
     CPPUNIT_TEST(test_abs_2);
+    CPPUNIT_TEST(test_abs_3);
+    CPPUNIT_TEST(test_abs_4);
+    CPPUNIT_TEST(test_abs_5);
+    CPPUNIT_TEST(test_abs_6);
     CPPUNIT_TEST(test_negation);
     CPPUNIT_TEST(test_output);
     CPPUNIT_TEST(test_pow_1);
