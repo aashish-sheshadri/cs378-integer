@@ -829,8 +829,8 @@ class Integer {
             C newInt(this->_size+rhs._size);
             if(this->_sign != rhs._sign){
                 typename C::iterator plusEnd = plus_digits(this->_integer.begin(),this->_integer.end(),rhs._integer.begin(),rhs._integer.end(),newInt.begin());
-                this->size = plusEnd - newInt.begin();
-                newInt.resize(this->size);
+                this->_size = plusEnd - newInt.begin();
+                newInt.resize(this->_size);
             }else{
                 bool lhsGreater = abs(*this) > rhs;
                 if(this->_sign){
