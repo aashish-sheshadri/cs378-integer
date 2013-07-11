@@ -327,7 +327,7 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(p - x == 1);
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
-    void test_divides_digits_4 () {
+    void test_divides_digits_5 () {
         const int a[] = {1, 3};
         const int b[] = {2};
         const int c[] = {6};
@@ -800,6 +800,7 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_divides_digits_2);
     CPPUNIT_TEST(test_divides_digits_3);
     CPPUNIT_TEST(test_divides_digits_4);
+    CPPUNIT_TEST(test_divides_digits_5);
     CPPUNIT_TEST(test_constructor_1);
     CPPUNIT_TEST(test_constructor_2);
     CPPUNIT_TEST(test_constructor_3);
