@@ -461,7 +461,8 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 shiftEnd = shift_left_digits(num4.begin(),num4End,dividendSize - num4Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1,dividendSize - num4Size,partialQ.begin());
+                unsigned int shiftSize = (num8Size<=dividendSize?num8Size:num4Size);
+                deque<int>::iterator partialQEnd = shift_left_digits(mul4,mul4+1, shiftSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());}
         } else {
             if(dividendSize>=num2Size && myCompare(dividendRev.begin(),dividendRev.end(),num2Rev.begin(),num2Rev.end(),dividendSize==num2Size?0:num8Size - num2Size)){       
@@ -469,14 +470,16 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 shiftEnd = shift_left_digits(num2.begin(),num2End,dividendSize - num2Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,dividendSize - num2Size,partialQ.begin());
+                unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:num2Size));
+                deque<int>::iterator partialQEnd = shift_left_digits(mul2,mul2+1,shiftSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else if(dividendSize >= numSize && myCompare(dividendRev.begin(),dividendRev.end(),numRev.begin(),numRev.end(),dividendSize==numSize?0:num8Size - numSize)) {
                 std::cout<<"\n1\n";
                 shiftEnd = shift_left_digits(num.begin(),numEnd,dividendSize - numSize,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
                 deque<int> partialQ(size);
-                deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1,dividendSize - numSize,partialQ.begin());
+                unsigned int shiftSize = (num8Size<=dividendSize?num8Size:(num4Size<=dividendSize?num4Size:(num2Size<=dividendSize?num2Size:num2Size)));
+                deque<int>::iterator partialQEnd = shift_left_digits(mul1,mul1+1, shiftSize,partialQ.begin());
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else {
                 break;}}}
