@@ -868,6 +868,7 @@ class Integer {
                     newInt.resize(this->_size);
                 } else {
                     typename C::iterator minusEnd = minus_digits(rhs._integer.begin(),rhs._integer.end(),this->_integer.begin(),this->_integer.end(),newInt.begin());
+                    this->_sign = !this->_sign;
                     this->_size = minusEnd - newInt.begin();
                     newInt.resize(this->_size);}}
             this->_integer = newInt;
