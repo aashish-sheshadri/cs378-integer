@@ -700,10 +700,10 @@ struct TestInteger : CppUnit::TestFixture {
     
     void test_divide_equal_5 () {
         try {
-            Integer<int> a = 56;
-        	const Integer<int> b = 13;
+            Integer<int> a = 13;
+        	const Integer<int> b = 2;
 			a /= b;
-			CPPUNIT_ASSERT(a == 4);}
+			CPPUNIT_ASSERT(a == 6);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
     
