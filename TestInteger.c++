@@ -544,7 +544,7 @@ struct TestInteger : CppUnit::TestFixture {
     void test_pow_3 () {
         try {
             const Integer<int> x = 9;
-            const int          e =  999;
+            const int          e =  9;
             const Integer<int> y = pow(x, e);
             CPPUNIT_ASSERT(x == 9);
             CPPUNIT_ASSERT(e ==  9);
