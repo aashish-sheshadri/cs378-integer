@@ -481,10 +481,17 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating equality of the two input sequences
      */
     friend bool operator == (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
+        
         if(lhs._sign!=rhs._sign)
+            return false;
+        if(lhs._size!=rhs._size)
             return false;
         
         typename C::const_iterator itFirst = lhs._integer.cbegin();
@@ -506,9 +513,13 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating non equality of the two input sequences
      */
     friend bool operator != (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
         return !(lhs == rhs);}
 
     // ----------
@@ -516,12 +527,24 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating lhs < rhs
      */
     friend bool operator < (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
+        
         if(lhs._sign != rhs._sign)
             if(rhs._sign)
                 return true;
+        
+        if(rhs._size > lhs._size)
+            return true;
+        
+        if(lhs._size > rhs._size)
+            return false;
+        
         bool result = true;
         if(lhs._sign)
             result = !result;
@@ -546,9 +569,13 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating lhs <= rhs
      */
     friend bool operator <= (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
         return !(rhs < lhs);}
 
     // ----------
@@ -556,9 +583,13 @@ class Integer {
     // ----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating lhs > rhs
      */
     friend bool operator > (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
         return (rhs < lhs);}
 
     // -----------
@@ -566,9 +597,13 @@ class Integer {
     // -----------
 
     /**
-     * <your documentation>
+     * @param Integer by reference
+     * @param Integer by reference
+     * @return boolean indicating lhs >= rhs
      */
     friend bool operator >= (const Integer& lhs, const Integer& rhs) {
+        assert(lhs._size != 0);
+        assert(rhs._size != 0);
         return !(lhs < rhs);}
 
     // ----------

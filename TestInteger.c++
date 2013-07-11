@@ -460,11 +460,27 @@ struct TestInteger : CppUnit::TestFixture {
     // negation
     // --------
 
-    void test_negation () {
+    void test_negation_1 () {
         try {
             const Integer<int> x = 98765;
             const Integer<int> y = -x;
             CPPUNIT_ASSERT(y == -98765);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_negation_2 () {
+        try {
+            const Integer<int> x = 1;
+            const Integer<int> y = -x;
+            CPPUNIT_ASSERT(y == -1);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_negation_3 () {
+        try {
+            const Integer<int> x = -98765;
+            const Integer<int> y = -x;
+            CPPUNIT_ASSERT(y == 98765);}
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
 
