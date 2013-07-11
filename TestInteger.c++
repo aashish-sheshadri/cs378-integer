@@ -604,12 +604,14 @@ struct TestInteger : CppUnit::TestFixture {
         Integer<int> a = 3;
         Integer<int> b = 3;
 		a -= b;
+        cout<<"\n"<<a<<"\n";
         CPPUNIT_ASSERT(a == 0);}
     
 	void test_minus_equal_4 () {
         Integer<int> a = -30;
         Integer<int> b = -70;
 		a -= b;
+        cout<<"\n"<<a<<"\n";        
         CPPUNIT_ASSERT(a == 40);}
     
 	void test_minus_equal_5 () {
