@@ -200,6 +200,37 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
     // -----------------
+    // multiply_digit
+    // -----------------
+    
+    void test_multiply_digit_1 () {
+        const int a[] = {4, 3, 2};
+        const int b = 2;
+        const int c[] = {8, 6, 4};
+        int x[10];
+        const int* p = multiplies_digits(a, a + 3, b, x);
+        CPPUNIT_ASSERT(p - x == 3);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+
+    void test_multiply_digit_2 () {
+        const int a[] = {4, 3, 2};
+        const int b = 3;
+        const int c[] = {2, 0, 7};
+        int x[10];
+        const int* p = multiplies_digits(a, a + 3, b, x);
+        CPPUNIT_ASSERT(p - x == 3);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
+    void test_multiply_digit_3 () {
+        const int a[] = {4, 3, 2};
+        const int b = 9;
+        const int c[] = {6, 0, 1, 2};
+        int x[10];
+        const int* p = multiplies_digits(a, a + 3, b, x);
+        CPPUNIT_ASSERT(p - x == 4);
+        CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
+    
+    // -----------------
     // multiplies_digits
     // -----------------
 
@@ -411,6 +442,9 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_minus_digits_2);
     CPPUNIT_TEST(test_minus_digits_3);
     CPPUNIT_TEST(test_minus_digits_4);
+    CPPUNIT_TEST(test_multiply_digit_1);
+    CPPUNIT_TEST(test_multiply_digit_2);
+    CPPUNIT_TEST(test_multiply_digit_3);
     CPPUNIT_TEST(test_multiplies_digits_1);
     CPPUNIT_TEST(test_multiplies_digits_2);
     CPPUNIT_TEST(test_multiplies_digits_3);
