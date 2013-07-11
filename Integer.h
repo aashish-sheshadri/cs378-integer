@@ -1043,6 +1043,7 @@ class Integer {
             this->_size = shiftEnd - newInt.begin();
             this->_integer = newInt;
             this->_integer.resize(this->_size);
+            std::cout<<*this<<std::endl;
             return *this;}
 
         // ------------
