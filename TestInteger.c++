@@ -669,7 +669,7 @@ struct TestInteger : CppUnit::TestFixture {
 			a /= b;
             CPPUNIT_ASSERT(false);}
         catch (std::invalid_argument& e) {
-            CPPUNIT_ASSERT(strcmp(e.what(), "Divide by zero"));}}
+            CPPUNIT_ASSERT(strcmp(e.what(),"Divide by zero"));}}
     
     void test_divide_equal_2 () {
         try {
