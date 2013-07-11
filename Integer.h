@@ -438,6 +438,10 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
         deque<int> shiftedNum(size);
         deque<int>::iterator shiftEnd;
         if(dividendSize>=num4Size && myCompare(dividendRev.begin(),dividendRev.end(),num4Rev.begin(),num4Rev.end(),dividendSize==num4Size?0:num8Size - num4Size)){
+            std::cout<<std::endl;
+            for (deque<int>::iterator it; it!=rsEnd; ++it)
+                cout<<*it<<" ";
+            std::cout<<std::endl;
             if(dividendSize>=num8Size && myCompare(dividendRev.begin(),dividendRev.end(),num8Rev.begin(),num8Rev.end(),dividendSize==num8Size?0:num8Size - num8Size)){
                 shiftEnd = shift_left_digits(num8.begin(),num8End,dividendSize - num8Size,shiftedNum.begin());
                 dividendEnd = minus_digits(dividend.begin(),dividendEnd,shiftedNum.begin(),shiftEnd,dividend.begin());
