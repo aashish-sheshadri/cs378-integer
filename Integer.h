@@ -483,9 +483,7 @@ OI divides_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
                 rsEnd = plus_digits(runningSum.begin(),rsEnd,partialQ.begin(),partialQEnd,runningSum.begin());
             } else {
                 break;}}}
-    std::cout<<"\n";
     for(deque<int>::iterator it = runningSum.begin();it!=rsEnd;++it){
-        std::cout<<*it<<" ";
         *x = *it;
         ++x;}    
     return x;}
@@ -1027,6 +1025,8 @@ class Integer {
             newInt.resize(this->_size);
             Integer tempInt(0);
             tempInt._integer = newInt;
+            tempInt._size = this->_size;
+            tempInt._sign = false;
             this->_integer -= (tempInt *= rhs);
             return *this;}
 

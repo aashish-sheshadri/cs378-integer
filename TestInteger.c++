@@ -330,7 +330,7 @@ struct TestInteger : CppUnit::TestFixture {
     void test_divides_digits_5 () {
         const int a[] = {1, 3};
         const int b[] = {2};
-        const int c[] = {1,5};
+        const int c[] = {5,1};
         int x[10];
         const int* p = divides_digits(a, a + 2, b, b + 1, x);
         CPPUNIT_ASSERT(p - x == 2);
@@ -717,137 +717,137 @@ struct TestInteger : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
     
-//    // ---------
-//    // mod_equal
-//    // ---------
-//    
-//    void test_mod_equal_1 () {
-//        try {
-//            Integer<int> a = 12;
-//        	const Integer<int> b = 0;
-//			a %= b;
-//            CPPUNIT_ASSERT(false);}
-//        catch (std::invalid_argument& e) {
-//            CPPUNIT_ASSERT(strcmp(e.what(), "Integer()"));}}
-//    
-//    void test_mod_equal_2 () {
-//        try {
-//            Integer<int> a = 13;
-//        	const Integer<int> b = 2;
-//			a %= b;
-//			CPPUNIT_ASSERT(a == 1);}
-//        catch (std::invalid_argument& e) {
-//            CPPUNIT_ASSERT(false);}}
-//    
-//    void test_mod_equal_3 () {
-//        try {
-//            Integer<int> a = 12;
-//        	const Integer<int> b = 6;
-//			a %= b;
-//			CPPUNIT_ASSERT(a == 0);}
-//        catch (std::invalid_argument& e) {
-//            CPPUNIT_ASSERT(false);}}
-//    
-//    void test_mod_equal_4 () {
-//        try {
-//            Integer<int> a = 1;
-//        	const Integer<int> b = 1;
-//			a %= b;
-//			CPPUNIT_ASSERT(a == 0);}
-//        catch (std::invalid_argument& e) {
-//            CPPUNIT_ASSERT(false);}}
-//    
-//    void test_mod_equal_5 () {
-//        try {
-//            Integer<int> a = 10;
-//        	const Integer<int> b = 6;
-//			a %= b;
-//			CPPUNIT_ASSERT(a == 4);}
-//        catch (std::invalid_argument& e) {
-//            CPPUNIT_ASSERT(false);}}
+    // ---------
+    // mod_equal
+    // ---------
+    
+    void test_mod_equal_1 () {
+        try {
+            Integer<int> a = 12;
+        	const Integer<int> b = 0;
+			a %= b;
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(strcmp(e.what(), "Integer()"));}}
+    
+    void test_mod_equal_2 () {
+        try {
+            Integer<int> a = 13;
+        	const Integer<int> b = 2;
+			a %= b;
+			CPPUNIT_ASSERT(a == 1);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_3 () {
+        try {
+            Integer<int> a = 12;
+        	const Integer<int> b = 6;
+			a %= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_4 () {
+        try {
+            Integer<int> a = 1;
+        	const Integer<int> b = 1;
+			a %= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_5 () {
+        try {
+            Integer<int> a = 10;
+        	const Integer<int> b = 6;
+			a %= b;
+			CPPUNIT_ASSERT(a == 4);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
     
     // -----
     // suite
     // -----
 
     CPPUNIT_TEST_SUITE(TestInteger);
-//    CPPUNIT_TEST(test_shift_left_digits_1);
-//    CPPUNIT_TEST(test_shift_left_digits_2);
-//    CPPUNIT_TEST(test_shift_left_digits_3);
-//    CPPUNIT_TEST(test_shift_right_digits_1);
-//    CPPUNIT_TEST(test_shift_right_digits_2);
-//    CPPUNIT_TEST(test_shift_right_digits_3);
-//    CPPUNIT_TEST(test_plus_digits_1);
-//    CPPUNIT_TEST(test_plus_digits_2);
-//    CPPUNIT_TEST(test_plus_digits_3);
-//    CPPUNIT_TEST(test_plus_digits_4); 
-//    CPPUNIT_TEST(test_plus_digits_5);
-//    CPPUNIT_TEST(test_minus_digits_1);
-//    CPPUNIT_TEST(test_minus_digits_2);
-//    CPPUNIT_TEST(test_minus_digits_3);
-//    CPPUNIT_TEST(test_minus_digits_4);
-//    CPPUNIT_TEST(test_multiply_digit_1);
-//    CPPUNIT_TEST(test_multiply_digit_2);
-//    CPPUNIT_TEST(test_multiply_digit_3);
-//    CPPUNIT_TEST(test_multiplies_digits_1);
-//    CPPUNIT_TEST(test_multiplies_digits_2);
-//    CPPUNIT_TEST(test_multiplies_digits_3);
-//    CPPUNIT_TEST(test_multiplies_digits_4);
-//    CPPUNIT_TEST(test_myCompare_1);
-//    CPPUNIT_TEST(test_myCompare_2);
-//    CPPUNIT_TEST(test_myCompare_3);
-//    CPPUNIT_TEST(test_divides_digits_1);
-//    CPPUNIT_TEST(test_divides_digits_2);
-//    CPPUNIT_TEST(test_divides_digits_3);
-//    CPPUNIT_TEST(test_divides_digits_4);
+    CPPUNIT_TEST(test_shift_left_digits_1);
+    CPPUNIT_TEST(test_shift_left_digits_2);
+    CPPUNIT_TEST(test_shift_left_digits_3);
+    CPPUNIT_TEST(test_shift_right_digits_1);
+    CPPUNIT_TEST(test_shift_right_digits_2);
+    CPPUNIT_TEST(test_shift_right_digits_3);
+    CPPUNIT_TEST(test_plus_digits_1);
+    CPPUNIT_TEST(test_plus_digits_2);
+    CPPUNIT_TEST(test_plus_digits_3);
+    CPPUNIT_TEST(test_plus_digits_4); 
+    CPPUNIT_TEST(test_plus_digits_5);
+    CPPUNIT_TEST(test_minus_digits_1);
+    CPPUNIT_TEST(test_minus_digits_2);
+    CPPUNIT_TEST(test_minus_digits_3);
+    CPPUNIT_TEST(test_minus_digits_4);
+    CPPUNIT_TEST(test_multiply_digit_1);
+    CPPUNIT_TEST(test_multiply_digit_2);
+    CPPUNIT_TEST(test_multiply_digit_3);
+    CPPUNIT_TEST(test_multiplies_digits_1);
+    CPPUNIT_TEST(test_multiplies_digits_2);
+    CPPUNIT_TEST(test_multiplies_digits_3);
+    CPPUNIT_TEST(test_multiplies_digits_4);
+    CPPUNIT_TEST(test_myCompare_1);
+    CPPUNIT_TEST(test_myCompare_2);
+    CPPUNIT_TEST(test_myCompare_3);
+    CPPUNIT_TEST(test_divides_digits_1);
+    CPPUNIT_TEST(test_divides_digits_2);
+    CPPUNIT_TEST(test_divides_digits_3);
+    CPPUNIT_TEST(test_divides_digits_4);
     CPPUNIT_TEST(test_divides_digits_5);
-//    CPPUNIT_TEST(test_constructor_1);
-//    CPPUNIT_TEST(test_constructor_2);
-//    CPPUNIT_TEST(test_constructor_3);
-//    CPPUNIT_TEST(test_constructor_4);
-//    CPPUNIT_TEST(test_abs_1);
-//    CPPUNIT_TEST(test_abs_2);
-//    CPPUNIT_TEST(test_abs_3);
-//    CPPUNIT_TEST(test_abs_4);
-//    CPPUNIT_TEST(test_abs_5);
-//    CPPUNIT_TEST(test_abs_6);
-//    CPPUNIT_TEST(test_equal_to_1);
-//    CPPUNIT_TEST(test_equal_to_2);
-//    CPPUNIT_TEST(test_equal_to_3);
-//    CPPUNIT_TEST(test_negation_1);
-//    CPPUNIT_TEST(test_negation_2);
-//    CPPUNIT_TEST(test_negation_3);
-//    CPPUNIT_TEST(test_output_1);
-//    CPPUNIT_TEST(test_output_2);
-//    CPPUNIT_TEST(test_output_3);
-//    CPPUNIT_TEST(test_pow_1);
-//    CPPUNIT_TEST(test_pow_2);
-//    CPPUNIT_TEST(test_pow_3);
-//    CPPUNIT_TEST(test_plus_equal_1);
-//    CPPUNIT_TEST(test_plus_equal_2);
-//    CPPUNIT_TEST(test_plus_equal_3);
-//    CPPUNIT_TEST(test_plus_equal_4);
-//    CPPUNIT_TEST(test_plus_equal_5);
-//    CPPUNIT_TEST(test_minus_equal_1);
-//    CPPUNIT_TEST(test_minus_equal_2);
-//    CPPUNIT_TEST(test_minus_equal_3);
-//    CPPUNIT_TEST(test_minus_equal_4);
-//    CPPUNIT_TEST(test_minus_equal_5);
-//    CPPUNIT_TEST(test_multiply_equal_1);
-//    CPPUNIT_TEST(test_multiply_equal_2);
-//    CPPUNIT_TEST(test_multiply_equal_3);
-//    CPPUNIT_TEST(test_multiply_equal_4);
-//    CPPUNIT_TEST(test_multiply_equal_5);
-//    CPPUNIT_TEST(test_divide_equal_1);
-//    CPPUNIT_TEST(test_divide_equal_2);
-//    CPPUNIT_TEST(test_divide_equal_3);
-//    CPPUNIT_TEST(test_divide_equal_4);
-//    CPPUNIT_TEST(test_divide_equal_5);
-//    CPPUNIT_TEST(test_mod_equal_1);
-//    CPPUNIT_TEST(test_mod_equal_2);
-//    CPPUNIT_TEST(test_mod_equal_3);
-//    CPPUNIT_TEST(test_mod_equal_4);
-//    CPPUNIT_TEST(test_mod_equal_5);
+    CPPUNIT_TEST(test_constructor_1);
+    CPPUNIT_TEST(test_constructor_2);
+    CPPUNIT_TEST(test_constructor_3);
+    CPPUNIT_TEST(test_constructor_4);
+    CPPUNIT_TEST(test_abs_1);
+    CPPUNIT_TEST(test_abs_2);
+    CPPUNIT_TEST(test_abs_3);
+    CPPUNIT_TEST(test_abs_4);
+    CPPUNIT_TEST(test_abs_5);
+    CPPUNIT_TEST(test_abs_6);
+    CPPUNIT_TEST(test_equal_to_1);
+    CPPUNIT_TEST(test_equal_to_2);
+    CPPUNIT_TEST(test_equal_to_3);
+    CPPUNIT_TEST(test_negation_1);
+    CPPUNIT_TEST(test_negation_2);
+    CPPUNIT_TEST(test_negation_3);
+    CPPUNIT_TEST(test_output_1);
+    CPPUNIT_TEST(test_output_2);
+    CPPUNIT_TEST(test_output_3);
+    CPPUNIT_TEST(test_pow_1);
+    CPPUNIT_TEST(test_pow_2);
+    CPPUNIT_TEST(test_pow_3);
+    CPPUNIT_TEST(test_plus_equal_1);
+    CPPUNIT_TEST(test_plus_equal_2);
+    CPPUNIT_TEST(test_plus_equal_3);
+    CPPUNIT_TEST(test_plus_equal_4);
+    CPPUNIT_TEST(test_plus_equal_5);
+    CPPUNIT_TEST(test_minus_equal_1);
+    CPPUNIT_TEST(test_minus_equal_2);
+    CPPUNIT_TEST(test_minus_equal_3);
+    CPPUNIT_TEST(test_minus_equal_4);
+    CPPUNIT_TEST(test_minus_equal_5);
+    CPPUNIT_TEST(test_multiply_equal_1);
+    CPPUNIT_TEST(test_multiply_equal_2);
+    CPPUNIT_TEST(test_multiply_equal_3);
+    CPPUNIT_TEST(test_multiply_equal_4);
+    CPPUNIT_TEST(test_multiply_equal_5);
+    CPPUNIT_TEST(test_divide_equal_1);
+    CPPUNIT_TEST(test_divide_equal_2);
+    CPPUNIT_TEST(test_divide_equal_3);
+    CPPUNIT_TEST(test_divide_equal_4);
+    CPPUNIT_TEST(test_divide_equal_5);
+    CPPUNIT_TEST(test_mod_equal_1);
+    CPPUNIT_TEST(test_mod_equal_2);
+    CPPUNIT_TEST(test_mod_equal_3);
+    CPPUNIT_TEST(test_mod_equal_4);
+    CPPUNIT_TEST(test_mod_equal_5);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
