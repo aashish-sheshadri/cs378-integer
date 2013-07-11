@@ -707,6 +707,55 @@ struct TestInteger : CppUnit::TestFixture {
         catch (std::invalid_argument& e) {
             CPPUNIT_ASSERT(false);}}
     
+    // ---------
+    // mod_equal
+    // ---------
+    
+    void test_mod_equal_1 () {
+        try {
+            Integer<int> a = 12;
+        	const Integer<int> b = 0;
+			a %= b;
+            CPPUNIT_ASSERT(false);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(strcmp(e.what(), "Integer()"));}}
+    
+    void test_mod_equal_2 () {
+        try {
+            Integer<int> a = 13;
+        	const Integer<int> b = 2;
+			a %= b;
+			CPPUNIT_ASSERT(a == 1);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_3 () {
+        try {
+            Integer<int> a = 12;
+        	const Integer<int> b = 6;
+			a %= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_4 () {
+        try {
+            Integer<int> a = 1;
+        	const Integer<int> b = 1;
+			a %= b;
+			CPPUNIT_ASSERT(a == 0);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
+    void test_mod_equal_5 () {
+        try {
+            Integer<int> a = 10;
+        	const Integer<int> b = 6;
+			a %= b;
+			CPPUNIT_ASSERT(a == 4);}
+        catch (std::invalid_argument& e) {
+            CPPUNIT_ASSERT(false);}}
+    
     // -----
     // suite
     // -----
@@ -783,6 +832,11 @@ struct TestInteger : CppUnit::TestFixture {
     CPPUNIT_TEST(test_divide_equal_3);
     CPPUNIT_TEST(test_divide_equal_4);
     CPPUNIT_TEST(test_divide_equal_5);
+    CPPUNIT_TEST(test_mod_equal_1);
+    CPPUNIT_TEST(test_mod_equal_2);
+    CPPUNIT_TEST(test_mod_equal_3);
+    CPPUNIT_TEST(test_mod_equal_4);
+    CPPUNIT_TEST(test_mod_equal_5);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----

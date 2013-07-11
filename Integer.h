@@ -996,7 +996,7 @@ class Integer {
         Integer& operator %= (const Integer& rhs) {
             
             if(rhs <= 0)
-                throw std::invalid_argument("rhs <= 0");
+                throw std::invalid_argument("Integer::Integer()");
 
             if(this->_sign)
                 this->_sign=!this->_sign;
