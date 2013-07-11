@@ -27,7 +27,7 @@ using namespace std;
  * @param e an iterator to the end       of an input  sequence (exclusive)
  * @param x an iterator to the beginning of an output sequence (inclusive)
  * @return  an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+ * the sequence are of decimal digits with LSD stored first
  * output the shift left of the input sequence into the output sequence
  * ([b, e) << n) => x
  */
@@ -53,7 +53,7 @@ OI shift_left_digits (II b, II e, int n, OI x) {
  * @param e an iterator to the end       of an input  sequence (exclusive)
  * @param x an iterator to the beginning of an output sequence (inclusive)
  * @return  an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+ * the sequence are of decimal digits with LSD stored first
  * output the shift right of the input sequence into the output sequence
  * ([b, e) >> n) => x
  */
@@ -80,7 +80,7 @@ OI shift_right_digits (II b, II e, int n, OI x) {
  * @param e2 an iterator to the end       of an input  sequence (exclusive)
  * @param x  an iterator to the beginning of an output sequence (inclusive)
  * @return   an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+ * the sequence are of decimal digits with LSD stored first
  * output the sum of the two input sequences into the output sequence
  * ([b1, e1) + [b2, e2)) => x
  */
@@ -142,7 +142,7 @@ OI plus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
  * @param e2 an iterator to the end       of an input  sequence (exclusive)
  * @param x  an iterator to the beginning of an output sequence (inclusive)
  * @return   an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+ * the sequence are of decimal digits with LSD stored first
  * output the difference of the two input sequences into the output sequence
  * ([b1, e1) - [b2, e2)) => x
  */
@@ -200,9 +200,14 @@ OI minus_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
 // -----------------
 
 /**
- *
- *
- *
+ * @param b1  an iterator to the beginning of an input  sequence (inclusive)
+ * @param e2  an iterator to the end       of an input  sequence (exclusive)
+ * @param digit an int to multiply
+ * @param x  an iterator to the beginning of an output sequence (inclusive)
+ * @return   an iterator to the end       of an output sequence (exclusive)
+ * the sequence are of decimal digits with LSD stored first
+ * output the product of an input sequences and a digit into the output sequence
+ * ([b1, e1) * [b2, e2)) => x
  */
 
 template <typename II1, typename OI>
@@ -240,7 +245,7 @@ OI multiply_digit (II1 b1, II1 e1, int digit, OI x){
  * @param e2 an iterator to the end       of an input  sequence (exclusive)
  * @param x  an iterator to the beginning of an output sequence (inclusive)
  * @return   an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+  * the sequence are of decimal digits with LSD stored first
  * output the product of the two input sequences into the output sequence
  * ([b1, e1) * [b2, e2)) => x
  */
@@ -306,11 +311,19 @@ OI multiplies_digits (II1 b1, II1 e1, II2 b2, II2 e2, OI x) {
     return x;}
 
 // --------------
-// greater
+// myCompare
 // --------------
 
 /**
- *
+ * @param b1  an iterator to the beginning of an input  sequence (inclusive)
+ * @param e1  an iterator to the end       of an input  sequence (exclusive)
+ * @param b2 an iterator to the beginning of an input  sequence (inclusive)
+ * @param e2 an iterator to the end       of an input  sequence (exclusive)
+ * @param skip an int to make comparision with digits of the same order
+ * @return bool returing true if first sequence greater
+ * the sequence are of decimal digits with MSD stored first
+ * output boolean indicating result of comparision
+ * ([b1, e1) > [b2, e2)) => x
  */
 template <typename II1, typename II2>
 bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
@@ -339,7 +352,7 @@ bool myCompare (II1 b1, II1 e1, II2 b2, II2 e2, unsigned int skip){
  * @param e2 an iterator to the end       of an input  sequence (exclusive)
  * @param x  an iterator to the beginning of an output sequence (inclusive)
  * @return   an iterator to the end       of an output sequence (exclusive)
- * the sequences are of decimal digits
+ * the sequence are of decimal digits with LSD stored first
  * output the division of the two input sequences into the output sequence
  * ([b1, e1) / [b2, e2)) => x
  */

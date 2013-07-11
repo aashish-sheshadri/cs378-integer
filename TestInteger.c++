@@ -271,6 +271,26 @@ struct TestInteger : CppUnit::TestFixture {
         CPPUNIT_ASSERT(std::equal(const_cast<const int*>(x), p, c));}
 
     // --------------
+    // myCompare
+    // --------------
+    
+    void test_myCompare_1 () {
+        const int a[] = {8, 7, 6, 2, 3, 1};
+        const int b[] = {7, 6, 5};
+        bool result;
+        CPPUNIT_ASSERT(myCompare(a,a+6,b,b+3,0));}
+    void test_myCompare_2 () {
+        const int a[] = {1, 2, 3, 2, 3, 1};
+        const int b[] = {7, 6, 5};
+        bool result;
+        CPPUNIT_ASSERT(!myCompare(a,a+6,b,b+3,0));}
+    void test_myCompare_3 () {
+        const int a[] = {8, 7, 6};
+        const int b[] = {6, 5};
+        bool result;
+        CPPUNIT_ASSERT(myCompare(a,a+3,b,b+3,1));}
+
+    // --------------
     // divides_digits
     // --------------
 
