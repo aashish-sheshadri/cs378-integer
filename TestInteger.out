@@ -1,30 +1,8 @@
 TestInteger.c++
-...................F....F.F..F..
+......................................................................................
 
 
-!!!FAILURES!!!
-Test Results:
-Run:  28   Failures: 4   Errors: 0
-
-
-1) test: TestInteger::test_divides_digits (F) line: 230 TestInteger.c++
-assertion failed
-- Expression: p - x == 3
-
-
-2) test: TestInteger::test_abs_1 (F) line: 264 TestInteger.c++
-assertion failed
-- Expression: x == 98765
-
-
-3) test: TestInteger::test_abs_2 (F) line: 274 TestInteger.c++
-assertion failed
-- Expression: y == 98765
-
-
-4) test: TestInteger::test_output (F) line: 316 TestInteger.c++
-assertion failed
-- Expression: out.str() == "98765"
+OK (86 tests)
 
 
 Done.
